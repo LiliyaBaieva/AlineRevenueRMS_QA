@@ -1,0 +1,75 @@
+{
+  "uuid": "e8ef451c-b0be-4aaa-bbb3-290f533512ff",
+  "historyId": "50cac7b37bd8245caf2a2f43e4825cbd",
+  "testCaseId": "5f67603659e128ae1f4a153776f86522",
+  "fullName": "Tests:Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "16"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "SinglePaymentEntry"
+    },
+    {
+      "name": "testClass",
+      "value": "WentworthCentralAvenuePaymentsTests"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Wentworth Central Avenue payments tests"
+    }
+  ],
+  "links": [],
+  "name": "SinglePaymentEntry",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "OpenQA.Selenium.UnhandledAlertException : unexpected alert open: {Alert text : Are you sure you want to submit?}\n  (Session info: chrome=128.0.6613.120)",
+    "trace": "   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)\r\n   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.ExecuteScriptCommand(String script, String commandName, Object[] args)\r\n   at OpenQA.Selenium.WebDriver.ExecuteScript(String script, Object[] args)\r\n   at AlineRevenueRMS_QA.Pages.BasePage.ScrollUp(Int32 count) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\BasePage.cs:line 83\r\n   at Core.pages.PaymentMenegementPage.PaymentSuccessful(Payment payment) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\PaymentMenegementPage.cs:line 71\r\n   at Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\WentworthCentralAvenuePaymentsTests.cs:line 45\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)"
+  },
+  "stage": "finished",
+  "description": "Payment for one resident\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "ce25949f-225e-4372-8c6e-7835fbc2caa6-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725710342045,
+  "stop": 1725710420140
+}

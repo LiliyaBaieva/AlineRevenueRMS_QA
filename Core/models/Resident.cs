@@ -11,5 +11,6 @@ namespace Core.models
         public string Name { get; set; }
         public double StatementBalance { get; set; }
         public double RemainingStatementBalance { get; set; }
+        public Payment Payment { get; set; }
     }
 }

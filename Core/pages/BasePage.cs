@@ -4,6 +4,7 @@ using NLog;
 using NLog.Fluent;
 using SeleniumExtras.WaitHelpers;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace AlineRevenueRMS_QA.Pages
 {
@@ -24,10 +25,9 @@ namespace AlineRevenueRMS_QA.Pages
         public void SendKeysText(By locator, string text)
         {
             IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            webElement.Clear();
+            //webElement.Clear();
             webElement.SendKeys(text);
         }
-
 
         public string GetText(By locator)
         {
@@ -75,7 +75,22 @@ namespace AlineRevenueRMS_QA.Pages
                 jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
             }
         }
+        public void ScrollUp(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var jsExecutor = (IJavaScriptExecutor)Driver;
+                jsExecutor.ExecuteScript("window.scrollBy(0, -window.innerHeight / 2);");
+            }
+        }
 
+        public void ClickEnter(By locator)
+        {
+            IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            webElement.SendKeys(Keys.Enter);
+        }
+
+        public void SubmitAlert() => Wait.Until(ExpectedConditions.AlertIsPresent()).Accept();
 
     }
 }

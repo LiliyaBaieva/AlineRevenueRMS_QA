@@ -35,15 +35,14 @@ namespace Tests.elegance.paymentCenter
         [AllureFeature("Payment Center")]
         public void SinglePaymentEntry()
         {
+            Payment payment = new Payment(100.00, DateTime.Now.Date.AddDays(-7), "For hobbie");
             Pages.GetEleganceRmsHomePage.NavigateToThePaymentcenter()
                 .GoToACHpayment()
-                .EnterSinglePaymentDetails(7, "For hobbie");
-
+                .EnterSinglePaymentDetails(payment);
             Resident resident = Pages.GetPaymentMenegementPage.SelectResident(1);
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(payment.Amount);
 
-                //.SubmitPaymentFor1payor();
-
-            // LOGGING
+            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment));
 
             // DELETE
             Thread.Sleep(2000);

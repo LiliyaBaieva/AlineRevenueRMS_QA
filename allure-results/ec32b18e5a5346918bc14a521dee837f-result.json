@@ -1,0 +1,68 @@
+{
+  "uuid": "9c8b4c4f-8aa2-4953-8973-8aeb6b81842d",
+  "historyId": "50cac7b37bd8245caf2a2f43e4825cbd",
+  "testCaseId": "5f67603659e128ae1f4a153776f86522",
+  "fullName": "Tests:Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "SinglePaymentEntry"
+    },
+    {
+      "name": "testClass",
+      "value": "WentworthCentralAvenuePaymentsTests"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Wentworth Central Avenue payments tests"
+    }
+  ],
+  "links": [],
+  "name": "SinglePaymentEntry",
+  "status": "passed",
+  "stage": "finished",
+  "description": "Payment for one resident\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "621869d7-6b0e-4883-aa67-70a20b0def2b-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725703146085,
+  "stop": 1725703181557
+}

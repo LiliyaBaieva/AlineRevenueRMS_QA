@@ -46,6 +46,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="newPerspective\" />
-    <Folder Include="resources\" />
   </ItemGroup>
 </Project>

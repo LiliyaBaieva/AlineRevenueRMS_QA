@@ -1,0 +1,75 @@
+{
+  "uuid": "4c26095b-48b9-48f1-892d-ec9a62847853",
+  "historyId": "50cac7b37bd8245caf2a2f43e4825cbd",
+  "testCaseId": "5f67603659e128ae1f4a153776f86522",
+  "fullName": "Tests:Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "SinglePaymentEntry"
+    },
+    {
+      "name": "testClass",
+      "value": "WentworthCentralAvenuePaymentsTests"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Wentworth Central Avenue payments tests"
+    }
+  ],
+  "links": [],
+  "name": "SinglePaymentEntry",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "OpenQA.Selenium.UnhandledAlertException : unexpected alert open: {Alert text : Are you sure you want to submit?}\n  (Session info: chrome=128.0.6613.120)",
+    "trace": "   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)\r\n   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)\r\n   at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)\r\n   at OpenQA.Selenium.By.FindElement(ISearchContext context)\r\n   at OpenQA.Selenium.WebDriver.FindElement(By by)\r\n   at SeleniumExtras.WaitHelpers.ExpectedConditions.<>c__DisplayClass6_0.<ElementExists>b__0(IWebDriver driver)\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)\r\n   at AlineRevenueRMS_QA.Pages.BasePage.IsElementPresent(By locator) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\BasePage.cs:line 48\r\n   at Core.pages.PaymentMenegementPage.PaymentSuccessful(Payment payment) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\PaymentMenegementPage.cs:line 71\r\n   at Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\WentworthCentralAvenuePaymentsTests.cs:line 45\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)"
+  },
+  "stage": "finished",
+  "description": "Payment for one resident\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "c7515b78-71dc-4bd3-b27e-306601f848be-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725710122848,
+  "stop": 1725710152375
+}
