@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using NLog;
 using NLog.Fluent;
 using SeleniumExtras.WaitHelpers;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace AlineRevenueRMS_QA.Pages
 {
@@ -14,29 +15,64 @@ namespace AlineRevenueRMS_QA.Pages
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
 
-        public void Click(IWebElement element)
+        public void Click(By locator)
         {
-            Wait.Until(ExpectedConditions.ElementToBeClickable(element)).Click();
+            Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
         }
 
-        public void SendKeysText(IWebElement element, string text)
+        public void SendKeysText(By locator, string text)
         {
-            Wait.Until(driver => element.Displayed && element.Enabled);
-            element.Clear();
-            element.SendKeys(text);
+            IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            webElement.Clear();
+            webElement.SendKeys(text);
         }
 
-        public bool IsElementPresent(IWebElement element)
+
+        public string GetText(By locator)
+        {
+         return Wait.Until(ExpectedConditions.ElementIsVisible(locator)).Text;
+        }
+
+
+        public void WaitUntilElementExist(By locator)
+        {
+            Wait.Until(ExpectedConditions.ElementExists(locator));
+        }
+
+        public bool IsElementPresent(By locator)
         {
 
             try
             {
-                Wait.Until(driver => element.Displayed && element.Enabled);
+                Wait.Until(ExpectedConditions.ElementExists(locator));
+                Wait.Until(ExpectedConditions.ElementIsVisible(locator));
                 return true;
             }
             catch (WebDriverTimeoutException)
             {
                 return false;
+            }
+        }
+
+        public void WaitUntilPageLoaded()
+        {
+            Wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
+        }
+
+        public void EnterDateInField(By dataField, DateTime date)
+        {
+            SendKeysText(dataField, date.Day.ToString());
+            SendKeysText(dataField, date.Month.ToString());
+            SendKeysText(dataField, date.Year.ToString());
+        }
+
+        public void ScrollDown(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var jsExecutor = (IJavaScriptExecutor)Driver;
+                jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
             }
         }
 

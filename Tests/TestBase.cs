@@ -5,9 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using AlineRevenueRMS_QA.Pages;
-using AngleSharp;
-using Microsoft.Extensions.Configuration;
-using Core;
 using NLog;
 
 namespace AlineRevenueRMS_QA
@@ -21,7 +18,7 @@ namespace AlineRevenueRMS_QA
         public static void Initialize()
         {
             LogManager.LoadConfiguration("nlog.config");
-            //LogManager.LoadConfiguration("NLog");
+            Environment.SetEnvironmentVariable("ALLURE_RESULTS_DIR", @"AlineRevenueRMS_QA\allure-results");
             Driver.Initialize();
         }
 

@@ -1,0 +1,75 @@
+{
+  "uuid": "12eaee1d-c56e-4d6d-ab09-c64af01c9c09",
+  "historyId": "50cac7b37bd8245caf2a2f43e4825cbd",
+  "testCaseId": "5f67603659e128ae1f4a153776f86522",
+  "fullName": "Tests:Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.SinglePaymentEntry()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "17"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "SinglePaymentEntry"
+    },
+    {
+      "name": "testClass",
+      "value": "WentworthCentralAvenuePaymentsTests"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Wentworth Central Avenue payments tests"
+    }
+  ],
+  "links": [],
+  "name": "SinglePaymentEntry",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "OpenQA.Selenium.InvalidSelectorException : invalid selector\nfrom javascript error: {\"status\":32,\"value\":\"Unable to locate an element with the xpath expression //div[@class='modal-body']/div[contains(Text(), 'Wentworth Central Avenue')] because of the following error:\\nSyntaxError: Failed to execute 'evaluate' on 'Document': The string '//div[@class='modal-body']/div[contains(Text(), 'Wentworth Central Avenue')]' is not a valid XPath expression.\"}\n  (Session info: chrome=128.0.6613.120); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception",
+    "trace": "   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)\r\n   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)\r\n   at OpenQA.Selenium.By.<.ctor>b__11_0(ISearchContext context)\r\n   at OpenQA.Selenium.By.FindElement(ISearchContext context)\r\n   at OpenQA.Selenium.WebDriver.FindElement(By by)\r\n   at Core.pages.EleganceRmsHomePage.ComunityInSelector(String community) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\EleganceRmsHomePage.cs:line 16\r\n   at Core.pages.EleganceRmsHomePage.SelectComunity(String community) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\EleganceRmsHomePage.cs:line 33\r\n   at Core.pages.EleganceRmsHomePage.SelectWentworthCentralAvenue() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\EleganceRmsHomePage.cs:line 24\r\n   at Tests.elegance.paymentCenter.WentworthCentralAvenuePaymentsTests.precondition() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\WentworthCentralAvenuePaymentsTests.cs:line 25\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)"
+  },
+  "stage": "finished",
+  "description": "Payment for one resident\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "df92f23f-5495-42e8-af78-e5a2670d2f7b-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725634688248,
+  "stop": 1725634717991
+}

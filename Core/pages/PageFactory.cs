@@ -10,6 +10,8 @@ namespace AlineRevenueRMS_QA.Pages
         public LoginPage GetLoginPage => new LoginPage();
         public EleganceAppPage GetEleganceAppPage => new EleganceAppPage();
         public EleganceRmsHomePage GetEleganceRmsHomePage => new EleganceRmsHomePage();
+        public PaymentCenterPage GetPaymentCenterPage => new PaymentCenterPage();
+        public PaymentMenegementPage GetPaymentMenegementPage => new PaymentMenegementPage();
  
 
     }

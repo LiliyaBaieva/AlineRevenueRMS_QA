@@ -13,15 +13,16 @@ namespace Core.pages
     {
         public EleganceAppPage() { }
 
-        private IWebElement ApplicationsMenu => Driver.FindElement(By.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"));
-        private IWebElement AlineRevenueRmsLink => Driver.FindElement(By.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"));
+        private By ApplicationsMenu => By.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]");
+        private By AlineRevenueRmsLink => By.XPath("//a[contains(text(),'Aline Revenue (RMS)')]");
 
-        public EleganceRmsHomePage GotoAlineRevenueRms ()
+       public EleganceRmsHomePage GotoAlineRevenueRms ()
         {
             Click(ApplicationsMenu);
             Click(AlineRevenueRmsLink);
             ReadOnlyCollection<string> windows = Driver.WindowHandles;
             Driver.SwitchTo().Window(windows[1]);
+            WaitUntilPageLoaded();
             logger.Debug("Open Elegance Aline Revenue (RMS)");
             return new EleganceRmsHomePage();
         }

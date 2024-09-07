@@ -8,12 +8,12 @@ namespace AlineRevenueRMS_QA.Pages
     {
         public LoginPage() { }
 
-        private IWebElement loginField => Driver.FindElement(By.Id("Username"));
-        private IWebElement passwordField => Driver.FindElement(By.Id("Password"));
-        private IWebElement signInBtn => Driver.FindElement(By.Id("Submit"));
-        private IWebElement SubmitMultiTenant => Driver.FindElement(By.Id("SubmitMultiTenant"));
-        private IWebElement tenantCollection => Driver.FindElement(By.Id("TenantCollection"));
-        private IWebElement eleganceOption => Driver.FindElement(By.XPath("//option[contains(text(),'Elegance')]"));
+        private By loginField = By.Id("Username");
+        private By passwordField => By.Id("Password");
+        private By signInBtn => By.Id("Submit");
+        private By SubmitMultiTenant => By.Id("SubmitMultiTenant");
+        private By tenantCollection => By.Id("TenantCollection");
+        private By eleganceOption => By.XPath("//option[contains(text(),'Elegance')]");
 
         public LoginPage LogInToApp()
         {

@@ -1,0 +1,3 @@
+2024-09-06 17:54:19.9163|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Login to application
+2024-09-06 17:54:23.4064|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Go to Elegance
+2024-09-06 17:54:25.5240|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Open Elegance Aline Revenue (RMS)

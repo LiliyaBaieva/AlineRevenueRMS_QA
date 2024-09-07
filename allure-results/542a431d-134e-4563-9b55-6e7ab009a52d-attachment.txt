@@ -1,0 +1,2 @@
+2024-09-06 12:42:06.4796|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Login to application
+2024-09-06 12:42:08.7303|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Go to Elegance
