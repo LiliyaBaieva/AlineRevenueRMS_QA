@@ -4,44 +4,54 @@ using OpenQA.Selenium.Chrome;
 
 namespace AlineRevenueRMS_QA
 {
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
+
     public class Driver
     {
-        private static IWebDriver _driver;
+        private IWebDriver _Driver;
+        private static Driver Instance;
         private static string BaseUrl = ConfigurationManager.Configuration["BaseUrl"];
 
-        public static IWebDriver Instance
+        public string Title => _Driver.Title;
+
+        private Driver() { }
+
+        public static Driver GetInstance()
         {
-            get
+            if (Instance == null)
             {
-                if (_driver == null)
-                {
-                    _driver = new ChromeDriver();
-                }
-                return _driver;
+                Instance = new Driver();
             }
+            return Instance;
         }
 
-        public static string Title => Instance.Title;
-
-        public static void Goto(string url)
+        public Driver SetWebDriver()
         {
-            Instance.Navigate().GoToUrl(BaseUrl + url);
-        }
-
-        public static void Initialize()
-        {
+            _Driver = new ChromeDriver();
             Goto("");
-            Instance.Manage().Window.Maximize();
+            _Driver.Manage().Window.Maximize();
+            return this;
         }
 
-        public static void Close()
+        public IWebDriver GetWebDriver()
         {
-            if (_driver != null)
+            return _Driver;
+        }
+
+        public void CloseWebDriver()
+        {
+            if (_Driver != null)
             {
-                _driver.Quit();
-                _driver.Dispose();
-                _driver = null;
+                _Driver.Quit();
+                _Driver = null;
             }
+        }
+
+        public void Goto(string url)
+        {
+            GetWebDriver().Navigate().GoToUrl(BaseUrl + url);
         }
     }
+
 }

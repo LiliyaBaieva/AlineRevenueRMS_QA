@@ -11,10 +11,15 @@ namespace AlineRevenueRMS_QA.Pages
     public abstract class BasePage
     {
 
-        protected static IWebDriver Driver = AlineRevenueRMS_QA.Driver.Instance;
-        protected WebDriverWait Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+        protected IWebDriver _Driver;
+        protected WebDriverWait Wait;  /* = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));*/
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        public BasePage()
+        {
+            this._Driver = Driver.GetInstance().GetWebDriver();
+            this.Wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
+        }
 
         public void Click(By locator)
         {
@@ -71,7 +76,7 @@ namespace AlineRevenueRMS_QA.Pages
         {
             for (int i = 0; i < count; i++)
             {
-                var jsExecutor = (IJavaScriptExecutor)Driver;
+                var jsExecutor = (IJavaScriptExecutor)_Driver;
                 jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
             }
         }
@@ -79,13 +84,13 @@ namespace AlineRevenueRMS_QA.Pages
         {
             for (int i = 0; i < count; i++)
             {
-                var jsExecutor = (IJavaScriptExecutor)Driver;
+                var jsExecutor = (IJavaScriptExecutor)_Driver;
                 jsExecutor.ExecuteScript("window.scrollBy(0, -window.innerHeight / 2);");
             }
         }
         public void MoveToTopOfPage()
         {
-            var jsExecutor = (IJavaScriptExecutor)Driver;
+            var jsExecutor = (IJavaScriptExecutor)_Driver;
             jsExecutor.ExecuteScript("window.scrollTo(0, 0);");
         }
 
@@ -93,7 +98,7 @@ namespace AlineRevenueRMS_QA.Pages
         public void ScrollToElement(By locator)
         {
             IWebElement element = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            var jsExecutor = (IJavaScriptExecutor)Driver;
+            var jsExecutor = (IJavaScriptExecutor)_Driver;
             jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", element);
         }
 

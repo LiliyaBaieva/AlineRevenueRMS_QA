@@ -15,17 +15,18 @@ namespace AlineRevenueRMS_QA
         protected PageFactory Pages = new PageFactory();
 
         [SetUp]
-        public static void Initialize()
+        public void Initialize()
         {
             LogManager.LoadConfiguration("nlog.config");
             Environment.SetEnvironmentVariable("ALLURE_RESULTS_DIR", @"AlineRevenueRMS_QA\allure-results");
-            Driver.Initialize();
+            Driver.GetInstance().SetWebDriver();
         }
 
+        //[OneTimeTearDown]
         [TearDown]
         public static void TearDown()
         {
-            Driver.Close();
+            Driver.GetInstance().CloseWebDriver();
         }
     }
 }

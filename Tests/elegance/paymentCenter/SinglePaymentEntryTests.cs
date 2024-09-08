@@ -22,7 +22,7 @@ namespace Tests.elegance.paymentCenter
     public class SinglePaymentEntryTests : TestBase
     {
 
-        private Resident resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"));
+        private Resident resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-10), "For hobbie"));
 
         [SetUp]
         public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();

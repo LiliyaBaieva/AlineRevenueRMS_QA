@@ -20,8 +20,8 @@ namespace Core.pages
         {
             Click(ApplicationsMenu);
             Click(AlineRevenueRmsLink);
-            ReadOnlyCollection<string> windows = Driver.WindowHandles;
-            Driver.SwitchTo().Window(windows[1]);
+            ReadOnlyCollection<string> windows = _Driver.WindowHandles;
+            _Driver.SwitchTo().Window(windows[1]);
             WaitUntilPageLoaded();
             logger.Info("Open Elegance Aline Revenue (RMS)");
             return new EleganceRmsHomePage();
