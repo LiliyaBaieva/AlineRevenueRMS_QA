@@ -18,22 +18,17 @@ namespace Core.pages
         private By SearchResidentInput = By.Id("searchInput");
         private By SearchedResident(string name) => By.XPath($"//div[contains(text(), '{name}')]");
 
-        public EleganceRmsHomePage SelectWentworthCentralAvenue()
-        {
-            SelectComunity("Wentworth Central Avenue");
-            return this;
-        }
-
-        private void SelectComunity(string community)
+        public EleganceRmsHomePage SelectComunity(string community)
         {
             Click(ComunityTab);
             WaitUntilElementExist(CommunityFilter);
             SendKeysText(CommunityFilter, community);
             Click(ComunityInSelector(community));
             logger.Info("Select community: {0}", community);
+            return this;
         }
 
-        public PaymentCenterPage NavigateToThePaymentcenter()
+        public PaymentCenterPage NavigateToThePaymentCenter()
         {
             Click(QuickActionLink);
             Click(PaymentManagement);

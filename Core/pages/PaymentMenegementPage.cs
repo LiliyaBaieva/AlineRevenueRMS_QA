@@ -39,14 +39,14 @@ namespace Core.pages
             return this;
         }
 
-        public Resident SelectResident(int residentNum)
+        public string SelectResident(int residentNum)
         {
             ScrollDown(2);
             Click(ResidentCheckbox(residentNum));
             Resident resident = new Resident();
-            resident.Name = GetText(ResidentToSelect(residentNum));
+            string name = GetText(ResidentToSelect(residentNum));
             logger.Info("Resident \"{0}\" is selected", resident.Name);
-            return resident;
+            return name;
         }
 
         public PaymentMenegementPage SubmitPaymentFor1payor(double amount)
