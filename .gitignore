@@ -57,6 +57,7 @@ artifacts/
 *.log
 
 TestResults/
+allure-results/
 *.trx*
 
 .Build.*

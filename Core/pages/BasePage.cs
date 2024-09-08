@@ -11,7 +11,7 @@ namespace AlineRevenueRMS_QA.Pages
     public abstract class BasePage
     {
 
-        protected static IWebDriver Driver = AlineRevenueRMS_QA.Driver.GetDriver();
+        protected static IWebDriver Driver = AlineRevenueRMS_QA.Driver.Instance;
         protected WebDriverWait Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
