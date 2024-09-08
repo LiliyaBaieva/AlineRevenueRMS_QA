@@ -7,13 +7,13 @@ namespace Core.pages
     {
         public PaymentCenterPage(){}
 
-        public By ACHpaymentsLink = By.XPath("//h5[contains(text(),'ACH payments')]");
+        private By ACHpaymentsLink = By.XPath("//h5[contains(text(),'ACH payments')]");
 
 
         public PaymentMenegementPage GoToACHpayment()
         {
             Click(ACHpaymentsLink);
-            logger.Debug("Navigate to ACH payment");
+            logger.Info("Navigate to ACH payment");
             return new PaymentMenegementPage();
 
         }

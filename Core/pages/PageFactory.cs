@@ -12,6 +12,8 @@ namespace AlineRevenueRMS_QA.Pages
         public EleganceRmsHomePage GetEleganceRmsHomePage => new EleganceRmsHomePage();
         public PaymentCenterPage GetPaymentCenterPage => new PaymentCenterPage();
         public PaymentMenegementPage GetPaymentMenegementPage => new PaymentMenegementPage();
+        public ResidentPageInElegance GetResidentPageInElegance => new ResidentPageInElegance();
+        public ResidentLedgerAdminInElegancePage GetResidentLedgerAdminInElegancePage => new ResidentLedgerAdminInElegancePage();
  
 
     }

@@ -84,6 +84,14 @@ namespace AlineRevenueRMS_QA.Pages
             }
         }
 
+        public void ScrollToElement(By locator)
+        {
+            IWebElement element = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            var jsExecutor = (IJavaScriptExecutor)Driver;
+            jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", element);
+        }
+
+
         public void ClickEnter(By locator)
         {
             IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));

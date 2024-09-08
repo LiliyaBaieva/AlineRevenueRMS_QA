@@ -9,16 +9,19 @@ using Allure.Net.Commons;
 using System;
 using Core.models;
 using NLog;
+using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Tests.elegance.paymentCenter
 {
     [TestFixture]
     [AllureNUnit]
     [AllureSuite("Wentworth Central Avenue payments tests")]
-    public class WentworthCentralAvenuePaymentsTests : TestBase
+    public class PaymentsTestsInWentworthCentralAvenue : TestBase
     {
 
-        private Resident resident;
+        private List<Resident> ResidentList = new List<Resident>();
 
         [SetUp]
         public void precondition()
@@ -35,17 +38,23 @@ namespace Tests.elegance.paymentCenter
         [AllureFeature("Payment Center")]
         public void SinglePaymentEntry()
         {
-            Payment payment = new Payment(100.00, DateTime.Now.Date.AddDays(-7), "For hobbie");
+            Payment payment = new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie");
             Pages.GetEleganceRmsHomePage.NavigateToThePaymentcenter()
                 .GoToACHpayment()
                 .EnterSinglePaymentDetails(payment);
             Resident resident = Pages.GetPaymentMenegementPage.SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(payment.Amount);
+            resident.Payment = payment;
+            ResidentList.Add(resident);
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
 
-            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment));
+            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment));
+        }
 
-            // DELETE
-            Thread.Sleep(2000);
+        [TearDown]
+        public void Postcondition()
+        {
+            ResidentList.ForEach(resident => 
+            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident));
         }
     }
 }

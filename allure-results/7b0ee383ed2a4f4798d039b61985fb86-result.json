@@ -1,0 +1,75 @@
+{
+  "uuid": "334ad8c2-39ab-4c98-9e39-1f126b8b3dc1",
+  "historyId": "b80506b753ae5a931952290f5c0f672c",
+  "testCaseId": "09082eb71573bae04f1154c485540da3",
+  "fullName": "Tests:Tests.elegance.paymentCenter.PaymentsTestsInWentworthCentralAvenue.SinglePaymentEntry()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "SinglePaymentEntry"
+    },
+    {
+      "name": "testClass",
+      "value": "PaymentsTestsInWentworthCentralAvenue"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Wentworth Central Avenue payments tests"
+    }
+  ],
+  "links": [],
+  "name": "SinglePaymentEntry",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "System.NullReferenceException : Object reference not set to an instance of an object.\r\nTearDown : System.NullReferenceException : Object reference not set to an instance of an object.",
+    "trace": "   at Tests.elegance.paymentCenter.PaymentsTestsInWentworthCentralAvenue.SinglePaymentEntry() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\PaymentsTestsInWentworthCentralAvenue.cs:line 49\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)\r\n--TearDown\r\n   at Core.pages.ResidentLedgerAdminInElegancePage.DeletePayment(Resident resident) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\ResidentLedgerAdminInElegancePage.cs:line 23\r\n   at Tests.elegance.paymentCenter.PaymentsTestsInWentworthCentralAvenue.<Postcondition>b__3_0(Resident resident) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\PaymentsTestsInWentworthCentralAvenue.cs:line 58\r\n   at System.Collections.Generic.List`1.ForEach(Action`1 action)\r\n   at Tests.elegance.paymentCenter.PaymentsTestsInWentworthCentralAvenue.Postcondition() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\PaymentsTestsInWentworthCentralAvenue.cs:line 57\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)"
+  },
+  "stage": "finished",
+  "description": "Payment for one resident\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "be3bcdbd-a0fa-486e-987b-87096fcb2c6d-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725736119130,
+  "stop": 1725736166557
+}

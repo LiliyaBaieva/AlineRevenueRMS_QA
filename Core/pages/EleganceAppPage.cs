@@ -23,7 +23,7 @@ namespace Core.pages
             ReadOnlyCollection<string> windows = Driver.WindowHandles;
             Driver.SwitchTo().Window(windows[1]);
             WaitUntilPageLoaded();
-            logger.Debug("Open Elegance Aline Revenue (RMS)");
+            logger.Info("Open Elegance Aline Revenue (RMS)");
             return new EleganceRmsHomePage();
         }
 

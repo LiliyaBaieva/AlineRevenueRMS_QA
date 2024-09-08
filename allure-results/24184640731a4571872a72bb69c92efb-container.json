@@ -1,0 +1,12 @@
+{
+  "uuid": "0397727b-c952-4d9e-91ba-f433fbd5d460",
+  "name": "Tests.elegance.paymentCenter.PaymentsTestsInWentworthCentralAvenue",
+  "children": [
+    "334ad8c2-39ab-4c98-9e39-1f126b8b3dc1"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1725736119068,
+  "stop": 1725736166586
+}

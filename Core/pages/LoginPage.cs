@@ -20,7 +20,7 @@ namespace AlineRevenueRMS_QA.Pages
             SendKeysText(loginField, ConfigurationManager.Configuration["Logging:Name"]);
             SendKeysText(passwordField, ConfigurationManager.Configuration["Logging:Password"]);
             Click(signInBtn);
-            logger.Debug("Login to application");
+            logger.Info("Login to application");
             return this;
         }
 
@@ -28,7 +28,7 @@ namespace AlineRevenueRMS_QA.Pages
         {
             Click(eleganceOption);
             Click(SubmitMultiTenant);
-            logger.Debug("Go to Elegance");
+            logger.Info("Go to Elegance");
             return new EleganceAppPage();
         }
 
