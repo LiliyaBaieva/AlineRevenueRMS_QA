@@ -1,0 +1,16 @@
+2024-09-08 14:38:18.8375|INFO|AlineRevenueRMS_QA.Pages.BasePage|Login to application
+2024-09-08 14:38:21.3826|INFO|AlineRevenueRMS_QA.Pages.BasePage|Go to Elegance
+2024-09-08 14:38:24.1797|INFO|AlineRevenueRMS_QA.Pages.BasePage|Open Elegance Aline Revenue (RMS)
+2024-09-08 14:38:27.1249|INFO|AlineRevenueRMS_QA.Pages.BasePage|Select community: Wentworth Central Avenue
+2024-09-08 14:38:37.7485|INFO|AlineRevenueRMS_QA.Pages.BasePage|Navigate to Payment Center.
+2024-09-08 14:38:38.9061|INFO|AlineRevenueRMS_QA.Pages.BasePage|Navigate to ACH payment
+2024-09-08 14:38:39.7145|INFO|AlineRevenueRMS_QA.Pages.BasePage|Enter Single Payment Details
+2024-09-08 14:38:40.5333|INFO|AlineRevenueRMS_QA.Pages.BasePage|Resident "" is selected
+2024-09-08 14:38:41.6932|INFO|AlineRevenueRMS_QA.Pages.BasePage|Set ammount 111 for one payor
+2024-09-08 14:38:41.9158|INFO|AlineRevenueRMS_QA.Pages.BasePage|Confirm payment.
+2024-09-08 14:38:43.1566|INFO|AlineRevenueRMS_QA.Pages.BasePage|Payment was upplied successfully
+2024-09-08 14:38:52.5258|INFO|AlineRevenueRMS_QA.Pages.BasePage|Open Lease Menegement for 'Aubin, Ann'
+2024-09-08 14:38:54.7522|INFO|AlineRevenueRMS_QA.Pages.BasePage|Open Rsident Ledger
+2024-09-08 14:38:54.9118|INFO|AlineRevenueRMS_QA.Pages.BasePage|Payment by '29.08.2024 0:00:00' with amount '111' exist
+2024-09-08 14:40:25.6406|INFO|AlineRevenueRMS_QA.Pages.BasePage|Open Rsident Ledger Admin
+2024-09-08 14:40:26.8810|INFO|AlineRevenueRMS_QA.Pages.BasePage|Payment by '29.08.2024 0:00:00' with amount '111' was deleted successfully

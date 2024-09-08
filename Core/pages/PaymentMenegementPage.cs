@@ -35,7 +35,7 @@ namespace Core.pages
             EnterDateInField(DataField, payment.Date);
             SendKeysText(PaymentDescriprionField, payment.Description);
             Click(ContinueBtn);
-            logger.Info("Enter Single Payment Details");
+            logger.Info("Enter Single Payment Details with date '{0}' and amount {1}", payment.Date.ToString(), ""+payment.Amount);
             return this;
         }
 
@@ -43,9 +43,8 @@ namespace Core.pages
         {
             ScrollDown(2);
             Click(ResidentCheckbox(residentNum));
-            Resident resident = new Resident();
             string name = GetText(ResidentToSelect(residentNum));
-            logger.Info("Resident \"{0}\" is selected", resident.Name);
+            logger.Info("Resident '{0}' is selected", name);
             return name;
         }
 

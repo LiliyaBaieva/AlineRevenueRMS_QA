@@ -83,6 +83,12 @@ namespace AlineRevenueRMS_QA.Pages
                 jsExecutor.ExecuteScript("window.scrollBy(0, -window.innerHeight / 2);");
             }
         }
+        public void MoveToTopOfPage()
+        {
+            var jsExecutor = (IJavaScriptExecutor)Driver;
+            jsExecutor.ExecuteScript("window.scrollTo(0, 0);");
+        }
+
 
         public void ScrollToElement(By locator)
         {

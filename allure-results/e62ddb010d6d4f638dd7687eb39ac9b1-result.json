@@ -1,0 +1,75 @@
+{
+  "uuid": "9fa84c04-8b0b-4959-849b-9c4e3e7739c7",
+  "historyId": "8d4f63603ff4af5ba2fb931634255a1a",
+  "testCaseId": "50eb2cb745c11a70e6b9502a1e368fc0",
+  "fullName": "Tests:Tests.elegance.paymentCenter.SinglePaymentEntryTests.PaymentEntryInWentworthCentralAvenue()",
+  "labels": [
+    {
+      "name": "thread",
+      "value": "NonParallelWorker"
+    },
+    {
+      "name": "host",
+      "value": "LAPTOP-LILIIA"
+    },
+    {
+      "name": "language",
+      "value": "C#"
+    },
+    {
+      "name": "framework",
+      "value": "NUnit 3"
+    },
+    {
+      "name": "package",
+      "value": "Tests.elegance.paymentCenter"
+    },
+    {
+      "name": "testMethod",
+      "value": "PaymentEntryInWentworthCentralAvenue"
+    },
+    {
+      "name": "testClass",
+      "value": "SinglePaymentEntryTests"
+    },
+    {
+      "name": "severity",
+      "value": "critical"
+    },
+    {
+      "name": "tag",
+      "value": "Regression"
+    },
+    {
+      "name": "feature",
+      "value": "Payment Center"
+    },
+    {
+      "name": "suite",
+      "value": "Single Payment Entry Tests for different comunities."
+    }
+  ],
+  "links": [],
+  "name": "PaymentEntryInWentworthCentralAvenue",
+  "status": "broken",
+  "statusDetails": {
+    "known": false,
+    "muted": false,
+    "flaky": false,
+    "message": "TearDown : OpenQA.Selenium.WebDriverTimeoutException : Timed out after 10 seconds\r\n  ----> OpenQA.Selenium.NoSuchElementException : no such element: Unable to locate element: {\"method\":\"css selector\",\"selector\":\"button[data-bs-target=\"#residentModal\"]\"}\n  (Session info: chrome=128.0.6613.120); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception",
+    "trace": "--TearDown\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.ThrowTimeoutException(String exceptionMessage, Exception lastException)\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition)\r\n   at AlineRevenueRMS_QA.Pages.BasePage.Click(By locator) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\BasePage.cs:line 21\r\n   at Core.pages.EleganceRmsHomePage.OpenResidentPage(Resident resident) in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Core\\pages\\EleganceRmsHomePage.cs:line 41\r\n   at Tests.elegance.paymentCenter.SinglePaymentEntryTests.Postcondition() in D:\\DOCUMENTS\\ANDERSEN\\ATRIA\\AlineRevenueRMS_QA\\Tests\\elegance\\paymentCenter\\SinglePaymentEntryTests.cs:line 33\r\n   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)\r\n   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Method(Object obj, IntPtr* args)\r\n   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)\r\n--NoSuchElementException\r\n   at OpenQA.Selenium.WebDriver.UnpackAndThrowOnError(Response errorResponse, String commandToExecute)\r\n   at OpenQA.Selenium.WebDriver.ExecuteAsync(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.Execute(String driverCommandToExecute, Dictionary`2 parameters)\r\n   at OpenQA.Selenium.WebDriver.FindElement(String mechanism, String value)\r\n   at OpenQA.Selenium.WebDriver.FindElement(By by)\r\n   at SeleniumExtras.WaitHelpers.ExpectedConditions.<>c__DisplayClass7_0.<ElementIsVisible>b__0(IWebDriver driver)\r\n   at OpenQA.Selenium.Support.UI.DefaultWait`1.Until[TResult](Func`2 condition, CancellationToken token)"
+  },
+  "stage": "finished",
+  "description": "Payment Entry In Wentworth Central Avenue\n",
+  "steps": [],
+  "attachments": [
+    {
+      "name": "Console Output",
+      "source": "05acb97e-370a-4923-9a63-ed111d3fc3c8-attachment.txt",
+      "type": "text/plain"
+    }
+  ],
+  "parameters": [],
+  "start": 1725790826639,
+  "stop": 1725790878120
+}

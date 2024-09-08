@@ -22,12 +22,15 @@ namespace Tests.elegance.paymentCenter
     public class SinglePaymentEntryTests : TestBase
     {
 
-        private Resident resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"));
+        private Resident resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
 
         [SetUp]
-        public void precondition()
+        public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+
+        [TearDown]
+        public void Postcondition()
         {
-            Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+            Pages.GetResidentLedgerInElegancePage.MoveToResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident);
         }
 
         [Test(Description = "Payment Entry In Wentworth Central Avenue")]
@@ -42,13 +45,32 @@ namespace Tests.elegance.paymentCenter
                 .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
 
-            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment));
+            Assert.IsTrue
+                (
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
+                );
+        }
+        
+        [Test(Description = "Payment Entry In Anchor Bay Pocasset (18003)")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureTag("Regression")]
+        [AllureFeature("Payment Center")]
+        public void PaymentEntryInAnchorBayPocasset()
+        {
+            resident.Comunity = Comunities.ANCHOR_BAY_POCASSET;
+            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Comunity);
+            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+
+            Assert.IsTrue
+                (
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
+                );
         }
 
-        [TearDown]
-        public void Postcondition()
-        {
-            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident);
-        }
+
     }
 }

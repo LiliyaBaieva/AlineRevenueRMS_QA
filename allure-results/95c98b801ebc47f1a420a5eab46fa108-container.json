@@ -1,0 +1,12 @@
+{
+  "uuid": "d887423f-d878-4d4d-8fc9-a9ed18aeb0a7",
+  "name": "Tests.elegance.paymentCenter.SinglePaymentEntryTests",
+  "children": [
+    "8198449a-a830-4bf9-9d31-15fdf3ec14a2"
+  ],
+  "befores": [],
+  "afters": [],
+  "links": [],
+  "start": 1725799409732,
+  "stop": 1725799456466
+}
