@@ -12,12 +12,12 @@ namespace AlineRevenueRMS_QA.Pages
     {
 
         protected IWebDriver _Driver;
-        protected WebDriverWait Wait;  /* = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));*/
+        protected WebDriverWait Wait;
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public BasePage()
         {
-            this._Driver = Driver.GetInstance().GetWebDriver();
+            this._Driver = DriverManager.GetInstance().CurrentDriver;
             this.Wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
         }
 

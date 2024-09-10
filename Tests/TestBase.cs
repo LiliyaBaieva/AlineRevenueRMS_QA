@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using AlineRevenueRMS_QA.Pages;
 using NLog;
+using OpenQA.Selenium;
+using Core;
 
 namespace AlineRevenueRMS_QA
 {
@@ -13,20 +15,24 @@ namespace AlineRevenueRMS_QA
     {
 
         protected PageFactory Pages = new PageFactory();
+        protected DriverManager Driver;
+
+        private static string BaseUrl = ConfigurationManager.Configuration["BaseUrl"];
 
         [SetUp]
         public void Initialize()
         {
             LogManager.LoadConfiguration("nlog.config");
             Environment.SetEnvironmentVariable("ALLURE_RESULTS_DIR", @"AlineRevenueRMS_QA\allure-results");
-            Driver.GetInstance().SetWebDriver();
+            Driver = DriverManager.GetInstance();
+            Driver.CurrentDriver.Navigate().GoToUrl(BaseUrl);
+            Driver.CurrentDriver.Manage().Window.Maximize();
         }
 
-        //[OneTimeTearDown]
         [TearDown]
-        public static void TearDown()
+        public void TearDown()
         {
-            Driver.GetInstance().CloseWebDriver();
+            Driver.QuitDriver();
         }
     }
 }
