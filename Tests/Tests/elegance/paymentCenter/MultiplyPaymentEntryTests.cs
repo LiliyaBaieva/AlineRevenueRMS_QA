@@ -1,15 +1,8 @@
-﻿using AlineRevenueRMS_QA;
-using Allure.Net.Commons;
+﻿using Allure.Net.Commons;
 using Allure.NUnit.Attributes;
-using Core.constants;
-using Core.models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TestProject.TestData.models;
 
-namespace Tests.elegance.paymentCenter
+namespace TestProject.Tests.elegance.paymentCenter
 {
     internal class MultiplyPaymentEntryTests : TestBase
     {

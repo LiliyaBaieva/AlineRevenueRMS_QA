@@ -1,10 +1,9 @@
-﻿using AlineRevenueRMS_QA;
-using Allure.NUnit.Attributes;
+﻿using Allure.NUnit.Attributes;
 using Allure.NUnit;
 using Allure.Net.Commons;
-using Core.models;
+using TestProject.TestData.models;
 
-namespace Tests.elegance.paymentCenter
+namespace TestProject.Tests.elegance.paymentCenter
 {
     [TestFixture]
     [AllureNUnit]

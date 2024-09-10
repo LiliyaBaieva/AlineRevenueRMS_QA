@@ -1,20 +1,10 @@
-﻿using AlineRevenueRMS_QA;
-using AlineRevenueRMS_QA.Pages;
-using Allure.NUnit.Attributes;
+﻿using Allure.NUnit.Attributes;
 using Allure.NUnit;
-using Core;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using TestProject.TestData.models;
+using TestProject.TestData.constants;
 using Allure.Net.Commons;
-using System;
-using Core.models;
-using NLog;
-using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
-using static System.Collections.Specialized.BitVector32;
-using Core.constants;
 
-namespace Tests.elegance.paymentCenter
+namespace TestProject.Tests.elegance.paymentCenter
 {
     [TestFixture]
     [AllureNUnit]
@@ -51,7 +41,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Anchor Bay Pocasset (18003)")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
@@ -70,7 +60,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Elegance at Lake Worth (12007) ")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
@@ -89,7 +79,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Symphony Manor Roland Park (14001) ")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
@@ -108,7 +98,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Symphony Olmsted Falls (16003) ")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
@@ -127,7 +117,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Tranquillity Fredericktowne (14002) ")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
@@ -146,7 +136,7 @@ namespace Tests.elegance.paymentCenter
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
                 );
         }
-        
+
         [Test(Description = "Payment Entry In Demo Community (99999) ")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
