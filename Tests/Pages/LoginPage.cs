@@ -18,24 +18,24 @@ namespace AlineRevenueRMS_QA.Pages
 
         public LoginPage LogInToApp()
         {
-            SendKeysText(loginField, ConfigurationManager.Configuration["Logging:Name"]);
-            SendKeysText(passwordField, ConfigurationManager.Configuration["Logging:Password"]);
-            Click(signInBtn);
+            Wrap.SendKeysText(loginField, ConfigurationManager.Configuration["Logging:Name"]);
+            Wrap.SendKeysText(passwordField, ConfigurationManager.Configuration["Logging:Password"]);
+            Wrap.Click(signInBtn);
             logger.Info("Login to application");
             return this;
         }
 
         public EleganceAppPage GoToElegance()
         {
-            Click(eleganceOption);
-            Click(SubmitMultiTenant);
+            Wrap.Click(eleganceOption);
+            Wrap.Click(SubmitMultiTenant);
             logger.Info("Go to Elegance");
             return new EleganceAppPage();
         }
 
         public bool IsTenantPresent()
         {
-            return IsElementPresent(tenantCollection);
+            return Wrap.IsElementPresent(tenantCollection);
         }
 
     }

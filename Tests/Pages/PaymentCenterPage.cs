@@ -12,7 +12,7 @@ namespace Core.pages
 
         public PaymentMenegementPage GoToACHpayment()
         {
-            Click(ACHpaymentsLink);
+            Wrap.Click(ACHpaymentsLink);
             logger.Info("Navigate to ACH payment");
             return new PaymentMenegementPage();
 

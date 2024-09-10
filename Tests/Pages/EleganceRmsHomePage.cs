@@ -19,27 +19,27 @@ namespace Core.pages
 
         public EleganceRmsHomePage SelectComunity(string community)
         {
-            Click(ComunityTab);
-            WaitUntilElementExist(CommunityFilter);
-            SendKeysText(CommunityFilter, community);
-            Click(ComunityInSelector(community));
+            Wrap.Click(ComunityTab);
+            Wrap.WaitUntilElementExist(CommunityFilter);
+            Wrap.SendKeysText(CommunityFilter, community);
+            Wrap.Click(ComunityInSelector(community));
             logger.Info("Select community: {0}", community);
             return this;
         }
 
         public PaymentCenterPage NavigateToThePaymentCenter()
         {
-            Click(QuickActionLink);
-            Click(PaymentManagement);
+            Wrap.Click(QuickActionLink);
+            Wrap.Click(PaymentManagement);
             logger.Info("Navigate to Payment Center.");
             return new PaymentCenterPage();
         }
 
         public ResidentPageInElegance OpenResidentPage(Resident resident)
         {
-            Click(ResidentLink);
-            SendKeysText(SearchResidentInput, resident.Name);
-            Click(SearchedResident(resident.Name));
+            Wrap.Click(ResidentLink);
+            Wrap.SendKeysText(SearchResidentInput, resident.Name);
+            Wrap.Click(SearchedResident(resident.Name));
             logger.Info("Open Lease Menegement for '{0}'", resident.Name);
             return new ResidentPageInElegance();
         }

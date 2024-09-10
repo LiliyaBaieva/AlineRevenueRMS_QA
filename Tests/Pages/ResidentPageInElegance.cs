@@ -14,18 +14,18 @@ namespace Core.pages
 
         public ResidentLedgerInElegancePage OpenResidentLedger()
         {
-            ScrollDown(1);
-            Click(TaskListInResidentActivity);
-            Click(ResidentLedger);
+            Wrap.ScrollDown(1);
+            Wrap.Click(TaskListInResidentActivity);
+            Wrap.Click(ResidentLedger);
             logger.Info("Open Rsident Ledger");
             return new ResidentLedgerInElegancePage();
         }
 
         public ResidentLedgerAdminInElegancePage OpenResidentLedgerAdmin()
         {
-            ScrollDown(1);
-            Click(TaskListInResidentActivity);
-            Click(ResidentLedgerAdmin);
+            Wrap.ScrollDown(1);
+            Wrap.Click(TaskListInResidentActivity);
+            Wrap.Click(ResidentLedgerAdmin);
             logger.Info("Open Rsident Ledger Admin");
             return new ResidentLedgerAdminInElegancePage();
         }

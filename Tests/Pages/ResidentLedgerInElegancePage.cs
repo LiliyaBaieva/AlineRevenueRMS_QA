@@ -16,20 +16,19 @@ namespace Core.pages
 
         public bool IsPaymentExist(Payment payment)
         {
-            WaitUntilPageLoaded();
-            ScrollToElement(PaymentsSection);
+            Wrap.WaitUntilPageLoaded();
+            Wrap.ScrollToElement(PaymentsSection);
             DateTime paymentDate = payment.Date;
             string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
-            bool exist = IsElementPresent(PatmentString(date, "" + payment.Amount));
-            MoveToTopOfPage();
-            //MoveToResidentPage();
+            bool exist = Wrap.IsElementPresent(PatmentString(date, "" + payment.Amount));
+            Wrap.MoveToTopOfPage();
             logger.Info("Payment by '{0}' with amount '{1}' exist", payment.Date.ToString(), payment.Amount.ToString());
             return exist;
         }
 
         public ResidentPageInElegance MoveToResidentPage(Resident resident)
         {
-            Click(ResidentNameLink(resident.Name));
+            Wrap.Click(ResidentNameLink(resident.Name));
             return new ResidentPageInElegance();
         }
     }

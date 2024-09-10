@@ -18,14 +18,16 @@ namespace Core.pages
 
        public EleganceRmsHomePage GotoAlineRevenueRms ()
         {
-            Click(ApplicationsMenu);
-            Click(AlineRevenueRmsLink);
-            ReadOnlyCollection<string> windows = _Driver.WindowHandles;
-            _Driver.SwitchTo().Window(windows[1]);
-            WaitUntilPageLoaded();
+            Wrap.Click(ApplicationsMenu);
+            Wrap.Click(AlineRevenueRmsLink);
+
+            Wrap.SwitchToWindow(1);
+
+            Wrap.WaitUntilPageLoaded();
             logger.Info("Open Elegance Aline Revenue (RMS)");
             return new EleganceRmsHomePage();
         }
+
 
     }
 }

@@ -32,43 +32,43 @@ namespace Core.pages
 
         public PaymentMenegementPage EnterSinglePaymentDetails(Payment payment)
         {
-            EnterDateInField(DataField, payment.Date);
-            SendKeysText(PaymentDescriprionField, payment.Description);
-            Click(ContinueBtn);
+            Wrap.EnterDateInField(DataField, payment.Date);
+            Wrap.SendKeysText(PaymentDescriprionField, payment.Description);
+            Wrap.Click(ContinueBtn);
             logger.Info("Enter Single Payment Details with date '{0}' and amount {1}", payment.Date.ToString(), ""+payment.Amount);
             return this;
         }
 
         public string SelectResident(int residentNum)
         {
-            ScrollDown(2);
-            Click(ResidentCheckbox(residentNum));
-            string name = GetText(ResidentToSelect(residentNum));
+            Wrap.ScrollDown(2);
+            Wrap.Click(ResidentCheckbox(residentNum));
+            string name = Wrap.GetText(ResidentToSelect(residentNum));
             logger.Info("Resident '{0}' is selected", name);
             return name;
         }
 
         public PaymentMenegementPage SubmitPaymentFor1payor(double amount)
         {
-            Click(PaySelectedItem);
-            ScrollDown(2);
-            SendKeysText(AppliedAmountSell(1), ""+amount);
-            ClickEnter(AppliedAmountSell(1));
-            Click(CheckBoxInPaymentCart(1));
+            Wrap.Click(PaySelectedItem);
+            Wrap.ScrollDown(2);
+            Wrap.SendKeysText(AppliedAmountSell(1), ""+amount);
+            Wrap.ClickEnter(AppliedAmountSell(1));
+            Wrap.Click(CheckBoxInPaymentCart(1));
             logger.Info("Set ammount {0} for one payor", amount);
-            Click(SubmitPaymentsBtn);
-            SubmitAlert();
+            Wrap.Click(SubmitPaymentsBtn);
+            Wrap.SubmitAlert();
             logger.Info("Confirm payment.");
             return this;
         }
 
         public bool PaymentSuccessful(Payment payment)
         {
-            ScrollUp(2);
+            Wrap.ScrollUp(2);
             if (
-            IsElementPresent(PaymentSuccessfullySubmitted) &&
-            GetText(Description).Contains(payment.Description) &&
-            GetText(Applied).Contains("" + payment.Amount)
+            Wrap.IsElementPresent(PaymentSuccessfullySubmitted) &&
+            Wrap.GetText(Description).Contains(payment.Description) &&
+            Wrap.GetText(Applied).Contains("" + payment.Amount)
                 ) 
             {
                 logger.Info("Payment was upplied successfully");

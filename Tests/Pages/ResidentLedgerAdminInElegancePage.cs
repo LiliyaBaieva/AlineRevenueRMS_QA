@@ -16,13 +16,13 @@ namespace Core.pages
 
         public void DeletePayment(Resident resident)
         {
-            WaitUntilPageLoaded();
-            ScrollToElement(PaymentsSection);
+            Wrap.WaitUntilPageLoaded();
+            Wrap.ScrollToElement(PaymentsSection);
             DateTime paymentDate = resident.Payment.Date;
             string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
-            Click(EditBtnInPayments(date, ""+resident.Payment.Amount));
-            Click(DeletePaymentBtn);
-            Click(ConfirmDeleteBtn);
+            Wrap.Click(EditBtnInPayments(date, ""+resident.Payment.Amount));
+            Wrap.Click(DeletePaymentBtn);
+            Wrap.Click(ConfirmDeleteBtn);
             logger.Info("Payment by '{0}' with amount '{1}' was deleted successfully", 
                 resident.Payment.Date.ToString(), resident.Payment.Amount.ToString());
         }
