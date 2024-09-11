@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using TestProject.TestData.models;
 
-namespace Core.pages
+namespace AlineRevenueRMS_QA.Pages
 {
     public class EleganceRmsHomePage : BasePage
     {
@@ -23,7 +23,7 @@ namespace Core.pages
             Wrap.WaitUntilElementExist(CommunityFilter);
             Wrap.SendKeysText(CommunityFilter, community);
             Wrap.Click(ComunityInSelector(community));
-            logger.Info("Select community: {0}", community);
+            logger.Info($"Select community: {community}");
             return this;
         }
 
@@ -40,7 +40,7 @@ namespace Core.pages
             Wrap.Click(ResidentLink);
             Wrap.SendKeysText(SearchResidentInput, resident.Name);
             Wrap.Click(SearchedResident(resident.Name));
-            logger.Info("Open Lease Menegement for '{0}'", resident.Name);
+            logger.Info($"Open Lease Menegement for '{resident.Name}'");
             return new ResidentPageInElegance();
         }
     }

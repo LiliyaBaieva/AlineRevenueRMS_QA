@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.pages
+namespace AlineRevenueRMS_QA.Pages
 {
     public class EleganceAppPage : BasePage
     {

@@ -5,6 +5,15 @@ namespace TestProject.TestData.models
     {
         public Resident() { }
 
+        public Resident(string name, string community, double statementBalance, double remainingStatementBalance, Payment payment)
+        { 
+            Name = name;
+            community = community;
+            StatementBalance = statementBalance;
+            RemainingStatementBalance = remainingStatementBalance;
+            Payment = payment;
+        }
+
         public Resident(Payment payment)
         {
             Payment = payment;

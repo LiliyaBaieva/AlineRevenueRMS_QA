@@ -2,7 +2,7 @@
 using AlineRevenueRMS_QA.Pages;
 using OpenQA.Selenium;
 
-namespace Core.pages
+namespace AlineRevenueRMS_QA.Pages
 {
     public class ResidentPageInElegance : BasePage
     {

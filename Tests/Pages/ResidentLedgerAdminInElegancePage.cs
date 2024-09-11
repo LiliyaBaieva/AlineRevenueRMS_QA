@@ -2,7 +2,7 @@
 using OpenQA.Selenium;
 using TestProject.TestData.models;
 
-namespace Core.pages
+namespace AlineRevenueRMS_QA.Pages
 {
     public class ResidentLedgerAdminInElegancePage : BasePage
     {
