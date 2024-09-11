@@ -1,4 +1,3 @@
-using Core.pages;
 using OpenQA.Selenium;
 
 namespace AlineRevenueRMS_QA.Pages

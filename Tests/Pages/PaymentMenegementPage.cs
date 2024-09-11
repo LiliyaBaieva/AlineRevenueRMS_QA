@@ -76,5 +76,14 @@ namespace AlineRevenueRMS_QA.Pages
             }
             else { return false; }
         }
+
+        public void DoACHPayment(Resident resident)
+        {
+            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
+            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+        }
+
     }
 }

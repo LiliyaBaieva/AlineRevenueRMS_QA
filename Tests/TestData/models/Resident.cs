@@ -18,9 +18,15 @@ namespace TestProject.TestData.models
         {
             Payment = payment;
         }
+        
+        public Resident(string community, Payment payment)
+        {
+            Community = community;
+            Payment = payment;
+        }
 
         public string Name { get; set; }
-        public string Comunity { get; set; }
+        public string Community { get; set; }
         public double StatementBalance { get; set; }
         public double RemainingStatementBalance { get; set; }
         public Payment Payment { get; set; }

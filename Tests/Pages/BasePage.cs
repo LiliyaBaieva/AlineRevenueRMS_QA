@@ -7,6 +7,7 @@ namespace AlineRevenueRMS_QA.Pages
     {
         protected static readonly Logger logger = LogManager.GetCurrentClassLogger();
         protected WebElementWrapper Wrap = new WebElementWrapper();
+        protected PageFactory Pages = new PageFactory();
 
         public BasePage() {}
     }

@@ -11,6 +11,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By ConfirmDeleteBtn = By.Id("btnDelete");
 
         private By EditBtnInPayments(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button");
+        private By PaymentRow(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]");
 
         public ResidentLedgerAdminInElegancePage() {}
 
@@ -18,13 +19,20 @@ namespace AlineRevenueRMS_QA.Pages
         {
             Wrap.WaitUntilPageLoaded();
             Wrap.ScrollToElement(PaymentsSection);
-            DateTime paymentDate = resident.Payment.Date;
-            string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
+            string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             Wrap.Click(EditBtnInPayments(date, ""+resident.Payment.Amount));
+            logger.Debug("Click edit button");
             Wrap.Click(DeletePaymentBtn);
             Wrap.Click(ConfirmDeleteBtn);
             logger.Info("Payment by '{0}' with amount '{1}' was deleted successfully", 
-                resident.Payment.Date.ToString(), resident.Payment.Amount.ToString());
+                date, resident.Payment.Amount.ToString());
+        }
+
+        internal bool PaymentDoesntExist(Resident resident)
+        {
+            DateTime paymentDate = resident.Payment.Date;
+            string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
+            return !Wrap.IsElementPresent(PaymentRow(date, ""+resident.Payment.Amount));
         }
     }
 }

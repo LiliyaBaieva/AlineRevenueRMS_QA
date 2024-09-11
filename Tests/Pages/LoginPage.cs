@@ -1,5 +1,3 @@
-using Core;
-using Core.pages;
 using OpenQA.Selenium;
 using TestProject.Core;
 

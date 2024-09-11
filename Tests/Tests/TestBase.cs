@@ -7,7 +7,6 @@ using NUnit.Framework;
 using AlineRevenueRMS_QA.Pages;
 using NLog;
 using OpenQA.Selenium;
-using Core;
 using AlineRevenueRMS_QA;
 using TestProject.Core;
 
