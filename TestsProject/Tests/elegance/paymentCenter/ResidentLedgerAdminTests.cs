@@ -12,8 +12,7 @@ namespace TestProject.Tests.elegance.paymentCenter
     [AllureSuite("Resident Ledger Admin Tests.")]
     public class ResidentLedgerAdminTests : TestBase
     {
-        private Resident residentWenrworth = new Resident(Comunities.WENTWORT_CENTRAL_AVENUE, 
-            new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+        private Resident _Resident;
         
         private Resident residentAnchorBay = new Resident(Comunities.ANCHOR_BAY_POCASSET, 
             new Payment(222.00, DateTime.Now.Date.AddDays(-15), "For closes"));
@@ -28,30 +27,22 @@ namespace TestProject.Tests.elegance.paymentCenter
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [AllureFeature("Payment Center")]
-        public void DeletePaymentInWentworthCentralAvenueTest()
+        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
+        public void DeletePaymentInVariousCommunities(string comunity)
         {
-            Pages.GetPaymentMenegementPage.DoACHPayment(residentWenrworth);
+            _Resident = new Resident(comunity, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+            Pages.GetPaymentMenegementPage.DoACHPayment(_Resident);
 
-            Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWenrworth);
+            Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident);
             Pages.GetResidentPageInElegance.OpenResidentLedgerAdmin();
-            Pages.GetResidentLedgerAdminInElegancePage.DeletePayment(residentWenrworth);
+            Pages.GetResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
 
-            Assert.True(Pages.GetResidentLedgerAdminInElegancePage.PaymentDoesntExist(residentWenrworth));
-        }
-        
-        [Test(Description = "Delete payment test in Resident Ledger Admin in Anchor Bay Pocasset (18003) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void DeletePaymentInAnchorBayPocassetTest()
-        {
-            Pages.GetPaymentMenegementPage.DoACHPayment(residentAnchorBay);
-
-            Pages.GetEleganceRmsHomePage.OpenResidentPage(residentAnchorBay);
-            Pages.GetResidentPageInElegance.OpenResidentLedgerAdmin();
-            Pages.GetResidentLedgerAdminInElegancePage.DeletePayment(residentAnchorBay);
-
-            Assert.True(Pages.GetResidentLedgerAdminInElegancePage.PaymentDoesntExist(residentAnchorBay));
+            Assert.True(Pages.GetResidentLedgerAdminInElegancePage.PaymentDoesntExist(_Resident));
         }
 
     }

@@ -12,271 +12,73 @@ namespace TestProject.Tests.elegance.paymentCenter
     [AllureSuite("Single Payment Entry Tests in communities.")]
     public class SinglePaymentEntryTests : TestBase
     {
-
-        private Resident resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"));
-        private Resident residentWithPayment1Sep = new Resident(new Payment(111.00, new DateTime(2024, 9, 1), "For hobbie"));
+        private Resident _Resident;
 
         [SetUp]
-        public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+        public void Precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
 
         [TearDown]
         public void Postcondition()
         {
-            Pages.GetResidentLedgerInElegancePage.MoveToResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident);
+            Pages.GetResidentLedgerInElegancePage.MoveToResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
         }
 
-        [Test(Description = "Payment Entry In Wentworth Central Avenue")]
+        [Test(Description = "Payment Entry Test in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInWentworthCentralAvenue()
+        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
+        public void PaymentEntryTestInVariousCommunities(string community)
         {
-            resident.Community = Comunities.WENTWORT_CENTRAL_AVENUE;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+            _Resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"))
+            {
+                Community = community
+            };
 
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
+            Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
+            _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterSinglePaymentDetails(_Resident.Payment).SelectResident(1);
+
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
+
+            Assert.IsTrue(
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment) &&
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
+            );
         }
 
-        [Test(Description = "Payment Entry In Anchor Bay Pocasset (18003)")]
+        [Test(Description = "Payment Entry Test in various communities with specific date")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInAnchorBayPocasset()
+        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
+        public void PaymentEntryTestWithSpecificDate(string community)
         {
-            resident.Community = Comunities.ANCHOR_BAY_POCASSET;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+            _Resident = new Resident(new Payment(111.00, DateTime.Parse("2024-09-01"), "For hobbie"))
+            {
+                Community = community
+            };
 
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
+            Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
+            _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterSinglePaymentDetails(_Resident.Payment).SelectResident(1);
+
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
+
+            Assert.IsTrue(
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment) &&
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
+            );
         }
-
-        [Test(Description = "Payment Entry In Elegance at Lake Worth (12007) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInEleganceAtLakeWorth()
-        {
-            resident.Community = Comunities.ELEGANCE_AT_LAKE_WORTH;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Symphony Manor Roland Park (14001) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInSymphonyManorRolandPark()
-        {
-            resident.Community = Comunities.SYMPHONY_MANOR_ROLAND_PARK;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Symphony Olmsted Falls (16003) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInSymphonyOlmstedFalls()
-        {
-            resident.Community = Comunities.SYMPHONY_OLMSTED_FALLS;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Tranquillity Fredericktowne (14002) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInTranquillityFredericktowne()
-        {
-            resident.Community = Comunities.TRANQUILLITY_FREDERICKTOWNE;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
-        }
-
-        [Ignore("It never works")]
-        [Test(Description = "Payment Entry In Demo Community (99999) ")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInDemoCommunity()
-        {
-            resident.Community = Comunities.DEMO_COMUNITY;
-            Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
-            resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(resident.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)
-                );
-        }
-        
-        [Test(Description = "Payment Entry In Wentworth Central Avenue with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInWentworthCentralAvenueWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.WENTWORT_CENTRAL_AVENUE;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger().
-                IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Anchor Bay Pocasset (18003) with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInAnchorBayPocassetWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.ANCHOR_BAY_POCASSET;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger().IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Elegance at Lake Worth (12007)  with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInEleganceAtLakeWorthWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.ELEGANCE_AT_LAKE_WORTH;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger()
-                .IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Symphony Manor Roland Park (14001)  with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInSymphonyManorRolandParkWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.SYMPHONY_MANOR_ROLAND_PARK;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger()
-                .IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Symphony Olmsted Falls (16003)  with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInSymphonyOlmstedFallsWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.SYMPHONY_OLMSTED_FALLS;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger()
-                .IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
-        [Test(Description = "Payment Entry In Tranquillity Fredericktowne (14002)  with date 01.09.2014")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
-        public void PaymentEntryTestInTranquillityFredericktowneWithPayment1Sep()
-        {
-            residentWithPayment1Sep.Community = Comunities.TRANQUILLITY_FREDERICKTOWNE;
-            Pages.GetEleganceRmsHomePage.SelectComunity(residentWithPayment1Sep.Community);
-            residentWithPayment1Sep.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterSinglePaymentDetails(residentWithPayment1Sep.Payment).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(residentWithPayment1Sep.Payment.Amount);
-
-            Assert.IsTrue
-                (
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(residentWithPayment1Sep.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(residentWithPayment1Sep).OpenResidentLedger()
-                .IsPaymentExist(residentWithPayment1Sep.Payment)
-                );
-        }
-
     }
 }
