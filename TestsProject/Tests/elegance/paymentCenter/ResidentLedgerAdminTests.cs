@@ -13,17 +13,11 @@ namespace TestProject.Tests.elegance.paymentCenter
     public class ResidentLedgerAdminTests : TestBase
     {
         private Resident _Resident;
-        
-        private Resident residentAnchorBay = new Resident(Comunities.ANCHOR_BAY_POCASSET, 
-            new Payment(222.00, DateTime.Now.Date.AddDays(-15), "For closes"));
-
 
         [SetUp]
         public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
 
-
-
-        [Test(Description = "Delete payment test in Resident Ledger Admin in Wentworth Central Avenue (12006) ")]
+        [Test(Description = "Delete payment test in Resident Ledger Admin in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [AllureFeature("Payment Center")]
@@ -33,9 +27,9 @@ namespace TestProject.Tests.elegance.paymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void DeletePaymentInVariousCommunities(string comunity)
+        public void DeletePaymentInvariousCommunitiesTest(string community)
         {
-            _Resident = new Resident(comunity, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+            _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             Pages.GetPaymentMenegementPage.DoACHPayment(_Resident);
 
             Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident);
