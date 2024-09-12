@@ -1,6 +1,0 @@
-2024-09-06 14:34:27.1048|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Login to application
-2024-09-06 14:34:29.7188|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Go to Elegance
-2024-09-06 14:34:32.6659|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Open Elegance Aline Revenue (RMS)
-2024-09-06 14:34:32.8983|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Open modal window to select community
-2024-09-06 14:34:33.6902|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Type Wentworth Central Avenue in Community Filter
-2024-09-06 14:34:35.1935|DEBUG|AlineRevenueRMS_QA.Pages.BasePage|Select community
