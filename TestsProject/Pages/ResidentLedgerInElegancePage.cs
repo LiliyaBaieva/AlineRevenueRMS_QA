@@ -19,7 +19,7 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.WaitUntilPageLoaded();
             Wrap.ScrollToElement(PaymentsSection);
             DateTime paymentDate = payment.Date;
-            string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
+            string date = payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             bool exist = Wrap.IsElementPresent(PatmentString(date, "" + payment.Amount));
             Wrap.MoveToTopOfPage();
             logger.Info("Payment by '{0}' with amount '{1}' exist", payment.Date.ToString(), payment.Amount.ToString());
