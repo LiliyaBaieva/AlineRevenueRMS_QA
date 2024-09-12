@@ -8,7 +8,7 @@ namespace TestProject.Tests.elegance.paymentCenter
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("Single Payment Entry Tests for different comunities.")]
+    [AllureSuite("Single Payment Entry Tests in communities.")]
     public class SinglePaymentEntryTests : TestBase
     {
 
