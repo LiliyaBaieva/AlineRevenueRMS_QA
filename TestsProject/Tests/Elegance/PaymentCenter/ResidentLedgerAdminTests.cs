@@ -1,11 +1,11 @@
 ﻿using Allure.NUnit.Attributes;
 using Allure.NUnit;
 using Allure.Net.Commons;
-using TestProject.TestData.models;
-using TestProject.TestData.constants;
+using TestProject.TestData.Models;
+using TestProject.TestData.Constants;
 using OpenQA.Selenium;
 
-namespace TestProject.Tests.elegance.paymentCenter
+namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
