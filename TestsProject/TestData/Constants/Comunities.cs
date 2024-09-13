@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProject.TestData.constants
+namespace TestProject.TestData.Constants
 {
     public static class Comunities
     {

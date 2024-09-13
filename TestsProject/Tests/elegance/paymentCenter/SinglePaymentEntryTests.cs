@@ -1,7 +1,7 @@
 ﻿using Allure.NUnit.Attributes;
 using Allure.NUnit;
-using TestProject.TestData.models;
-using TestProject.TestData.constants;
+using TestProject.TestData.Models;
+using TestProject.TestData.Constants;
 using Allure.Net.Commons;
 
 namespace TestProject.Tests.Elegance.PaymentCenter

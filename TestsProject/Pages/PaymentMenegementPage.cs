@@ -2,7 +2,7 @@
 using AlineRevenueRMS_QA;
 using AlineRevenueRMS_QA.Pages;
 using OpenQA.Selenium;
-using TestProject.TestData.models;
+using TestProject.TestData.Models;
 
 namespace AlineRevenueRMS_QA.Pages
 {

@@ -18,6 +18,11 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Tests\NewPerspective\**" />
+    <EmbeddedResource Remove="Tests\NewPerspective\**" />
+    <None Remove="Tests\NewPerspective\**" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Allure.NUnit" Version="2.12.1" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers" Version="3.11.0" />
@@ -56,8 +61,5 @@
       <NuGetPackageId>NLog.Schema</NuGetPackageId>
       <Pack>false</Pack>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tests\NewPerspective\" />
   </ItemGroup>
 </Project>

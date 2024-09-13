@@ -1,5 +1,5 @@
 ﻿
-namespace TestProject.TestData.models
+namespace TestProject.TestData.Models
 {
     public class Resident
     {
