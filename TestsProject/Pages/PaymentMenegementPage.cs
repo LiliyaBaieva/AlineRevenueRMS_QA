@@ -48,6 +48,7 @@ namespace AlineRevenueRMS_QA.Pages
             return name;
         }
 
+
         public PaymentMenegementPage SubmitPaymentFor1payor(double amount)
         {
             Wrap.Click(PaySelectedItem);

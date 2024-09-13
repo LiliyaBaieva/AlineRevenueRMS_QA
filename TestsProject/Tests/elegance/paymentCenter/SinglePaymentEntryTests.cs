@@ -4,7 +4,7 @@ using TestProject.TestData.models;
 using TestProject.TestData.constants;
 using Allure.Net.Commons;
 
-namespace TestProject.Tests.elegance.paymentCenter
+namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
@@ -26,7 +26,6 @@ namespace TestProject.Tests.elegance.paymentCenter
         [Test(Description = "Payment Entry Test in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
         [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
         [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
@@ -55,7 +54,6 @@ namespace TestProject.Tests.elegance.paymentCenter
         [Test(Description = "Payment Entry Test in various communities with specific date")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
         [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
         [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]

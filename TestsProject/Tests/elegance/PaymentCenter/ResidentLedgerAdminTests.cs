@@ -5,7 +5,7 @@ using TestProject.TestData.models;
 using TestProject.TestData.constants;
 using OpenQA.Selenium;
 
-namespace TestProject.Tests.elegance.paymentCenter
+namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]

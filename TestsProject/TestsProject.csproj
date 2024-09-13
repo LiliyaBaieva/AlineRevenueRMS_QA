@@ -49,9 +49,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Tests\newPerspective\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="C:\Users\Lilu\.nuget\packages\nlog.schema\5.3.3\contentFiles\any\any\NLog.xsd" Link="NLog.xsd">
       <Private>False</Private>
       <NuGetPackageVersion>5.3.3</NuGetPackageVersion>
@@ -59,5 +56,8 @@
       <NuGetPackageId>NLog.Schema</NuGetPackageId>
       <Pack>false</Pack>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\NewPerspective\" />
   </ItemGroup>
 </Project>
