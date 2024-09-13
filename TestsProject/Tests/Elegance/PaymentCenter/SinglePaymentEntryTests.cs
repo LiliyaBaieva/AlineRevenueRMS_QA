@@ -24,6 +24,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         }
 
         [Test(Description = "Payment Entry Test in various communities")]
+        [AllureName("Payment Entry Test in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
@@ -52,6 +53,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         }
 
         [Test(Description = "Payment Entry Test in various communities with specific date")]
+        [AllureName("Payment Entry Test in various communities with specific date")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]

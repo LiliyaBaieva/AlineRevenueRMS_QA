@@ -18,6 +18,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
 
         [Test(Description = "Delete payment test in Resident Ledger Admin in various communities")]
+        [AllureName("Delete payment test in Resident Ledger Admin in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [AllureFeature("Payment Center")]
