@@ -1,5 +1,9 @@
 {
   "allure": {
-    "directory": "../../../../allure-results"
+    "directory": "../../../../allure-results",
+
+    "brokenTestData": [
+      "System.Exception"
+    ]
   }
 }

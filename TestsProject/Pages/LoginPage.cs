@@ -1,3 +1,4 @@
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using TestProject.Core;
 
@@ -7,33 +8,35 @@ namespace AlineRevenueRMS_QA.Pages
     {
         public LoginPage() { }
 
-        private By loginField = By.Id("Username");
-        private By passwordField => By.Id("Password");
-        private By signInBtn => By.Id("Submit");
+        private By LoginField = By.Id("Username");
+        private By PasswordField => By.Id("Password");
+        private By SignInBtn => By.Id("Submit");
         private By SubmitMultiTenant => By.Id("SubmitMultiTenant");
-        private By tenantCollection => By.Id("TenantCollection");
-        private By eleganceOption => By.XPath("//option[contains(text(),'Elegance')]");
+        private By TenantCollection => By.Id("TenantCollection");
+        private By EleganceOption => By.XPath("//option[contains(text(),'Elegance')]");
+        private By ApplicationsMenu => By.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]");
 
+
+        [AllureStep("Log In To App")]
         public LoginPage LogInToApp()
         {
-            Wrap.SendKeysText(loginField, ConfigurationManager.Configuration["Logging:Name"]);
-            Wrap.SendKeysText(passwordField, ConfigurationManager.Configuration["Logging:Password"]);
-            Wrap.Click(signInBtn);
+            Wrap.SendKeysText(LoginField, ConfigurationManager.Configuration["Logging:Name"]);
+            Wrap.SendKeysText(PasswordField, ConfigurationManager.Configuration["Logging:Password"]);
+            Wrap.Click(SignInBtn);
+            //Assert.IsTrue(Wrap.IsElementPresent(TenantCollection));
+            //Assert.IsTrue(false);
             logger.Info("Login to application");
             return this;
         }
 
+        [AllureStep("Go to Elegance")]
         public EleganceAppPage GoToElegance()
         {
-            Wrap.Click(eleganceOption);
+            Wrap.Click(EleganceOption);
             Wrap.Click(SubmitMultiTenant);
+            Assert.IsTrue(Wrap.IsElementPresent(ApplicationsMenu));
             logger.Info("Go to Elegance");
             return new EleganceAppPage();
-        }
-
-        public bool IsTenantPresent()
-        {
-            return Wrap.IsElementPresent(tenantCollection);
         }
 
     }

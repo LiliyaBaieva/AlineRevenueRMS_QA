@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
+using OpenQA.Selenium.DevTools;
+using AngleSharp.Dom;
 
 namespace TestProject.Core
 {
@@ -20,10 +22,40 @@ namespace TestProject.Core
             this.Wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
         }
 
+        //public void Click(By locator)
+        //{
+        //    Assert.IsTrue(IsElementPresent(locator));
+        //    Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+
+        //}
+
         public void Click(By locator)
         {
-            Wait.Until(ExpectedConditions.ElementIsVisible(locator));
-            Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+            try
+            {
+                Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+                Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+            }
+            catch (WebDriverTimeoutException ex)
+            {
+                Assert.Fail($"Failed to click on the element: {locator}. Exception: {ex.Message}");
+            }
+            catch (NoSuchElementException ex)
+            {
+                Assert.Fail($"No such element: {locator}. Exception: {ex.Message}");
+            }
+            catch (ElementClickInterceptedException ex)
+            {
+                Assert.Fail($"Element was not clickable (intercepted by another element): {locator}. Exception: {ex.Message}");
+            }
+            catch (WebDriverException ex)
+            {
+                Assert.Fail($"Element was not clickable (intercepted by another element): {locator}. Exception: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"An unexpected error occurred while clicking on the element: {locator}. Exception: {ex.Message}");
+            }
         }
 
         public void SendKeysText(By locator, string text)
