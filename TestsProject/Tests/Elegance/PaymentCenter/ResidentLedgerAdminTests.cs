@@ -21,7 +21,6 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [AllureName("Delete payment test in Resident Ledger Admin in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
-        [AllureFeature("Payment Center")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
         [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
         [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]

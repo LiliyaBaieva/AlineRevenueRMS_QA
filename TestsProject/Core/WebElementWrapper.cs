@@ -1,14 +1,7 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
-using OpenQA.Selenium.DevTools;
-using AngleSharp.Dom;
 
 namespace TestProject.Core
 {
@@ -21,13 +14,6 @@ namespace TestProject.Core
             this._Driver = DriverManager.GetInstance().CurrentDriver;
             this.Wait = new WebDriverWait(_Driver, TimeSpan.FromSeconds(10));
         }
-
-        //public void Click(By locator)
-        //{
-        //    Assert.IsTrue(IsElementPresent(locator));
-        //    Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
-
-        //}
 
         public void Click(By locator)
         {
