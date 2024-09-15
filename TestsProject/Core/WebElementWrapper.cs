@@ -49,6 +49,13 @@ namespace TestProject.Core
             IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
             webElement.SendKeys(text);
         }
+        
+        public WebElementWrapper ClearField(By locator)
+        {
+            IWebElement webElement = Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            webElement.Clear();
+            return this;
+        }
 
         public string GetText(By locator)
         {
