@@ -46,9 +46,10 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
 
-            Assert.IsTrue(
+            Assert.IsTrue((
                 Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)),
+                "Payment doesn`t exist."
             );
         }
 
@@ -62,7 +63,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void PaymentEntryTestWithSpecificDate(string community)
+        public void PaymentEntryTestWith1DateOfMonth(string community)
         {
             _Resident = new Resident(new Payment(111.00, DateTime.Parse("2024-09-01"), "For hobbie"))
             {

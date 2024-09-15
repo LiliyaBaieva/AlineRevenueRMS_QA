@@ -1,5 +1,6 @@
 ﻿
 using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
 namespace AlineRevenueRMS_QA.Pages
@@ -21,6 +22,7 @@ namespace AlineRevenueRMS_QA.Pages
             return new ResidentLedgerInElegancePage();
         }
 
+        [AllureStep("Open Resident Ledger Admin")]
         public ResidentLedgerAdminInElegancePage OpenResidentLedgerAdmin()
         {
             Wrap.ScrollDown(1);

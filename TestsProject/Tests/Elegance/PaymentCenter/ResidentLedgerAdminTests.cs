@@ -36,7 +36,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             Pages.GetResidentPageInElegance.OpenResidentLedgerAdmin();
             Pages.GetResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
 
-            Assert.True(Pages.GetResidentLedgerAdminInElegancePage.PaymentDoesntExist(_Resident));
+            Assert.True(Pages.GetResidentLedgerAdminInElegancePage.PaymentDoesntExist(_Resident), 
+                "Payment wasn`t deleted.");
         }
 
     }

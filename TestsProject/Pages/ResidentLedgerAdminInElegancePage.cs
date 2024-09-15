@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using TestProject.TestData.Models;
 
@@ -14,7 +15,8 @@ namespace AlineRevenueRMS_QA.Pages
         private By PaymentRow(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]");
 
         public ResidentLedgerAdminInElegancePage() {}
-
+        
+        [AllureStep("Delete Payment")]
         public void DeletePayment(Resident resident)
         {
             Wrap.WaitUntilPageLoaded();

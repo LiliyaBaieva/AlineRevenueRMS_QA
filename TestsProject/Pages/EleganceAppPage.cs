@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By ApplicationsMenu => By.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]");
         private By AlineRevenueRmsLink => By.XPath("//a[contains(text(),'Aline Revenue (RMS)')]");
 
+        [AllureStep("Go to Aline Revenue Rms")]
        public EleganceRmsHomePage GotoAlineRevenueRms ()
         {
             Wrap.Click(ApplicationsMenu);

@@ -1,6 +1,7 @@
 ﻿
 using AlineRevenueRMS_QA;
 using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using TestProject.TestData.Models;
 
@@ -29,7 +30,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By Applied = By.Id("applied");
 
 
-
+        [AllureStep("Enter Single Payment Details")]
         public PaymentMenegementPage EnterSinglePaymentDetails(Payment payment)
         {
             Wrap.EnterDateInField(DataField, payment.Date);
@@ -39,6 +40,7 @@ namespace AlineRevenueRMS_QA.Pages
             return this;
         }
 
+        [AllureStep("Select Resident")]
         public string SelectResident(int residentNum)
         {
             Wrap.ScrollDown(2);
@@ -48,7 +50,7 @@ namespace AlineRevenueRMS_QA.Pages
             return name;
         }
 
-
+        [AllureStep("Submit payment for 1 payor")]
         public PaymentMenegementPage SubmitPaymentFor1payor(double amount)
         {
             Wrap.Click(PaySelectedItem);
@@ -78,6 +80,7 @@ namespace AlineRevenueRMS_QA.Pages
             else { return false; }
         }
 
+        [AllureStep("Do ACH payment")]
         public void DoACHPayment(Resident resident)
         {
             Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);

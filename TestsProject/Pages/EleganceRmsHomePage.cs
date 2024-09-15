@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using TestProject.TestData.Models;
 
@@ -17,6 +18,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By SearchResidentInput = By.Id("searchInput");
         private By SearchedResident(string name) => By.XPath($"//div[contains(text(), '{name}')]");
 
+        [AllureStep("Select comunity")]
         public EleganceRmsHomePage SelectComunity(string community)
         {
             Wrap.Click(ComunityTab);
@@ -27,6 +29,7 @@ namespace AlineRevenueRMS_QA.Pages
             return this;
         }
 
+        [AllureStep("Navigate to the Payment Center")]
         public PaymentCenterPage NavigateToThePaymentCenter()
         {
             Wrap.Click(QuickActionLink);
@@ -35,6 +38,7 @@ namespace AlineRevenueRMS_QA.Pages
             return new PaymentCenterPage();
         }
 
+        [AllureStep("Open Resident Page")]
         public ResidentPageInElegance OpenResidentPage(Resident resident)
         {
             Wrap.Click(ResidentLink);

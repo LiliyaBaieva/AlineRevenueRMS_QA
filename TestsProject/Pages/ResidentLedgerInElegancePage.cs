@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS_QA.Pages;
+using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using TestProject.TestData.Models;
 
@@ -26,6 +27,7 @@ namespace AlineRevenueRMS_QA.Pages
             return exist;
         }
 
+        [AllureStep("Move to resident page")]
         public ResidentPageInElegance MoveToResidentPage(Resident resident)
         {
             Wrap.Click(ResidentNameLink(resident.Name));
