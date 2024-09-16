@@ -13,6 +13,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By ConfirmDeleteBtn = By.Id("btnDelete");
         private By PaymnetInput = By.Id("AmountSelect");
         private By ConfirmUpdateBtn = By.Id("btnLedgerAdminSubmit");
+        private By UpdateModalWindow = By.Id("UpdateModal");
 
         private By EditBtnInPayments(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button");
         private By PaymentRow(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]");
@@ -49,6 +50,7 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.Click(EditBtnInPayments(date, "" + resident.Payment.Amount));
             logger.Debug("Click edit button");
             Wrap.Click(UpdatePaymentBtn);
+            Assert.IsTrue(Wrap.IsElementPresent(UpdateModalWindow));
             Wrap.ClearField(PaymnetInput).SendKeysText(PaymnetInput, newAmmount.ToString());
             Wrap.Click(ConfirmUpdateBtn);
 
