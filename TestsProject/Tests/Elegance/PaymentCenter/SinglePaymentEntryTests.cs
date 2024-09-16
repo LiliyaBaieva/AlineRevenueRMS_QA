@@ -65,7 +65,10 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void PaymentEntryTestWith1DateOfMonth(string community)
         {
-            _Resident = new Resident(new Payment(111.00, DateTime.Parse("2024-09-01"), "For hobbie"))
+            string dateString = "2024-09-01";
+            DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+
+            _Resident = new Resident(new Payment(111.00, date, "For hobbie"))
             {
                 Community = community
             };
