@@ -9,7 +9,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureSuite("Payment Center.")]
+    [AllureSuite("Resident Ledger Admin Tests.")]
     [AllureFeature("Resident Ledger Admin Tests.")]
     public class ResidentLedgerAdminTests : TestBase
     {

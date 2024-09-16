@@ -33,7 +33,7 @@ namespace AlineRevenueRMS_QA.Pages
         [AllureStep("Enter Single Payment Details")]
         public PaymentMenegementPage EnterSinglePaymentDetails(Payment payment)
         {
-            Wrap.EnterDateInField(DataField, payment.Date);
+            Wrap.SendKeysText(DataField, payment.Date.ToString("dd-MM-yyyy"));
             Wrap.SendKeysText(PaymentDescriprionField, payment.Description);
             Wrap.Click(ContinueBtn);
             logger.Info("Enter Single Payment Details with date '{0}' and amount {1}", payment.Date.ToString(), ""+payment.Amount);

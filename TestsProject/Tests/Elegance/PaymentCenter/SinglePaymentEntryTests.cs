@@ -35,7 +35,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void PaymentEntryTestInVariousCommunities(string community)
         {
-            _Resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"))
+            _Resident = new Resident(new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"))
             {
                 Community = community
             };

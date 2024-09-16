@@ -88,13 +88,6 @@ namespace TestProject.Core
             Wait.Until(driver => ((IJavaScriptExecutor)driver).ExecuteScript("return document.readyState").Equals("complete"));
         }
 
-        public void EnterDateInField(By dataField, DateTime date)
-        {
-            SendKeysText(dataField, date.Day.ToString());
-            SendKeysText(dataField, date.Month.ToString());
-            SendKeysText(dataField, date.Year.ToString());
-        }
-
         public void SwitchToWindow(int winNum)
         {
             ReadOnlyCollection<string> windows = _Driver.WindowHandles;

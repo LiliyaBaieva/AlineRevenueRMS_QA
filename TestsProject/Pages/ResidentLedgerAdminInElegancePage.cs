@@ -27,7 +27,7 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.ScrollToElement(PaymentsSection);
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             Wrap.Click(EditBtnInPayments(date, ""+resident.Payment.Amount));
-            logger.Debug("Click edit button");
+            logger.Info("Click edit button");
             Wrap.Click(DeletePaymentBtn);
             Wrap.Click(ConfirmDeleteBtn);
             logger.Info("Payment by '{0}' with amount '{1}' was deleted successfully", 
@@ -48,7 +48,7 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.ScrollToElement(PaymentsSection);
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             Wrap.Click(EditBtnInPayments(date, "" + resident.Payment.Amount));
-            logger.Debug("Click edit button");
+            logger.Info("Click edit button");
             Wrap.Click(UpdatePaymentBtn);
             Assert.IsTrue(Wrap.IsElementPresent(UpdateModalWindow));
             Wrap.ClearField(PaymnetInput).SendKeysText(PaymnetInput, newAmmount.ToString());
