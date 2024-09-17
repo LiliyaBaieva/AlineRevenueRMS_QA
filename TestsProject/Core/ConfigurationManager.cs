@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace Core
+namespace TestProject.Core
 {
     public static class ConfigurationManager
     {
