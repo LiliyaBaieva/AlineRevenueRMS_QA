@@ -14,7 +14,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By ComunityInSelector(string community) => By.XPath($"//strong[contains(text(),'{community}')]");
         private By QuickActionLink = By.LinkText("Quick Actions");
         private By PaymentManagement = By.LinkText("Payment Management");
-        private By ResidentLink = By.CssSelector("button[data-bs-target=\"#residentModal\"]");
+        private By ResidentLink = By.CssSelector("button[data-bs-target='#residentModal']");
         private By SearchResidentInput = By.Id("searchInput");
         private By SearchedResident(string name) => By.XPath($"//div[contains(text(), '{name}')]");
 

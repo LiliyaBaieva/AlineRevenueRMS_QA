@@ -71,7 +71,7 @@ namespace AlineRevenueRMS_QA.Pages
             if (
             Wrap.IsElementPresent(PaymentSuccessfullySubmitted) &&
             Wrap.GetText(Description).Contains(payment.Description) &&
-            Wrap.GetText(Applied).Contains("" + payment.Amount)
+            Wrap.GetText(Applied).Contains($"{payment.Amount}")
                 ) 
             {
                 logger.Info("Payment was upplied successfully");

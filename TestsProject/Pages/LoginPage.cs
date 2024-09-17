@@ -23,8 +23,6 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.SendKeysText(LoginField, ConfigurationManager.Configuration["Logging:Name"]);
             Wrap.SendKeysText(PasswordField, ConfigurationManager.Configuration["Logging:Password"]);
             Wrap.Click(SignInBtn);
-            //Assert.IsTrue(Wrap.IsElementPresent(TenantCollection));
-            //Assert.IsTrue(false);
             logger.Info("Login to application");
             return this;
         }
