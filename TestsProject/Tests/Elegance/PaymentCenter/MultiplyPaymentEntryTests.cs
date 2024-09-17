@@ -4,7 +4,7 @@ using Allure.NUnit.Attributes;
 using TestProject.TestData.Constants;
 using TestProject.TestData.Models;
 
-namespace TestProject.Tests.elegance.paymentCenter
+namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
@@ -13,7 +13,7 @@ namespace TestProject.Tests.elegance.paymentCenter
     public class MultiplyPaymentEntryTests : TestBase
     {
 
-        private List<Resident> ResidentList = new List<Resident>();
+        private List<Resident> _ResidenstList = new List<Resident>();
 
         [SetUp]
         public void precondition()
@@ -21,8 +21,15 @@ namespace TestProject.Tests.elegance.paymentCenter
             Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
         }
 
-        [Test(Description = "Multiply payment Entry Test in various communities with specific date")]
-        [AllureName("Multiply payment Entry Test in various communities with specific date")]
+        [TearDown]
+        public void Postcondition()
+        {
+            _ResidenstList.ForEach(resident =>
+            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident));
+        }
+
+        [Test(Description = "Multiply payment Entry Test in various communities.")]
+        [AllureName("Multiply payment Entry Test in various communities.")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
@@ -33,28 +40,58 @@ namespace TestProject.Tests.elegance.paymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void MultiplyPaymentEntryInVariousComunities(string comunity)
         {
-            Resident resident1 = new Resident(comunity, new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie"));
+            Payment payment = new Payment(300.00, DateTime.Now.Date.AddDays(-7), "Celebration");
 
-            //Resident resident = new Resident();
-            //resident.Payment = new Payment(111.00, DateTime.Now.Date.AddDays(-7), "For hobbie");
-            //resident.Comunity = Comunities.WENTWORT_CENTRAL_AVENUE;
+            Pages.GetEleganceRmsHomePage.SelectComunity(comunity);
+            Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterPaymentDateDescription(payment);
 
-            //Pages.GetEleganceRmsHomePage.SelectComunity(resident.Comunity);
-            //Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-            //    .EnterSinglePaymentDetails(resident.Payment);
-            //resident.Name = Pages.GetPaymentMenegementPage.SelectResident(1);
-            //ResidentList.Add(resident);
-            //Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+            for (int i = 1; i <= 3; i++)
+            {
+                Resident resident = new Resident(comunity, payment);
+                resident.Name = Pages.GetPaymentMenegementPage.SelectResident(i);
+                _ResidenstList.Add(resident);
+            }
 
-            //Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment));
+            Pages.GetPaymentMenegementPage.SubmitPaymentForSeveralPayors(_ResidenstList);
+
         }
+        
+        //[Test(Description = "Multiply payment Entry Test in various communities with specific date")]
+        //[AllureName("Multiply payment Entry Test in various communities with specific date")]
+        //[AllureSeverity(SeverityLevel.critical)]
+        //[AllureTag("Regression")]
+        //[TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        //[TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        //[TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        //[TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        //[TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        //[TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
+        //public void MultiplyPaymentEntryInVariousComunities(string comunity)
+        //{
+        //    Payment payment = new Payment(300.00, DateTime.Now.Date.AddDays(-7), "Celebration");
 
-        [TearDown]
-        public void Postcondition()
-        {
-            ResidentList.ForEach(resident =>
-            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident));
-        }
+        //    Resident resident1 = new Resident(comunity, payment);
+        //    Resident resident2 = new Resident(comunity, payment);
+        //    Resident resident3 = new Resident(comunity, payment);
+
+        //    Pages.GetEleganceRmsHomePage.SelectComunity(comunity);
+        //    Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+        //        .EnterPaymentDateDescription(payment);
+
+        //    resident1.Name = Pages.GetPaymentMenegementPage.SelectResident(1);
+        //    resident2.Name = Pages.GetPaymentMenegementPage.SelectResident(2);
+        //    resident3.Name = Pages.GetPaymentMenegementPage.SelectResident(3);
+
+        //    _ResidenstList.Add(resident1);
+        //    _ResidenstList.Add(resident2);
+        //    _ResidenstList.Add(resident3);
+
+
+        //    Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+
+        //    //Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(resident.Payment));
+        //}
 
     }
 }
