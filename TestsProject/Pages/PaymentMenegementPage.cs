@@ -27,7 +27,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By SubmitPaymentsBtn = By.CssSelector("input[value='Submit Payments']");
         private By PaymentSuccessfullySubmitted = By.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]");
         private By Description = By.Id("displayBatchPaymentDesc");
-        private By Applied = By.Id("applied");
+        private By TotalApplied = By.Id("applied");
 
 
         [AllureStep("Enter Payment date and description")]
@@ -83,13 +83,13 @@ namespace AlineRevenueRMS_QA.Pages
             return this;
         }
 
-        public bool PaymentSuccessful(Payment payment)
+        public bool PaymentSuccessful(string description, double totalAmount)
         {
             Wrap.ScrollUp(2);
             if (
             Wrap.IsElementPresent(PaymentSuccessfullySubmitted) &&
-            Wrap.GetText(Description).Contains(payment.Description) &&
-            Wrap.GetText(Applied).Contains($"{payment.Amount}")
+            Wrap.GetText(Description).Contains(description) &&
+            Wrap.GetText(TotalApplied).Contains($"{totalAmount}")
                 ) 
             {
                 logger.Info("Payment was upplied successfully");

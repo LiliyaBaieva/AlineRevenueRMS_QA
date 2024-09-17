@@ -20,7 +20,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TearDown]
         public void Postcondition()
         {
-            Pages.GetResidentLedgerInElegancePage.MoveToResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
+            Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
         }
 
         [Test(Description = "Payment Entry Test in various communities")]
@@ -43,9 +43,9 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
 
-            Assert.IsTrue((
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment) &&
-                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)),
+            Assert.IsTrue(
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
+                Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
                 "Payment doesn`t exist."
             );
         }
@@ -77,7 +77,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
 
             Assert.IsTrue(
-                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment) &&
+                Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
             );
         }

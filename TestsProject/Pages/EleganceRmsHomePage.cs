@@ -14,9 +14,11 @@ namespace AlineRevenueRMS_QA.Pages
         private By ComunityInSelector(string community) => By.XPath($"//strong[contains(text(),'{community}')]");
         private By QuickActionLink = By.LinkText("Quick Actions");
         private By PaymentManagement = By.LinkText("Payment Management");
-        private By ResidentLink = By.CssSelector("button[data-bs-target='#residentModal']");
-        private By SearchResidentInput = By.Id("searchInput");
+        private By ResidentLink = By.XPath("//a[contains(@href, 'ResidentModal')]");
+        private By SearchResidentInput = By.Id("mdlFilterResident");
         private By SearchedResident(string name) => By.XPath($"//div[contains(text(), '{name}')]");
+        private By HomeNav = By.Id("homeNav");
+
 
         [AllureStep("Select comunity")]
         public EleganceRmsHomePage SelectComunity(string community)
@@ -41,11 +43,13 @@ namespace AlineRevenueRMS_QA.Pages
         [AllureStep("Open Resident Page")]
         public ResidentPageInElegance OpenResidentPage(Resident resident)
         {
+            Wrap.Click(HomeNav);
             Wrap.Click(ResidentLink);
             Wrap.SendKeysText(SearchResidentInput, resident.Name);
             Wrap.Click(SearchedResident(resident.Name));
             logger.Info($"Open Lease Menegement for '{resident.Name}'");
             return new ResidentPageInElegance();
         }
+
     }
 }

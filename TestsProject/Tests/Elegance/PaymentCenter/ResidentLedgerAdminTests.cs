@@ -66,7 +66,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
                 "Payment wasn`t updated.");
 
             _Resident.Payment.Amount = newAmmount;
-            Pages.GetResidentLedgerInElegancePage.MoveToResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
+            Pages.GetResidentLedgerInElegancePage.BackToResidentDashboard(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
         }
 
     }

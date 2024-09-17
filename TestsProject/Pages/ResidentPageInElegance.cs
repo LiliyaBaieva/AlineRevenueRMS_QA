@@ -8,8 +8,8 @@ namespace AlineRevenueRMS_QA.Pages
     public class ResidentPageInElegance : BasePage
     {
         private By TaskListInResidentActivity = By.XPath("//div[contains(text(), 'Resident Activity')]/../..//a[@class='dropdown-toggle']");
-        private By ResidentLedgerAdmin = By.XPath("//a[contains(@href, 'ResidentLedger.aspx')]");
-        private By ResidentLedger = By.XPath("//a[contains(@href, '/ResidentLedger/ResidentLedger2.aspx')]");
+        private By ResidentLedger = By.XPath("//a[contains(@href, 'ResidentLedger.aspx')]");
+        private By ResidentLedgerAdmin = By.XPath("//a[contains(@href, '/ResidentLedger/ResidentLedger2.aspx')]");
 
         public ResidentPageInElegance() { }
 

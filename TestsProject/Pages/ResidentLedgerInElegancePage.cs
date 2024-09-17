@@ -11,7 +11,6 @@ namespace AlineRevenueRMS_QA.Pages
 
         private By PaymentsSection = By.XPath("//th[contains(text(),'Payments')]");
         private By ResidentNameLink(string name) => By.LinkText(name);
-
         private By PatmentString(string date, string amount) => By.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]");
 
 
@@ -28,7 +27,7 @@ namespace AlineRevenueRMS_QA.Pages
         }
 
         [AllureStep("Move to resident page")]
-        public ResidentPageInElegance MoveToResidentPage(Resident resident)
+        public ResidentPageInElegance BackToResidentDashboard(Resident resident)
         {
             Wrap.Click(ResidentNameLink(resident.Name));
             return new ResidentPageInElegance();

@@ -26,7 +26,7 @@ namespace AlineRevenueRMS_QA.Pages
             Wrap.WaitUntilPageLoaded();
             Wrap.ScrollToElement(PaymentsSection);
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            Wrap.Click(EditBtnInPayments(date, ""+resident.Payment.Amount));
+            Wrap.Click(EditBtnInPayments(date, $"{resident.Payment.Amount}"));
             logger.Info("Click edit button");
             Wrap.Click(DeletePaymentBtn);
             Wrap.Click(ConfirmDeleteBtn);
