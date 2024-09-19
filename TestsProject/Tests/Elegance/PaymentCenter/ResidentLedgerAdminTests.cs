@@ -13,7 +13,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
     [AllureFeature("Resident Ledger Admin Tests.")]
     public class ResidentLedgerAdminTests : TestBase
     {
-        private Resident _Resident = new Resident(new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+        private Resident _Resident;
 
         [SetUp]
         public void precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
@@ -30,7 +30,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void DeletePaymentInvariousCommunitiesTest(string community)
         {
-            _Resident.Community = community;
+            _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             Pages.GetPaymentMenegementPage.DoACHPayment(_Resident);
 
             Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident);
@@ -53,7 +53,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void UpdatePaymentInvariousCommunitiesTest(string community)
         {
-            _Resident.Community = community;
+            _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             double newAmmount = 555.00;
             Pages.GetPaymentMenegementPage.DoACHPayment(_Resident);
 
