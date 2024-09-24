@@ -17,32 +17,47 @@ namespace TestProject.Core
 
         public void Click(By locator)
         {
-            try
+            int retryCount = 3;
+            for (int attempt = 1; attempt <= retryCount; attempt++)
             {
-                Wait.Until(ExpectedConditions.ElementIsVisible(locator));
-                Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
-            }
-            catch (WebDriverTimeoutException ex)
-            {
-                Assert.Fail($"Failed to click on the element: {locator}. Exception: {ex.Message}");
-            }
-            catch (NoSuchElementException ex)
-            {
-                Assert.Fail($"No such element: {locator}. Exception: {ex.Message}");
-            }
-            catch (ElementClickInterceptedException ex)
-            {
-                Assert.Fail($"Element was not clickable (intercepted by another element): {locator}. Exception: {ex.Message}");
-            }
-            catch (WebDriverException ex)
-            {
-                Assert.Fail($"Element was not clickable (intercepted by another element): {locator}. Exception: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Assert.Fail($"An unexpected error occurred while clicking on the element: {locator}. Exception: {ex.Message}");
+                try
+                {
+                    Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+
+                    Wait.Until(ExpectedConditions.ElementToBeClickable(locator)).Click();
+
+                    return;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    if (attempt == retryCount)
+                    {
+                        Assert.Fail($"Failed to click on the element after {retryCount} attempts due to stale element reference: {locator}");
+                    }
+                }
+                catch (WebDriverTimeoutException ex)
+                {
+                    Assert.Fail($"Failed to click on the element (timed out): {locator}. Exception: {ex.Message}");
+                }
+                catch (NoSuchElementException ex)
+                {
+                    Assert.Fail($"No such element found: {locator}. Exception: {ex.Message}");
+                }
+                catch (ElementClickInterceptedException ex)
+                {
+                    Assert.Fail($"Element click was intercepted by another element: {locator}. Exception: {ex.Message}");
+                }
+                catch (WebDriverException ex)
+                {
+                    Assert.Fail($"WebDriver error occurred when trying to click on the element: {locator}. Exception: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    Assert.Fail($"An unexpected error occurred while clicking on the element: {locator}. Exception: {ex.Message}");
+                }
             }
         }
+
 
         public void SendKeysText(By locator, string text)
         {

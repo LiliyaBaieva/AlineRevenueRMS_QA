@@ -85,14 +85,14 @@ namespace AlineRevenueRMS_QA.Pages
 
         public bool PaymentSuccessful(string description, double totalAmount)
         {
-            Wrap.ScrollUp(2);
+            Wrap.ScrollUp(3);
             if (
             Wrap.IsElementPresent(PaymentSuccessfullySubmitted) &&
             Wrap.GetText(Description).Contains(description) &&
             Wrap.GetText(TotalApplied).Contains($"{totalAmount}")
                 ) 
             {
-                logger.Info("Payment was upplied successfully");
+                logger.Info($"Payment was upplied successfully with amount {totalAmount}");
                 return true;
             }
             else { return false; }

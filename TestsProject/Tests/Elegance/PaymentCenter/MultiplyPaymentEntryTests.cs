@@ -25,7 +25,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         public void Postcondition()
         {
             _ResidenstList.ForEach(resident =>
-            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident)); ;
+            Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident));
         }
 
         [Test(Description = "Multiply payment Entry Test in various communities.")]
