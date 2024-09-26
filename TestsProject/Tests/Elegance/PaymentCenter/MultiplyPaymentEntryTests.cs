@@ -40,7 +40,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void MultiplyPaymentEntryInVariousComunities(string comunity)
         {
-            Payment payment = new Payment(300.00, DateTime.Now.Date.AddDays(-7), "Celebration");
+            Payment payment = new Payment(333.00, DateTime.Now.Date.AddDays(-7), "Celebration");
 
             Pages.GetEleganceRmsHomePage.SelectComunity(comunity);
             Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
@@ -57,8 +57,10 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 
             Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment.Description, totalAmount), "Payment was not successful");
 
-            //Assert.IsTrue(Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
-            //"Payment doesn`t exist.");
+            Assert.IsTrue(!_ResidenstList.Any(resident =>
+                !Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)),
+            "Payment doesn`t exist.");
+
         }
 
     }
