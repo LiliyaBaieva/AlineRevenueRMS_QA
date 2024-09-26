@@ -26,6 +26,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         {
             _ResidenstList.ForEach(resident =>
             Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedgerAdmin().DeletePayment(resident));
+            _ResidenstList.Clear();
         }
 
         [Test(Description = "Multiply payment Entry Test in various communities.")]
