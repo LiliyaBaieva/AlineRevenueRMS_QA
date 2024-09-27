@@ -42,10 +42,12 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         public void MultiplyPaymentEntryInVariousComunities(string comunity)
         {
             Payment payment = new Payment(333.00, DateTime.Now.Date.AddDays(-7), "Celebration");
+            double depositTotal = _ResidenstList.Sum(resident => resident.Payment.Amount);
+
 
             Pages.GetEleganceRmsHomePage.SelectComunity(comunity);
             Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterPaymentDateDescription(payment);
+                .EnterPaymentDitails(payment, depositTotal);
             for (int i = 1; i <= 3; i++)
             {
                 Resident resident = new Resident(comunity, payment);
@@ -54,9 +56,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             }
             Pages.GetPaymentMenegementPage.SubmitPaymentForSeveralPayors(_ResidenstList);
 
-            double totalAmount = _ResidenstList.Sum(resident => resident.Payment.Amount);
-
-            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment.Description, totalAmount), "Payment was not successful");
+            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment.Description, depositTotal), "Payment was not successful");
 
             Assert.IsTrue(!_ResidenstList.Any(resident =>
                 !Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)),

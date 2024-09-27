@@ -3,6 +3,7 @@ using Allure.NUnit;
 using TestProject.TestData.Models;
 using TestProject.TestData.Constants;
 using Allure.Net.Commons;
+using AngleSharp.Dom;
 
 namespace TestProject.Tests.Elegance.PaymentCenter
 {
@@ -36,10 +37,11 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         public void PaymentEntryTestInVariousCommunities(string community)
         {
             _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            double depositTotal = _Resident.Payment.Amount;
 
             Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
             _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterPaymentDateDescription(_Resident.Payment).SelectResident(1);
+                .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
 
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
 
@@ -64,15 +66,12 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         {
             string dateString = "2024-09-01";
             DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-
-            _Resident = new Resident(new Payment(111.00, date, "For hobbie"))
-            {
-                Community = community
-            };
+            _Resident = new Resident(community, new Payment(111.00, date, "For hobbie"));
+            double depositTotal = _Resident.Payment.Amount;
 
             Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
             _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterPaymentDateDescription(_Resident.Payment).SelectResident(1);
+                .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
 
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
 
@@ -80,6 +79,28 @@ namespace TestProject.Tests.Elegance.PaymentCenter
                 Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
             );
+        }
+        
+        [Test(Description = "Payment Entry Test for an amount less than the total due")]
+        [AllureName("Payment Entry Test for an amount less than the total due")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureTag("Regression")]
+        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        public void PaymentEntryTestForAmountLessThanTotal(string community)
+        {
+            _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            double depositTotal = 211.00;
+
+            Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
+            _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
+                .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
+
+            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
+
+            //Assert.IsTrue(
+            //    Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
+            //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
+            //);
         }
     }
 }

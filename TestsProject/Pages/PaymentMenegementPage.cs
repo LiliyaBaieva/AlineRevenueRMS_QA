@@ -28,15 +28,16 @@ namespace AlineRevenueRMS_QA.Pages
         private By PaymentSuccessfullySubmitted = By.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]");
         private By Description = By.Id("displayBatchPaymentDesc");
         private By TotalApplied = By.Id("applied");
-
+        private By DepositTotal = By.Id("CheckAmountStep1");
 
         [AllureStep("Enter Payment date and description")]
-        public PaymentMenegementPage EnterPaymentDateDescription(Payment payment)
+        public PaymentMenegementPage EnterPaymentDitails(Payment payment, double depositTotal)
         {
             Wrap.SendKeysText(DataField, payment.Date.ToString("dd-MM-yyyy"));
+            Wrap.SendKeysText(DepositTotal, depositTotal.ToString());
             Wrap.SendKeysText(PaymentDescriprionField, payment.Description);
             Wrap.Click(ContinueBtn);
-            logger.Info($"Enter Payment Details with date '{payment.Date.ToString()}' and description {payment.Description}");
+            logger.Info($"Enter Payment Details with date '{payment.Date.ToString()}', Deposit Total {depositTotal} and description {payment.Description}");
             return this;
         }
 
@@ -101,9 +102,10 @@ namespace AlineRevenueRMS_QA.Pages
         [AllureStep("Do ACH payment")]
         public void DoACHPayment(Resident resident)
         {
+            double depositTotal = resident.Payment.Amount;
             Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
             resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterPaymentDateDescription(resident.Payment).SelectResident(1);
+                .EnterPaymentDitails(resident.Payment, depositTotal).SelectResident(1);
             Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
         }
 
