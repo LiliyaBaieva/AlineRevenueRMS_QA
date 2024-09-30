@@ -54,7 +54,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
                 resident.Name = Pages.GetPaymentMenegementPage.SelectResident(i);
                 _ResidenstList.Add(resident);
             }
-            Pages.GetPaymentMenegementPage.SubmitPaymentForSeveralPayors(_ResidenstList);
+            Pages.GetPaymentMenegementPage.EnterPaymentForSeveralPayors(_ResidenstList).SubmitPayment();
 
             Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment.Description, depositTotal), "Payment was not successful");
 

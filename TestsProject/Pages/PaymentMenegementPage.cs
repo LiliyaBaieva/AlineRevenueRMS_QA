@@ -29,6 +29,8 @@ namespace AlineRevenueRMS_QA.Pages
         private By Description = By.Id("displayBatchPaymentDesc");
         private By TotalApplied = By.Id("applied");
         private By DepositTotal = By.Id("CheckAmountStep1");
+        private By UnAppliedErrorMessage = By.Id("error-message");
+        private By UnAppliedAmount = By.Id("unapplied");
 
         [AllureStep("Enter Payment date and description")]
         public PaymentMenegementPage EnterPaymentDitails(Payment payment, double depositTotal)
@@ -51,23 +53,21 @@ namespace AlineRevenueRMS_QA.Pages
             return name;
         }
 
-        [AllureStep("Submit payment for 1 payor")]
-        public PaymentMenegementPage SubmitPaymentFor1payor(double amount)
+        [AllureStep("Enter payment for 1 payor")]
+        public PaymentMenegementPage EnterPaymentFor1payor(double amount)
         {
             Wrap.Click(PaySelectedItem);
             Wrap.ScrollDown(2);
             Wrap.SendKeysText(AppliedAmountSell(0), ""+amount);
             Wrap.ClickEnter(AppliedAmountSell(0));
             Wrap.Click(CheckBoxInPaymentCart(0));
-            logger.Info("Set ammount {0} for one payor", amount);
+            logger.Info($"Set ammount {amount} for one payor");
             Wrap.Click(SubmitPaymentsBtn);
-            Wrap.SubmitAlert();
-            logger.Info("Confirm payment.");
             return this;
         }
         
-        [AllureStep("Submit payment for several payors")]
-        public PaymentMenegementPage SubmitPaymentForSeveralPayors(List<Resident> residents)
+        [AllureStep("Eneter payment for several payors")]
+        public PaymentMenegementPage EnterPaymentForSeveralPayors(List<Resident> residents)
         {
             Wrap.Click(PaySelectedItem);
             Wrap.ScrollDown(2);
@@ -79,6 +79,12 @@ namespace AlineRevenueRMS_QA.Pages
                 logger.Info($"Set ammount {residents[i].Payment.Amount} for {residents[i].Name}");
             }
             Wrap.Click(SubmitPaymentsBtn);
+            return this;
+        }
+
+        [AllureStep("Submit Payment")]
+        public PaymentMenegementPage SubmitPayment()
+        {
             Wrap.SubmitAlert();
             logger.Info("Confirm payment.");
             return this;
@@ -106,8 +112,17 @@ namespace AlineRevenueRMS_QA.Pages
             Pages.GetEleganceRmsHomePage.SelectComunity(resident.Community);
             resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
                 .EnterPaymentDitails(resident.Payment, depositTotal).SelectResident(1);
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(resident.Payment.Amount);
+            Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount).SubmitPayment();
         }
 
+        internal bool ErrorMessageDisplaied(string message)
+        {
+            return Wrap.GetText(UnAppliedErrorMessage).Contains(message);
+        }
+
+        internal string GetUnAppliedAmount()
+        {
+            return Wrap.GetText(UnAppliedAmount);
+        }
     }
 }

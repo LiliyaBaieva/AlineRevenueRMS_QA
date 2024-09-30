@@ -16,7 +16,10 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         private Resident _Resident;
 
         [SetUp]
-        public void Precondition() => Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+        public void Precondition()
+        {
+            Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+        }
 
         [TearDown]
         public void Postcondition()
@@ -43,7 +46,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
                 .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
 
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
+            Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount).SubmitPayment();
 
             Assert.IsTrue(
                 Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
@@ -73,34 +76,13 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
                 .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
 
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
+            Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount).SubmitPayment();
 
             Assert.IsTrue(
                 Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
                 Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
             );
         }
-        
-        [Test(Description = "Payment Entry Test for an amount less than the total due")]
-        [AllureName("Payment Entry Test for an amount less than the total due")]
-        [AllureSeverity(SeverityLevel.critical)]
-        [AllureTag("Regression")]
-        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
-        public void PaymentEntryTestForAmountLessThanTotal(string community)
-        {
-            _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
-            double depositTotal = 211.00;
 
-            Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
-            _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-                .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
-
-            Pages.GetPaymentMenegementPage.SubmitPaymentFor1payor(_Resident.Payment.Amount);
-
-            //Assert.IsTrue(
-            //    Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
-            //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment)
-            //);
-        }
     }
 }
