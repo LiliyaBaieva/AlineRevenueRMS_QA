@@ -9,8 +9,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureFeature("Single Payment Entry Tests in communities.")]
-    [AllureSuite("Single Payment Entry Tests in communities.")]
+    [AllureFeature("ACH Single Payment Entry Tests in communities.")]
+    [AllureSuite("ACH Single Payment Entry Tests in communities.")]
     public class ACHSinglePaymentEntryTests : TestBase
     {
         private Resident _Resident;
@@ -27,8 +27,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
         }
 
-        [Test(Description = "Payment Entry Test in various communities")]
-        [AllureName("Payment Entry Test in various communities")]
+        [Test(Description = "ACH Payment Entry Test in various communities")]
+        [AllureName("ACH Payment Entry Test in various communities")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
@@ -55,8 +55,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             );
         }
 
-        [Test(Description = "Payment Entry Test in various communities with specific date")]
-        [AllureName("Payment Entry Test in various communities with specific date")]
+        [Test(Description = "ACH Payment Entry Test in various communities with specific date")]
+        [AllureName("ACH Payment Entry Test in various communities with specific date")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]

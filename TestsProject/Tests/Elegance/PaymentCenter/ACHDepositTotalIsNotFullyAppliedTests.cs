@@ -22,8 +22,8 @@ namespace TestsProject.Tests.Elegance.PaymentCenter
             Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
         }
 
-        [Test(Description = "Payment Entry Test for an amount less than the total due")]
-        [AllureName("Payment Entry Test for an amount less than the total due")]
+        [Test(Description = "ACH Payment Entry Test for an amount less than the total due")]
+        [AllureName("ACH Payment Entry Test for an amount less than the total due")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]

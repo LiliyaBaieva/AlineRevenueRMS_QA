@@ -8,8 +8,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
 {
     [TestFixture]
     [AllureNUnit]
-    [AllureFeature("Multiply Payment Entry Tests.")]
-    [AllureSuite("Multiply Payment Entry Tests.")]
+    [AllureFeature("ACH Multiply Payment Entry Tests.")]
+    [AllureSuite("ACH Multiply Payment Entry Tests.")]
     public class ACHMultiplyPaymentEntryTests : TestBase
     {
 
@@ -29,8 +29,8 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             _ResidenstList.Clear();
         }
 
-        [Test(Description = "Multiply payment Entry Test in various communities.")]
-        [AllureName("Multiply payment Entry Test in various communities.")]
+        [Test(Description = "ACH Multiply payment Entry Test in various communities.")]
+        [AllureName("ACH Multiply payment Entry Test in various communities.")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
