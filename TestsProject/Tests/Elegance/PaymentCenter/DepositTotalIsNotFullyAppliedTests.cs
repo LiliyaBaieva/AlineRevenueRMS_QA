@@ -27,6 +27,11 @@ namespace TestsProject.Tests.Elegance.PaymentCenter
         [AllureSeverity(SeverityLevel.critical)]
         [AllureTag("Regression")]
         [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void PaymentEntryTestForAmountLessThanTotal(string community)
         {
             _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
