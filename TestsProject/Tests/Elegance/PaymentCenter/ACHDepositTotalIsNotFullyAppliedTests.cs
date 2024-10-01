@@ -12,7 +12,7 @@ namespace TestsProject.Tests.Elegance.PaymentCenter
     [AllureNUnit]
     [AllureFeature("Deposit total is not fully applied tests in communities.")]
     [AllureSuite("Deposit total is not fully applied tests in communities.")]
-    public class DepositTotalIsNotFullyAppliedTests : TestBase
+    public class ACHDepositTotalIsNotFullyAppliedTests : TestBase
     {
         private Resident _Resident;
 
@@ -32,7 +32,7 @@ namespace TestsProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void PaymentEntryTestForAmountLessThanTotal(string community)
+        public void ACHPaymentEntryTestForAmountLessThanTotal_NotApplied(string community)
         {
             _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
             double depositTotal = 211.00;

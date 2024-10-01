@@ -11,7 +11,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
     [AllureNUnit]
     [AllureFeature("Single Payment Entry Tests in communities.")]
     [AllureSuite("Single Payment Entry Tests in communities.")]
-    public class SinglePaymentEntryTests : TestBase
+    public class ACHSinglePaymentEntryTests : TestBase
     {
         private Resident _Resident;
 
@@ -37,7 +37,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void PaymentEntryTestInVariousCommunities(string community)
+        public void ACHSinglePaymentEntry_TestInVariousCommunities_Applied(string community)
         {
             _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
             double depositTotal = _Resident.Payment.Amount;
@@ -65,7 +65,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void PaymentEntryTestWith1DateOfMonth(string community)
+        public void ACHSinglePaymentEntry_TestWith1DateOfMonth_Applied(string community)
         {
             string dateString = "2024-09-01";
             DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);

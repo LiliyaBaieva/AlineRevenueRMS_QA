@@ -28,7 +28,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void DeletePaymentInvariousCommunitiesTest(string community)
+        public void ResidentLedgerAdminPage_DeletePaymentInvariousCommunitiesTest_Deleted(string community)
         {
             _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             Pages.GetPaymentMenegementPage.DoACHPayment(_Resident);
@@ -51,7 +51,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void UpdatePaymentInvariousCommunitiesTest(string community)
+        public void ResidentLedgerAdminPage_UpdatePaymentInvariousCommunitiesTest_Updated(string community)
         {
             _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             double newAmmount = 555.00;

@@ -10,7 +10,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
     [AllureNUnit]
     [AllureFeature("Multiply Payment Entry Tests.")]
     [AllureSuite("Multiply Payment Entry Tests.")]
-    public class MultiplyPaymentEntryTests : TestBase
+    public class ACHMultiplyPaymentEntryTests : TestBase
     {
 
         private List<Resident> _ResidenstList = new List<Resident>();
@@ -39,7 +39,7 @@ namespace TestProject.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void MultiplyPaymentEntryInVariousComunities(string comunity)
+        public void ACHMultiplyPaymentEntryTests_InVariousComunities_Applied(string comunity)
         {
             Payment payment = new Payment(333.00, DateTime.Now.Date.AddDays(-7), "Celebration");
             double depositTotal = Enumerable.Range(0, 3).Select(i =>
