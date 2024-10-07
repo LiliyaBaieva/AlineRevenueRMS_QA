@@ -6,19 +6,9 @@ namespace AlineRevenueRMS.Automation.Web.Core.Locator
     {
         private const string NormalizedXpath = "normalize-space(translate(string(.), '\t\n\r\u00a0', '    '))";
 
-        public static By Type(string type)
-        {
-            return By.XPath($".//*[@type = '{type}']");
-        }
-
         public static By Value(string value)
         {
             return By.XPath($".//*[@value = '{value}']");
-        }
-
-        public static By Role(string value)
-        {
-            return By.XPath($".//*[@role = '{value}']");
         }
 
         public static By Text(string text)
