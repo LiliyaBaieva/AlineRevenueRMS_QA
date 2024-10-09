@@ -4,6 +4,9 @@ using Allure.Net.Commons;
 using AngleSharp.Dom;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using NUnit.Framework;
+using AlineRevenueRMS.Automation.Web.Tests.Tests.Base;
+using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
+using AlineRevenueRMS.Automation.Web.Tests.Pages;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
 {
@@ -11,14 +14,16 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
     [AllureNUnit]
     [AllureFeature("ACH Single Payment Entry Tests in communities.")]
     [AllureSuite("ACH Single Payment Entry Tests in communities.")]
-    public class ACHSinglePaymentEntryTests : TestBase
+    public class ACHSinglePaymentEntryTests : BaseLogin
     {
+        public ACHSinglePaymentEntryTests() : base(1){}
+
         private Resident _Resident;
 
         [SetUp]
         public void Precondition()
         {
-            Pages.GetLoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
+            LoginPage.LogInToApp().GoToElegance().GotoAlineRevenueRms();
         }
 
         [TearDown]
