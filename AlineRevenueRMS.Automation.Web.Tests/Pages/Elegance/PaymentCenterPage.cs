@@ -2,7 +2,6 @@
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using Allure.NUnit.Attributes;
-using OpenQA.Selenium;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {

@@ -146,7 +146,11 @@ namespace TestProject.Core
             webElement.SendKeys(Keys.Enter);
         }
 
-        public void SubmitAlert() => Wait.Until(ExpectedConditions.AlertIsPresent()).Accept();
+        public void SubmitAlert()
+        {
+            IAlert alert = Wait.Until(ExpectedConditions.AlertIsPresent());
+            //.Accept();
+        }
 
     }
 }

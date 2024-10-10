@@ -1,9 +1,9 @@
-﻿using AlineRevenueRMS.Automation.Web.Core.Element;
+﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
+using AlineRevenueRMS.Automation.Web.Core.Element;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using Allure.NUnit.Attributes;
-using OpenQA.Selenium;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
@@ -25,7 +25,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
         public static void SelectComunity(string community)
         {
             ComunityTab.Click();
-            //Wrap.WaitUntilElementExist(CommunityFilter);
+            CommunityFilter.Should(Be.Visible);
             CommunityFilter.SendKeys(community);
             ComunityInSelector(community).Click();
         }

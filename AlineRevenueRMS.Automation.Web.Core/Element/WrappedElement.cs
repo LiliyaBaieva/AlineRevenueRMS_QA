@@ -181,6 +181,13 @@ namespace AlineRevenueRMS.Automation.Web.Core.Element
             Click();
         }
 
+        public string GetText()
+        {
+            WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete());
+            Should(Be.Visible);
+            return ActualWebElement.Text;
+        }
+
         public string GetAttribute(string attributeName)
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete());

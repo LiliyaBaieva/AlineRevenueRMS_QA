@@ -3,6 +3,7 @@ using AlineRevenueRMS.Automation.Web.Core.ElementsCollection;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Core.Wrappers;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using Serilog;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
@@ -52,5 +53,30 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
             WrappedDriverManager.GetWebDriver().SwitchTo().DefaultContent();
         }
+
+        public static void ScrollDown(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var jsExecutor = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
+                jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
+            }
+        }
+        public static void ScrollUp(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                var jsExecutor = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
+                jsExecutor.ExecuteScript("window.scrollBy(0, -window.innerHeight / 2);");
+            }
+        }
+
+        public static void SubmitAlert()
+        {
+            WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
+            //Wait.Until(ExpectedConditions.AlertIsPresent()).Accept(); // TODO:
+
+        }
+
     }
 }

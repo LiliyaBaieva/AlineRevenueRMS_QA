@@ -53,16 +53,18 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             
                 EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
-            //PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal)
-            //_Resident.Name =     //.SelectResident(1);
-
-            //Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount).SubmitPayment();
+            PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal);
+            _Resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount);
+            PaymentMenegementPage.SubmitPayment();
 
             //Assert.IsTrue(
             //    Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
             //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
             //    "Payment doesn`t exist."
             //);
+
+
         }
 
         //[Test(Description = "ACH Payment Entry Test in various communities with specific date")]

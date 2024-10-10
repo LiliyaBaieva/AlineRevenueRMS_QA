@@ -3,8 +3,6 @@ using AlineRevenueRMS.Automation.Web.Core.Element;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using Allure.NUnit.Attributes;
-using OpenQA.Selenium;
-using Serilog;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
