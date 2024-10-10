@@ -1,8 +1,10 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
 using AlineRevenueRMS.Automation.Web.Tests.Pages;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
+using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using AlineRevenueRMS.Automation.Web.Tests.Tests.Base;
+using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using NUnit.Framework;
@@ -32,33 +34,36 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
         //}
 
-        //[Test(Description = "ACH Payment Entry Test in various communities")]
-        //[AllureName("ACH Payment Entry Test in various communities")]
-        //[AllureSeverity(SeverityLevel.critical)]
-        //[AllureTag("Regression")]
-        //[TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
-        //[TestCase(Comunities.ANCHOR_BAY_POCASSET)]
-        //[TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
-        //[TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
-        //[TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
-        //[TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        //public void ACHSinglePaymentEntry_TestInVariousCommunities_Applied(string community)
-        //{
-        //    _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
-        //    double depositTotal = _Resident.Payment.Amount;
+        [Test(Description = "ACH Payment Entry Test in various communities")]
+        [AllureName("ACH Payment Entry Test in various communities")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureTag("Regression")]
+        [TestCase(Comunities.WENTWORT_CENTRAL_AVENUE)]
+        [TestCase(Comunities.ANCHOR_BAY_POCASSET)]
+        [TestCase(Comunities.ELEGANCE_AT_LAKE_WORTH)]
+        [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
+        [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
+        [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
+        public void ACHSinglePaymentEntry_TestInVariousCommunities_Applied(string community)
+        {
+            _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            double depositTotal = _Resident.Payment.Amount;
 
-        //    Pages.GetEleganceRmsHomePage.SelectComunity(_Resident.Community);
-        //    _Resident.Name = Pages.GetEleganceRmsHomePage.NavigateToThePaymentCenter().GoToACHpayment()
-        //        .EnterPaymentDitails(_Resident.Payment, depositTotal).SelectResident(1);
+            EleganceRmsHomePage.SelectComunity(_Resident.Community);
+            
+                EleganceRmsHomePage.NavigateToThePaymentCenter();
+            PaymentCenterPage.GoToACHpayment();
+            //PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal)
+            //_Resident.Name =     //.SelectResident(1);
 
-        //    Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount).SubmitPayment();
+            //Pages.GetPaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount).SubmitPayment();
 
-        //    Assert.IsTrue(
-        //        Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
-        //        Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
-        //        "Payment doesn`t exist."
-        //    );
-        //}
+            //Assert.IsTrue(
+            //    Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
+            //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
+            //    "Payment doesn`t exist."
+            //);
+        }
 
         //[Test(Description = "ACH Payment Entry Test in various communities with specific date")]
         //[AllureName("ACH Payment Entry Test in various communities with specific date")]
