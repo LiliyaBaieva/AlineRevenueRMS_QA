@@ -3,8 +3,10 @@ using AlineRevenueRMS.Automation.Web.Core.Configuration;
 using AlineRevenueRMS.Automation.Web.Core.Element;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
+using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using Allure.NUnit.Attributes;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
@@ -17,40 +19,18 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static WrappedElement SubmitMultiTenant => new(With.Id("SubmitMultiTenant"), "Submit multi Tenant");
         private static WrappedElement TenantCollection => new(With.Id("TenantCollection"), "Tenant Collection");
         private static WrappedElement EleganceOption => new(With.XPath("//option[contains(text(),'Elegance')]"), "Elegance option in select");
-        private static WrappedElement ApplicationsMenu => new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
 
         public static void Open()
         {
             Openlink(AppConfiguration.BaseUrl);
         }
 
-        [AllureStep("Log In To App")]
-        public LoginPage LogInToApp()
-        {
-            //Wrap.SendKeysText(UserNameField, ConfigurationManager.Configuration["Logging:Name"]);
-            UserNameField.Set(ConfigurationManager.Configuration["Logging:Name"]);
-
-            //Wrap.SendKeysText(PasswordField, ConfigurationManager.Configuration["Logging:Password"]);
-            PasswordField.Set(ConfigurationManager.Configuration["Logging:Password"]);
-
-            SignInButton.Click();
-
-            
-            logger.Info("Login to application"); // Where I have initialize Logger
-            return this;
-        }
-
         [AllureStep("Go to Elegance")]
-        public EleganceAppPage GoToElegance()
+        public static void GoToElegance()
         {
             EleganceOption.Click();
             SubmitMultiTenant.Click();
-
-            //Assert.IsTrue(Wrap.IsElementPresent(ApplicationsMenu));
-            ApplicationsMenu.Should(Be.Visible);
-
-            logger.Info("Go to Elegance");
-            return new EleganceAppPage(); // ????? I can`t user builder a step?
+            EleganceAppPage.ApplicationsMenu.Should(Be.Visible);
         }
     }
 }

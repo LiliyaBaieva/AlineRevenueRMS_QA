@@ -1,5 +1,6 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Configuration;
 using AlineRevenueRMS.Automation.Web.Tests.Pages;
+using Allure.NUnit.Attributes;
 using NUnit.Framework;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Base
@@ -14,6 +15,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Base
         }
 
         [SetUp]
+        [AllureStep("Log In To App")]
         public void SetupLogIn()
         {
             var userToLogin = AppConfiguration.Users.Single(u => u.SetId == _setId);
@@ -22,6 +24,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Base
             LoginPage.UserNameField.Set(userToLogin.UserName);
             LoginPage.PasswordField.Set(userToLogin.Password);
             LoginPage.SignInButton.Click();
+
         }
     }
 }

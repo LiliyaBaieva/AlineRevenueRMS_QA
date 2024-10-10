@@ -35,6 +35,11 @@ namespace AlineRevenueRMS.Automation.Web.Core.Locator
         {
             return By.TagName(name);
         }
+        
+        public static By LinkText(string name)
+        {
+            return By.LinkText(name);
+        }
 
         public static By ClassName(string className)
         {
