@@ -20,6 +20,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
     {
         public ACHSinglePaymentEntryTests() : base(1){}
 
+        Resident _Resident;
+
         [SetUp]
         public void GoToAlineRMSinElegance()
         {
@@ -27,11 +29,13 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             EleganceAppPage.GotoAlineRevenueRms();
         }
 
-        //[TearDown]
-        //public void DeletePaymentFromResident()
-        //{
-        //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedgerAdmin().DeletePayment(_Resident);
-        //}
+        [TearDown]
+        public void DeletePaymentFromResident()
+        {
+            EleganceRmsHomePage.OpenResidentPage(_Resident)
+                //.OpenResidentLedgerAdmin()
+                //.DeletePayment(_Resident);
+        }
 
         [Test(Description = "ACH Payment Entry Test in various communities")]
         [AllureName("ACH Payment Entry Test in various communities")]
@@ -45,23 +49,23 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void ACHSinglePaymentEntry_TestInVariousCommunities_PaymentShouldBeSuccessful(string community)
         {
-            Resident resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
-            double depositTotal = resident.Payment.Amount;
+            Resident _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            double depositTotal = _Resident.Payment.Amount;
 
-            EleganceRmsHomePage.SelectComunity(resident.Community);
+            EleganceRmsHomePage.SelectComunity(_Resident.Community);
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
-            PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
-            resident.Name = PaymentMenegementPage.SelectResident(1);
-            PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
+            PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal);
+            _Resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
             PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(resident.Payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{resident.Payment.Amount}");
-            EleganceRmsHomePage.OpenResidentPage(resident);
+            PaymentMenegementPage.Description.GetText().Contains(_Resident.Payment.Description);
+            PaymentMenegementPage.TotalApplied.GetText().Contains($"{_Resident.Payment.Amount}");
+            EleganceRmsHomePage.OpenResidentPage(_Resident);
             ResidentPageInElegance.OpenResidentLedger();
-            ResidentLedgerInElegancePage.IsPaymentExist(resident.Payment);
+            ResidentLedgerInElegancePage.IsPaymentExist(_Resident.Payment);
         }
 
         [Test(Description = "ACH Payment Entry Test in various communities with specific date")]
@@ -78,23 +82,23 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         {
             string dateString = "2024-09-01";
             DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-            Resident resident = new Resident(community, new Payment(111.00, date, "For hobbie"));
-            double depositTotal = resident.Payment.Amount;
+            _Resident = new Resident(community, new Payment(111.00, date, "For hobbie"));
+            double depositTotal = _Resident.Payment.Amount;
 
-            EleganceRmsHomePage.SelectComunity(resident.Community);
+            EleganceRmsHomePage.SelectComunity(_Resident.Community);
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
-            PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
-            resident.Name = PaymentMenegementPage.SelectResident(1);
-            PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
+            PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal);
+            _Resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
             PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(resident.Payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{resident.Payment.Amount}");
-            EleganceRmsHomePage.OpenResidentPage(resident);
+            PaymentMenegementPage.Description.GetText().Contains(_Resident.Payment.Description);
+            PaymentMenegementPage.TotalApplied.GetText().Contains($"{_Resident.Payment.Amount}");
+            EleganceRmsHomePage.OpenResidentPage(_Resident);
             ResidentPageInElegance.OpenResidentLedger();
-            ResidentLedgerInElegancePage.IsPaymentExist(resident.Payment);
+            ResidentLedgerInElegancePage.IsPaymentExist(_Resident.Payment);
         }
 
     }
