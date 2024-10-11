@@ -34,7 +34,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         {
             EleganceRmsHomePage.OpenResidentPage(_Resident);
             ResidentPageInElegance.OpenResidentLedgerAdmin();
-                //.DeletePayment(_Resident);
+            ResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
         }
 
         [Test(Description = "ACH Payment Entry Test in various communities")]
