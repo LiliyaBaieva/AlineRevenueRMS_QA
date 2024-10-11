@@ -25,6 +25,7 @@ namespace AlineRevenueRMS.Automation.Web.Core.Wrappers
         public static void InitWebDriver()
         {
             DriverManager.CommonDriver.Value = DriverManager.GetWebDriver(Config.HeadlessMode);
+            DriverManager.CommonDriver.Value.Manage().Window.Maximize();
         }
 
         public static IWebDriver GetWebDriver()

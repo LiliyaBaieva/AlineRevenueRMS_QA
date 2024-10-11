@@ -10,7 +10,7 @@ namespace AlineRevenueRMS_QA.Pages
         private By ACHpaymentsLink = By.XPath("//h5[contains(text(),'ACH payments')]");
 
         [AllureStep("Go to ACH payment")]
-        public static PaymentMenegementPage GoToACHpayment()
+        public PaymentMenegementPage GoToACHpayment()
         {
             Wrap.Click(ACHpaymentsLink);
             logger.Info("Navigate to ACH payment");

@@ -138,7 +138,7 @@ namespace AlineRevenueRMS.Automation.Web.Core.Element
         {
             Log.Information($"Send keys to the element '{Description}': '{text}' ");
             Should(Be.InDom);
-            ActualWebElement.Clear();
+            //ActualWebElement.Clear();
             ActualWebElement.SendKeys(text);
             return this;
         }

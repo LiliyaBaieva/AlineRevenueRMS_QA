@@ -148,8 +148,7 @@ namespace TestProject.Core
 
         public void SubmitAlert()
         {
-            IAlert alert = Wait.Until(ExpectedConditions.AlertIsPresent());
-            //.Accept();
+            Wait.Until(ExpectedConditions.AlertIsPresent()).Accept();
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
+using AlineRevenueRMS.Automation.Web.Core.Element;
 using AlineRevenueRMS.Automation.Web.Core.ElementsCollection;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Core.Wrappers;
@@ -41,6 +42,13 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
             js.ExecuteScript("window.scrollTo(0, 0)");
         }
 
+        public static void ScrollToElement(WrappedElement locator)
+        {
+            locator.Should(Be.Visible);
+            var js = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
+            js.ExecuteScript("arguments[0].scrollIntoView(true);", locator);
+        }
+
         public static void SwitchIFrame(int index = 0)
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
@@ -74,7 +82,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
         public static void SubmitAlert()
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
-            WrappedDriverManager.GetWebDriver().SwitchTo().Alert().Accept();
+            WrappedDriverManager.GetWebDriver().SwitchTo().Alert().Accept(); // TODO: it is doesn`t work
+            //WebDriverWait wait = new WebDriverWait(WrappedDriverManager.GetWebDriver(), TimeSpan.FromSeconds(10));
+            //wait.(ExpectedConditions.AlertIsPresent()).Accept();
+
         }
 
     }
