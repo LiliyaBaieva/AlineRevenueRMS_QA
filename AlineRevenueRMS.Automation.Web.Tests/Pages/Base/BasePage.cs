@@ -74,8 +74,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
         public static void SubmitAlert()
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
-            //Wait.Until(ExpectedConditions.AlertIsPresent()).Accept(); // TODO:
-
+            WrappedDriverManager.GetWebDriver().SwitchTo().Alert().Accept();
         }
 
     }

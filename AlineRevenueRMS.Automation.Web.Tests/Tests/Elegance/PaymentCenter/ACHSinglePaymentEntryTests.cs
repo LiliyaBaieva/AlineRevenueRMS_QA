@@ -19,8 +19,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
     {
         public ACHSinglePaymentEntryTests() : base(1){}
 
-        private Resident _Resident;
-
         [SetUp]
         public void GoToAlineRMSinElegance()
         {
@@ -44,25 +42,28 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.SYMPHONY_MANOR_ROLAND_PARK)]
         [TestCase(Comunities.SYMPHONY_OLMSTED_FALLS)]
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
-        public void ACHSinglePaymentEntry_TestInVariousCommunities_Applied(string community)
+        public void ACHSinglePaymentEntry_TestInVariousCommunities_PaymentShouldBeSuccessful(string community)
         {
-            _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
-            double depositTotal = _Resident.Payment.Amount;
+            Resident resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            double depositTotal = resident.Payment.Amount;
 
-            EleganceRmsHomePage.SelectComunity(_Resident.Community);
-            
-                EleganceRmsHomePage.NavigateToThePaymentCenter();
+            EleganceRmsHomePage.SelectComunity(resident.Community);
+            EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
-            PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal);
-            _Resident.Name = PaymentMenegementPage.SelectResident(1);
-            PaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount);
+            PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
+            resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
-            //Assert.IsTrue(
-            //    Pages.GetPaymentMenegementPage.PaymentSuccessful(_Resident.Payment.Description, _Resident.Payment.Amount) &&
-            //    Pages.GetEleganceRmsHomePage.OpenResidentPage(_Resident).OpenResidentLedger().IsPaymentExist(_Resident.Payment),
-            //    "Payment doesn`t exist."
-            //);
+            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
+            PaymentMenegementPage.Description.GetText().Contains(resident.Payment.Description);
+            PaymentMenegementPage.TotalApplied.GetText().Contains($"{resident.Payment.Amount}");
+
+
+            EleganceRmsHomePage.OpenResidentPage(resident);
+                //.OpenResidentLedger()
+                //.IsPaymentExist(resident.Payment);
+
 
 
         }

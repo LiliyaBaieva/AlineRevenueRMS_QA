@@ -86,28 +86,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Submit Payment")]
         public static void SubmitPayment()
         {
-            SubmitAlert();  // TODO: Not implemented
+            SubmitAlert();
             Log.Information("Confirm payment.");
-        }
-
-        public static void PaymentSuccessful(string description, double totalAmount) // TODO: If it works?
-        {
-            ScrollUp(3);
-
-            //if (
-            ////Wrap.IsElementPresent(PaymentSuccessfullySubmitted) &&
-            ////Wrap.GetText(Description).Contains(description) &&
-            ////Wrap.GetText(TotalApplied).Contains($"{totalAmount}")
-            //    )
-            //{
-            //    logger.Info($"Payment was upplied successfully with amount {totalAmount}");
-            //    return true;
-            //}
-            //else { return false; }
-
-            PaymentSuccessfullySubmitted.Should(Be.Visible);
-            Description.GetText().Contains(description);
-            TotalApplied.GetText().Contains($"{totalAmount}");
         }
 
         [AllureStep("Do ACH payment")]
