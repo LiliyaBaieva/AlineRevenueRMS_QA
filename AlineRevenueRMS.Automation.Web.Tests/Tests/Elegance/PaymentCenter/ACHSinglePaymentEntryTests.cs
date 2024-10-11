@@ -32,8 +32,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
         [TearDown]
         public void DeletePaymentFromResident()
         {
-            EleganceRmsHomePage.OpenResidentPage(_Resident)
-                //.OpenResidentLedgerAdmin()
+            EleganceRmsHomePage.OpenResidentPage(_Resident);
+            ResidentPageInElegance.OpenResidentLedgerAdmin();
                 //.DeletePayment(_Resident);
         }
 
