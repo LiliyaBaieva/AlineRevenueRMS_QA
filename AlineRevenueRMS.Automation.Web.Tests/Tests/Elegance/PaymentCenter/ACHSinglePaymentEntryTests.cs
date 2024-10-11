@@ -4,7 +4,6 @@ using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using AlineRevenueRMS.Automation.Web.Tests.Tests.Base;
-using AlineRevenueRMS_QA.Pages;
 using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
