@@ -4,7 +4,7 @@ using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 
-namespace AlineRevenueRMS_QA.Pages
+namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class ResidentPageInElegance : BasePage
     {

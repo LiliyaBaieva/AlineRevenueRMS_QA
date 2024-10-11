@@ -7,7 +7,7 @@ using Allure.NUnit.Attributes;
 using OpenQA.Selenium;
 using Serilog;
 
-namespace AlineRevenueRMS_QA.Pages
+namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class ResidentLedgerAdminInElegancePage : BasePage
     {
