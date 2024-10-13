@@ -1,4 +1,5 @@
-﻿using AlineRevenueRMS.Automation.Web.Tests.Pages;
+﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
+using AlineRevenueRMS.Automation.Web.Tests.Pages;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
@@ -65,14 +66,20 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             PaymentCenterPage.GoToACHpayment();
             PaymentMenegementPage.EnterPaymentDitails(payment, depositTotal);
 
-            _ResidenstList.Select((resident, index) => resident.Name = Pages.GetPaymentMenegementPage.SelectResident(index + 1)).ToList();
-            Pages.GetPaymentMenegementPage.EnterPaymentForSeveralPayors(_ResidenstList).SubmitPayment();
+            _ResidenstList.Select((resident, index) => resident.Name = PaymentMenegementPage.SelectResident(index + 1)).ToList();
+            PaymentMenegementPage.EnterPaymentForSeveralPayors(_ResidenstList);
+            PaymentMenegementPage.SubmitPayment();
 
-            Assert.IsTrue(Pages.GetPaymentMenegementPage.PaymentSuccessful(payment.Description, depositTotal), "Payment was not successful");
+            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
+            PaymentMenegementPage.Description.GetText().Contains(payment.Description);
+            PaymentMenegementPage.TotalApplied.GetText().Contains($"{depositTotal}");
 
-            Assert.IsTrue(!_ResidenstList.Any(resident =>
-                !Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)),
-            "Payment doesn`t exist.");
+            foreach (Resident resident in _ResidenstList)
+            {
+                EleganceRmsHomePage.OpenResidentPage(resident);
+                ResidentPageInElegance.OpenResidentLedger();
+                ResidentLedgerInElegancePage.IsPaymentExist(resident.Payment);
+            }
 
         }
 
