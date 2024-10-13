@@ -12,7 +12,6 @@ namespace TestProject.Tests.Elegance.PaymentCenter
     [AllureSuite("ACH Multiply Payment Entry Tests.")]
     public class ACHMultiplyPaymentEntryTests : TestBase
     {
-
         private List<Resident> _ResidenstList = new List<Resident>();
 
         [SetUp]
@@ -61,8 +60,6 @@ namespace TestProject.Tests.Elegance.PaymentCenter
             Assert.IsTrue(!_ResidenstList.Any(resident =>
                 !Pages.GetEleganceRmsHomePage.OpenResidentPage(resident).OpenResidentLedger().IsPaymentExist(resident.Payment)),
             "Payment doesn`t exist.");
-
         }
-
     }
 }

@@ -99,6 +99,5 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             ResidentPageInElegance.OpenResidentLedger();
             ResidentLedgerInElegancePage.IsPaymentExist(_Resident.Payment);
         }
-
     }
 }

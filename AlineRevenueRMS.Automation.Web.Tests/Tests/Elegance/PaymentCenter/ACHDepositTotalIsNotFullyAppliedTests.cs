@@ -52,7 +52,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
 
             PaymentMenegementPage.ErrorMessageDisplaied("Please ensure deposit total is fully applied");
             PaymentMenegementPage.GetUnAppliedAmount().Contains(unAppliedAmount.ToString());
-
         }
     }
 }

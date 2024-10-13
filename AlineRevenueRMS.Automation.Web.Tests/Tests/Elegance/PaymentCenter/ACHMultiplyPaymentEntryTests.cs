@@ -19,7 +19,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     {
         public ACHMultiplyPaymentEntryTests() : base(1) { }
 
-
         private List<Resident> _ResidenstList = new List<Resident>();
 
         [SetUp]
@@ -80,8 +79,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
                 ResidentPageInElegance.OpenResidentLedger();
                 ResidentLedgerInElegancePage.IsPaymentExist(resident.Payment);
             }
-
         }
-
     }
 }

@@ -16,7 +16,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     [AllureFeature("Resident Ledger Admin Tests.")]
     public class ResidentLedgerAdminTests : BaseLogin
     {
-
         public ResidentLedgerAdminTests() : base(1) { }
 
         private Resident _Resident;
@@ -48,7 +47,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             ResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
 
             ResidentLedgerAdminInElegancePage.MakeASurePaymentDoesntExist(_Resident);
-
         }
         
         [Test(Description = "Update payment test in Resident Ledger Admin in various communities")]
