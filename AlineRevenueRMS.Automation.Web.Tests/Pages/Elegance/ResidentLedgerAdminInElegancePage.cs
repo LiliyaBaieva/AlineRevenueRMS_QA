@@ -41,7 +41,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             Log.Information($"Payment with amoint {resident.Payment.Amount} and date {date} was deleted successfully.");
         }
 
-        public static void PaymentDoesntExist(Resident resident)
+        public static void MakeASurePaymentDoesntExist(Resident resident)
         {
             DateTime paymentDate = resident.Payment.Date;
             string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
@@ -73,7 +73,13 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static void RecentPaymentDoesntExist(Resident resident)
         {
-            PaymentDoesntExist(resident);
+            MakeASurePaymentDoesntExist(resident);
+        }
+
+        internal static void PaymentIsUpdatedSuccessfully(Resident resident, double newAmmount)
+        {
+            PaymenExist(resident, newAmmount);
+            RecentPaymentDoesntExist(resident);
         }
     }
 }

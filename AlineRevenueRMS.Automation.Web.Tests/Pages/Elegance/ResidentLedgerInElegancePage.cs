@@ -27,10 +27,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         }
 
         [AllureStep("Move to resident page")]
-        public ResidentPageInElegance BackToResidentDashboard(Resident resident)
+        public static void BackToResidentDashboard(Resident resident)
         {
             ResidentNameLink(resident.Name).Click();
-            return new ResidentPageInElegance();
         }
     }
 }
