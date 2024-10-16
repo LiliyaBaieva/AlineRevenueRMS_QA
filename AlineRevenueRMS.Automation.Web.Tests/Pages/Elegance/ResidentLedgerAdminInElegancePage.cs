@@ -10,15 +10,15 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class ResidentLedgerAdminInElegancePage : BasePage
     {
-        private static readonly WrappedElement PaymentsSection = new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
-        private static readonly WrappedElement DeletePaymentBtn = 
+        private static readonly WrappedElement _paymentsSection = new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
+        private static readonly WrappedElement _deletePaymentBtn = 
             new(With.XPath("//div[@class='dropdown open']//a[contains(text(), 'Delete...')]"), "Delete Payment Button");
-        private static readonly WrappedElement UpdatePaymentBtn =
+        private static readonly WrappedElement _updatePaymentBtn =
             new(With.XPath("//div[@class='dropdown open']//a[contains(text(), 'Update...')]"), "Update Payment Button");
-        private static readonly WrappedElement ConfirmDeleteBtn = new(With.Id("btnDelete"), "Confirm Delete Button");
-        private static readonly WrappedElement PaymnetInput = new(With.Id("AmountSelect"), "Paymnet Input");
-        private static readonly WrappedElement ConfirmUpdateBtn = new(With.Id("btnLedgerAdminSubmit"), "Confirm Update Button");
-        private static readonly WrappedElement UpdateModalWindow = new(With.Id("UpdateModal"), "Update Modal Window");
+        private static readonly WrappedElement _confirmDeleteBtn = new(With.Id("btnDelete"), "Confirm Delete Button");
+        private static readonly WrappedElement _paymnetInput = new(With.Id("AmountSelect"), "Paymnet Input");
+        private static readonly WrappedElement _confirmUpdateBtn = new(With.Id("btnLedgerAdminSubmit"), "Confirm Update Button");
+        private static readonly WrappedElement _updateModalWindow = new(With.Id("UpdateModal"), "Update Modal Window");
 
         private static WrappedElement EditBtnInPayments(string date, string amount) => 
             new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), 
@@ -29,11 +29,11 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Delete Payment")]
         public static void DeletePayment(Resident resident)
         {
-            ScrollToElement(PaymentsSection);
+            ScrollToElement(_paymentsSection);
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             EditBtnInPayments(date, $"{resident.Payment.Amount}").Click();
-            DeletePaymentBtn.Click();
-            ConfirmDeleteBtn.Click();
+            _deletePaymentBtn.Click();
+            _confirmDeleteBtn.Click();
             Log.Information($"Payment with amoint {resident.Payment.Amount} and date {date} was deleted successfully.");
         }
 
@@ -48,20 +48,20 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static void UpdatePayment(Resident resident, double newAmmount)
         {
             //Wrap.WaitUntilPageLoaded(); // TODO: find solution if need this
-            ScrollToElement(PaymentsSection);
+            ScrollToElement(_paymentsSection);
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             EditBtnInPayments(date, "" + resident.Payment.Amount).Click();
-            UpdatePaymentBtn.Click();
-            PaymnetInput.Clear();
-            PaymnetInput.SendKeys(newAmmount.ToString());
-            ConfirmUpdateBtn.Click();
+            _updatePaymentBtn.Click();
+            _paymnetInput.Clear();
+            _paymnetInput.SendKeys(newAmmount.ToString());
+            _confirmUpdateBtn.Click();
             Log.Information($"Payment by '{date}' with previous amount '{resident.Payment.Amount.ToString()}' " +
                 $"was updated to {newAmmount}, successfully");
         }
 
         public static void PaymenExist(Resident resident, double newAmmount)
         {
-            ScrollToElement(PaymentsSection);
+            ScrollToElement(_paymentsSection);
             DateTime paymentDate = resident.Payment.Date;
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             PaymentRow(date, "" + newAmmount.ToString()).Should(Be.Visible);

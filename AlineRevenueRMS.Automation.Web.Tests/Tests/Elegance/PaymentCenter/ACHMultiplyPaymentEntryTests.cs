@@ -19,7 +19,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     {
         public ACHMultiplyPaymentEntryTests() : base(1) { }
 
-        private List<Resident> _ResidenstList = new List<Resident>();
+        private List<Resident> _residenstList = new List<Resident>();
 
         [SetUp]
         public void precondition()
@@ -31,13 +31,13 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
         [TearDown]
         public void Postcondition()
         {
-            foreach (Resident resident in _ResidenstList)
+            foreach (Resident resident in _residenstList)
             {
                 EleganceRmsHomePage.OpenResidentPage(resident);
                 ResidentPageInElegance.OpenResidentLedgerAdmin();
                 ResidentLedgerAdminInElegancePage.DeletePayment(resident);
             }
-            _ResidenstList.Clear();
+            _residenstList.Clear();
         }
 
         [Test(Description = "ACH Multiply payment Entry Test in various communities.")]
@@ -56,7 +56,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             double depositTotal = Enumerable.Range(0, 3).Select(i =>
             {
                 var resident = new Resident(community, payment);
-                _ResidenstList.Add(resident);
+                _residenstList.Add(resident);
                 return resident.Payment.Amount;
             }).Sum();
 
@@ -65,15 +65,15 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             PaymentCenterPage.GoToACHpayment();
             PaymentMenegementPage.EnterPaymentDitails(payment, depositTotal);
 
-            _ResidenstList.Select((resident, index) => resident.Name = PaymentMenegementPage.SelectResident(index + 1)).ToList();
-            PaymentMenegementPage.EnterPaymentForSeveralPayors(_ResidenstList);
+            _residenstList.Select((resident, index) => resident.Name = PaymentMenegementPage.SelectResident(index + 1)).ToList();
+            PaymentMenegementPage.EnterPaymentForSeveralPayors(_residenstList);
             PaymentMenegementPage.SubmitPayment();
 
-            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{depositTotal}");
+            PaymentMenegementPage._paymentSuccessfullySubmitted.Should(Be.Visible);
+            PaymentMenegementPage._description.GetText().Contains(payment.Description);
+            PaymentMenegementPage._totalApplied.GetText().Contains($"{depositTotal}");
 
-            foreach (Resident resident in _ResidenstList)
+            foreach (Resident resident in _residenstList)
             {
                 EleganceRmsHomePage.OpenResidentPage(resident);
                 ResidentPageInElegance.OpenResidentLedger();

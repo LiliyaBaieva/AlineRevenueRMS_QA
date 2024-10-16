@@ -18,8 +18,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     {
         public ACHDepositTotalIsNotFullyAppliedTests() : base(1) { }
 
-        private Resident _Resident;
-
         [SetUp]
         public void GoToAlineRMSinElegance()
         {
@@ -39,16 +37,16 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void ACHPaymentEntryTestForAmountLessThanTotal_NotApplied(string community)
         {
-            _Resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
+            Resident resident = new Resident(community, new Payment(111.00, DateTime.Now.Date.AddDays(-8), "For hobbie"));
             double depositTotal = 211.00;
-            double unAppliedAmount = depositTotal - _Resident.Payment.Amount;
+            double unAppliedAmount = depositTotal - resident.Payment.Amount;
 
-            EleganceRmsHomePage.SelectComunity(_Resident.Community);
+            EleganceRmsHomePage.SelectComunity(resident.Community);
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
-            PaymentMenegementPage.EnterPaymentDitails(_Resident.Payment, depositTotal);
-            _Resident.Name = PaymentMenegementPage.SelectResident(1);
-            PaymentMenegementPage.EnterPaymentFor1payor(_Resident.Payment.Amount);
+            PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
+            resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
 
             PaymentMenegementPage.ErrorMessageDisplaied("Please ensure deposit total is fully applied");
             PaymentMenegementPage.GetUnAppliedAmount().Contains(unAppliedAmount.ToString());

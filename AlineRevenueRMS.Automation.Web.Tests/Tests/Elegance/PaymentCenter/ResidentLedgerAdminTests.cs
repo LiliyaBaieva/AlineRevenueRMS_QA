@@ -18,8 +18,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     {
         public ResidentLedgerAdminTests() : base(1) { }
 
-        private Resident _Resident;
-
         [SetUp]
         public void Precondition()
         {
@@ -39,14 +37,14 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void ResidentLedgerAdminPage_DeletePaymentInvariousCommunitiesTest_Deleted(string community)
         {
-            _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+            Resident resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
 
-            PaymentMenegementPage.DoACHPayment(_Resident);
-            EleganceRmsHomePage.OpenResidentPage(_Resident);
+            PaymentMenegementPage.DoACHPayment(resident);
+            EleganceRmsHomePage.OpenResidentPage(resident);
             ResidentPageInElegance.OpenResidentLedgerAdmin();
-            ResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
+            ResidentLedgerAdminInElegancePage.DeletePayment(resident);
 
-            ResidentLedgerAdminInElegancePage.MakeASurePaymentDoesntExist(_Resident);
+            ResidentLedgerAdminInElegancePage.MakeASurePaymentDoesntExist(resident);
         }
         
         [Test(Description = "Update payment test in Resident Ledger Admin in various communities")]
@@ -61,21 +59,20 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
         [TestCase(Comunities.TRANQUILLITY_FREDERICKTOWNE)]
         public void ResidentLedgerAdminPage_UpdatePaymentInvariousCommunitiesTest_Updated(string community)
         {
-            _Resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
+            Resident resident = new Resident(community, new Payment(222.00, DateTime.Now.Date.AddDays(-7), "For closes"));
             double newAmmount = 555.00;
-            PaymentMenegementPage.DoACHPayment(_Resident);
+            PaymentMenegementPage.DoACHPayment(resident);
 
-            EleganceRmsHomePage.OpenResidentPage(_Resident);
+            EleganceRmsHomePage.OpenResidentPage(resident);
             ResidentPageInElegance.OpenResidentLedgerAdmin();
-            ResidentLedgerAdminInElegancePage.UpdatePayment(_Resident, newAmmount);
+            ResidentLedgerAdminInElegancePage.UpdatePayment(resident, newAmmount);
 
-            ResidentLedgerAdminInElegancePage.PaymentIsUpdatedSuccessfully(_Resident, newAmmount);
+            ResidentLedgerAdminInElegancePage.PaymentIsUpdatedSuccessfully(resident, newAmmount);
 
-            _Resident.Payment.Amount = newAmmount;
-            ResidentLedgerInElegancePage.BackToResidentDashboard(_Resident);
+            resident.Payment.Amount = newAmmount;
+            ResidentLedgerInElegancePage.BackToResidentDashboard(resident);
             ResidentPageInElegance.OpenResidentLedgerAdmin();
-            ResidentLedgerAdminInElegancePage.DeletePayment(_Resident);
+            ResidentLedgerAdminInElegancePage.DeletePayment(resident);
         }
-
     }
 }

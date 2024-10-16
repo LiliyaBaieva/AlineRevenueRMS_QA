@@ -11,36 +11,36 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
     public class PaymentMenegementPage : BasePage
     {
 
-        private static readonly WrappedElement PaymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
-        private static readonly WrappedElement PaymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
-        private static readonly WrappedElement ContinueBtn = new(With.Id("Submit"), "Continue Buttton");
-        private static readonly WrappedElement DataField = new(With.Id("CheckDateStep1"), "Data Field");
-        private static WrappedElement ResidentCheckbox(int residentNum) =>
+        private static readonly WrappedElement _paymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
+        private static readonly WrappedElement _paymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
+        private static readonly WrappedElement _continueBtn = new(With.Id("Submit"), "Continue Buttton");
+        private static readonly WrappedElement _dataField = new(With.Id("CheckDateStep1"), "Data Field");
+        private static WrappedElement _residentCheckbox(int residentNum) =>
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
-        private static WrappedElement ResidentToSelect(int residentNum) =>
+        private static WrappedElement _residentToSelect(int residentNum) =>
              new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
         private static readonly WrappedElement PaySelectedItem = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
-        private static WrappedElement AppliedAmountSell(int residentIndex) =>
+        private static WrappedElement _appliedAmountSell(int residentIndex) =>
              new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
-        private static WrappedElement CheckBoxInPaymentCart(int residentIndex) =>
+        private static WrappedElement _checkBoxInPaymentCart(int residentIndex) =>
              new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
-        private static readonly WrappedElement SubmitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
-        private static readonly WrappedElement PaymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
+        private static readonly WrappedElement _submitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
+        public static readonly WrappedElement _paymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
-        private static readonly WrappedElement Description = new(With.Id("displayBatchPaymentDesc"), "Description");
-        private static readonly WrappedElement TotalApplied = new(With.Id("applied"), "Total Applied");
-        private static readonly WrappedElement DepositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
-        private static readonly WrappedElement UnAppliedErrorMessage = new(With.Id("error-message"), "Un-Applied Error Message");
-        private static readonly WrappedElement UnAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
+        public static readonly WrappedElement _description = new(With.Id("displayBatchPaymentDesc"), "Description");
+        public static readonly WrappedElement _totalApplied = new(With.Id("applied"), "Total Applied");
+        private static readonly WrappedElement _depositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
+        private static readonly WrappedElement _unAppliedErrorMessage = new(With.Id("error-message"), "Un-Applied Error Message");
+        private static readonly WrappedElement _unAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
 
         [AllureStep("Enter Payment date and description")]
         public static void EnterPaymentDitails(Payment payment, double depositTotal)
         {
-            DataField.SendKeys(payment.Date.ToString("dd-MM-yyyy"));
-            DepositTotal.SendKeys(depositTotal.ToString());
-            PaymentDescriprionField.SendKeys(payment.Description);
-            ContinueBtn.Click();
+            _dataField.SendKeys(payment.Date.ToString("dd-MM-yyyy"));
+            _depositTotal.SendKeys(depositTotal.ToString());
+            _paymentDescriprionField.SendKeys(payment.Description);
+            _continueBtn.Click();
             Log.Information($"Enter Payment Details with date '{payment.Date.ToString()}', Deposit Total {depositTotal} and description {payment.Description}");
         }
 
@@ -48,8 +48,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static string SelectResident(int residentNum)
         {
             ScrollDown(2);
-            ResidentCheckbox(residentNum).Click();
-            string name = ResidentToSelect(residentNum).GetText();
+            _residentCheckbox(residentNum).Click();
+            string name = _residentToSelect(residentNum).GetText();
             Log.Information($"Resident '{name}' is selected");
             return name;
         }
@@ -59,11 +59,11 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         {
             PaySelectedItem.Click();
             ScrollDown(2);
-            AppliedAmountSell(0).SendKeys($"{amount}");
-            AppliedAmountSell(0).PressEnter();
-            CheckBoxInPaymentCart(0).Click();
+            _appliedAmountSell(0).SendKeys($"{amount}");
+            _appliedAmountSell(0).PressEnter();
+            _checkBoxInPaymentCart(0).Click();
             Log.Information($"Set ammount {amount} for one payor");
-            SubmitPaymentsBtn.Click();
+            _submitPaymentsBtn.Click();
         }
         
         [AllureStep("Eneter payment for several payors")]
@@ -73,12 +73,12 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             ScrollDown(2);
             for (int i = 0; i < residents.Count; i++)
             {
-                AppliedAmountSell(i).SendKeys($"{residents[i].Payment.Amount}");
-                AppliedAmountSell(i).PressEnter();
-                CheckBoxInPaymentCart(i).Click();
+                _appliedAmountSell(i).SendKeys($"{residents[i].Payment.Amount}");
+                _appliedAmountSell(i).PressEnter();
+                _checkBoxInPaymentCart(i).Click();
                 Log.Information($"Set ammount {residents[i].Payment.Amount} for {residents[i].Name}");
             }
-            SubmitPaymentsBtn.Click();
+            _submitPaymentsBtn.Click();
         }
 
         [AllureStep("Submit Payment")]
@@ -103,12 +103,12 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static bool ErrorMessageDisplaied(string message)
         {
-            return UnAppliedErrorMessage.GetText().Contains(message);
+            return _unAppliedErrorMessage.GetText().Contains(message);
         }
 
         public static string GetUnAppliedAmount()
         {
-            return UnAppliedAmount.GetText();
+            return _unAppliedAmount.GetText();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         {
             EleganceOption.Click();
             SubmitMultiTenant.Click();
-            EleganceAppPage.ApplicationsMenu.Should(Be.Visible);
+            EleganceAppPage._applicationsMenu.Should(Be.Visible);
         }
     }
 }
