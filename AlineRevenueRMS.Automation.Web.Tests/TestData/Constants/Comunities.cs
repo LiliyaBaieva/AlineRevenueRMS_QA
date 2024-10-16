@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AlineRevenueRMS.Automation.Web.Tests.TestData.Constants
+﻿namespace AlineRevenueRMS.Automation.Web.Tests.TestData.Constants
 {
     public static class Comunities
     {

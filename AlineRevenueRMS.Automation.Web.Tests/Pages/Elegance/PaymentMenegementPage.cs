@@ -1,6 +1,4 @@
-﻿
-using AlineRevenueRMS.Automation.Web.Core.Conditions;
-using AlineRevenueRMS.Automation.Web.Core.Element;
+﻿using AlineRevenueRMS.Automation.Web.Core.Element;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
@@ -13,28 +11,28 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
     public class PaymentMenegementPage : BasePage
     {
 
-        public static WrappedElement PaymentManagement => new(With.LinkText("Payment Management"), "Payment Management");
-        public static WrappedElement PaymentDescriprionField => new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
-        public static WrappedElement ContinueBtn => new(With.Id("Submit"), "Continue Buttton");
-        public static WrappedElement DataField => new(With.Id("CheckDateStep1"), "Data Field");
-        public static WrappedElement ResidentCheckbox(int residentNum) =>
+        private static readonly WrappedElement PaymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
+        private static readonly WrappedElement PaymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
+        private static readonly WrappedElement ContinueBtn = new(With.Id("Submit"), "Continue Buttton");
+        private static readonly WrappedElement DataField = new(With.Id("CheckDateStep1"), "Data Field");
+        private static WrappedElement ResidentCheckbox(int residentNum) =>
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
-        public static WrappedElement ResidentToSelect(int residentNum) =>
+        private static WrappedElement ResidentToSelect(int residentNum) =>
              new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
-        public static WrappedElement PaySelectedItem => new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
-        public static WrappedElement AppliedAmountSell(int residentIndex) =>
+        private static readonly WrappedElement PaySelectedItem = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
+        private static WrappedElement AppliedAmountSell(int residentIndex) =>
              new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
-        public static WrappedElement CheckBoxInPaymentCart(int residentIndex) =>
+        private static WrappedElement CheckBoxInPaymentCart(int residentIndex) =>
              new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
-        public static WrappedElement SubmitPaymentsBtn => new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
-        public static WrappedElement PaymentSuccessfullySubmitted => new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
+        private static readonly WrappedElement SubmitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
+        private static readonly WrappedElement PaymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
-        public static WrappedElement Description => new(With.Id("displayBatchPaymentDesc"), "Description");
-        public static WrappedElement TotalApplied => new(With.Id("applied"), "Total Applied");
-        public static WrappedElement DepositTotal => new(With.Id("CheckAmountStep1"), "Deposit Total");
-        public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
-        public static WrappedElement UnAppliedAmount => new(With.Id("unapplied"), "UnAppliedAmount");
+        private static readonly WrappedElement Description = new(With.Id("displayBatchPaymentDesc"), "Description");
+        private static readonly WrappedElement TotalApplied = new(With.Id("applied"), "Total Applied");
+        private static readonly WrappedElement DepositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
+        private static readonly WrappedElement UnAppliedErrorMessage = new(With.Id("error-message"), "Un-Applied Error Message");
+        private static readonly WrappedElement UnAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
 
         [AllureStep("Enter Payment date and description")]
         public static void EnterPaymentDitails(Payment payment, double depositTotal)

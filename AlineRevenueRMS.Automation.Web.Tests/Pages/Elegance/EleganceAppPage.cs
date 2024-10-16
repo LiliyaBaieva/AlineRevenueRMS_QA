@@ -8,8 +8,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
     public class EleganceAppPage : BasePage
     {
-        public static WrappedElement AlineRevenueRmsLink => new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
-        public static WrappedElement ApplicationsMenu => new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
+        private static readonly WrappedElement AlineRevenueRmsLink = new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
+        private static readonly WrappedElement ApplicationsMenu = new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
 
         [AllureStep("Go to Aline Revenue Rms")]
         public static void GotoAlineRevenueRms()
@@ -19,7 +19,5 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
             SwitchToTheLastTab();
             EleganceRmsHomePage.ComunityTab.Should(Be.Visible);
         }
-
-
     }
 }

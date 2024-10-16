@@ -17,9 +17,15 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
     [AllureSuite("ACH Single Payment Entry Tests in communities.")]
     public class ACHSinglePaymentEntryTests : BaseLogin
     {
-        public ACHSinglePaymentEntryTests() : base(1){}
+        Resident _Resident; // TODO: private Resident _resident = null!;
 
-        Resident _Resident;
+        // TODO: remove sort usings
+        // TODO: remove spaces and lines
+
+        public ACHSinglePaymentEntryTests() : base(1)
+        {
+        }
+
 
         [SetUp]
         public void GoToAlineRMSinElegance()

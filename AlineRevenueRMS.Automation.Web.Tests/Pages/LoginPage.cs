@@ -5,20 +5,18 @@ using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using Allure.NUnit.Attributes;
-using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class LoginPage : BasePage
     {
-        public static WrappedElement UserNameField => new (With.Id("Username"), "User Name field");
-        public static WrappedElement PasswordField => new(With.Id("Password"), "Password field");
-        public static WrappedElement SignInButton => new(With.Id("Submit"), "SignIn button");
-        public static WrappedElement TenantCollectionValidateWarning => new(With.Id("TenantCollectionValidate"), "'You have access to multiple tenants. Please select one.' warning");
-        public static WrappedElement SubmitMultiTenant => new(With.Id("SubmitMultiTenant"), "Submit multi Tenant");
-        private static WrappedElement TenantCollection => new(With.Id("TenantCollection"), "Tenant Collection");
-        private static WrappedElement EleganceOption => new(With.XPath("//option[contains(text(),'Elegance')]"), "Elegance option in select");
+        private static readonly WrappedElement UserNameField = new(With.Id("Username"), "User Name field");
+        private static readonly WrappedElement PasswordField = new(With.Id("Password"), "Password field");
+        private static readonly WrappedElement SignInButton = new(With.Id("Submit"), "SignIn button");
+        private static readonly WrappedElement TenantCollectionValidateWarning = new(With.Id("TenantCollectionValidate"), "'You have access to multiple tenants. Please select one.' warning");
+        private static readonly WrappedElement SubmitMultiTenant = new(With.Id("SubmitMultiTenant"), "Submit multi Tenant");
+        private static readonly WrappedElement TenantCollection = new(With.Id("TenantCollection"), "Tenant Collection");
+        private static readonly WrappedElement EleganceOption = new(With.XPath("//option[contains(text(),'Elegance')]"), "Elegance option in select");
 
         public static void Open()
         {

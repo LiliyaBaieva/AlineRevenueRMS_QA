@@ -4,15 +4,14 @@ using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using Allure.NUnit.Attributes;
-using OpenQA.Selenium;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class ResidentLedgerInElegancePage : BasePage
     {
-        public static WrappedElement PaymentsSection => new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
-        public static WrappedElement ResidentNameLink(string name) => new(With.LinkText(name), $"Resident Name Link for {name}");
-        public static WrappedElement PaymentRow(string date, string amount) => new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]"),
+        private static readonly WrappedElement PaymentsSection = new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
+        private static WrappedElement ResidentNameLink(string name) => new(With.LinkText(name), $"Resident Name Link for {name}");
+        private static WrappedElement PaymentRow(string date, string amount) => new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]"),
             $"Row with date {date} and amount ${amount}");
 
         public static void IsPaymentExist(Payment payment)

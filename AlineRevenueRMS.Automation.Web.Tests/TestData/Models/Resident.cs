@@ -3,7 +3,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.TestData.Models
 {
     public class Resident
     {
-        public Resident() { }
+        public Resident()
+        {
+        }
 
         public Resident(string name, string community, double statementBalance, double remainingStatementBalance, Payment payment)
         { 
