@@ -19,29 +19,29 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         private static WrappedElement ResidentCheckbox(int residentNum) => 
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
-        private static readonly WrappedElement PaySelectedItem = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
-        private static WrappedElement _appliedAmountSell(int residentIndex) =>
+        private static readonly WrappedElement PaySelectedItemBtn = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
+        private static WrappedElement AppliedAmountSell(int residentIndex) =>
              new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
-        private static WrappedElement _checkBoxInPaymentCart(int residentIndex) =>
+        private static WrappedElement CheckBoxInPaymentCart(int residentIndex) =>
              new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
-        private static readonly WrappedElement _submitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
-        private static readonly WrappedElement _depositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
-        private static readonly WrappedElement _unAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
+        private static readonly WrappedElement SubmitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
+        private static readonly WrappedElement DepositTotalField = new(With.Id("CheckAmountStep1"), "Deposit Total");
+        private static readonly WrappedElement UnAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
 
         public static WrappedElement ResidentToSelect(int residentNum) =>
              new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
         
-        public static readonly WrappedElement _paymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
+        public static readonly WrappedElement PaymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
-        public static readonly WrappedElement _description = new(With.Id("displayBatchPaymentDesc"), "Description"); // TODO: all without readonly + Description, all start from capital letter
-        public static readonly WrappedElement _totalApplied = new(With.Id("applied"), "Total Applied");
+        public static readonly WrappedElement Description = new(With.Id("displayBatchPaymentDesc"), "Description"); // TODO: all without readonly + Description, all start from capital letter
+        public static readonly WrappedElement TotalApplied = new(With.Id("applied"), "Total Applied");
         public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
 
         [AllureStep("Enter Payment date and description")]
         public static void EnterPaymentDitails(Payment payment, double depositTotal)
         {
             DataField.SendKeys(payment.Date.ToString("dd-MM-yyyy"));
-            _depositTotal.SendKeys(depositTotal.ToString());
+            DepositTotalField.SendKeys(depositTotal.ToString());
             PaymentDescriprionField.SendKeys(payment.Description);
             ContinueBtn.Click();
             Log.Information($"Enter Payment Details with date '{payment.Date.ToString()}', Deposit Total {depositTotal} and description {payment.Description}");
@@ -58,28 +58,28 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Enter payment for 1 payor")]
         public static void EnterPaymentFor1payor(double amount)
         {
-            PaySelectedItem.Click();
+            PaySelectedItemBtn.Click();
             ScrollDown(2);
-            _appliedAmountSell(0).SendKeys($"{amount}");
-            _appliedAmountSell(0).PressEnter();
-            _checkBoxInPaymentCart(0).Click();
+            AppliedAmountSell(0).SendKeys($"{amount}");
+            AppliedAmountSell(0).PressEnter();
+            CheckBoxInPaymentCart(0).Click();
             Log.Information($"Set ammount {amount} for one payor");
-            _submitPaymentsBtn.Click();
+            SubmitPaymentsBtn.Click();
         }
         
         [AllureStep("Eneter payment for several payors")]
         public static void EnterPaymentForSeveralPayors(List<Resident> residents)
         {
-            PaySelectedItem.Click();
+            PaySelectedItemBtn.Click();
             ScrollDown(2);
             for (int i = 0; i < residents.Count; i++)
             {
-                _appliedAmountSell(i).SendKeys($"{residents[i].Payment.Amount}");
-                _appliedAmountSell(i).PressEnter();
-                _checkBoxInPaymentCart(i).Click();
+                AppliedAmountSell(i).SendKeys($"{residents[i].Payment.Amount}");
+                AppliedAmountSell(i).PressEnter();
+                CheckBoxInPaymentCart(i).Click();
                 Log.Information($"Set ammount {residents[i].Payment.Amount} for {residents[i].Name}");
             }
-            _submitPaymentsBtn.Click();
+            SubmitPaymentsBtn.Click();
         }
 
         [AllureStep("Submit Payment")]
@@ -97,7 +97,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
             EnterPaymentDitails(resident.Payment, depositTotal);
-            resident.Name = SelectResident(1); // TODO: add line to assign name with GetText
+            SelectResident(1);
+            resident.Name = ResidentToSelect(1).GetText();
             EnterPaymentFor1payor(resident.Payment.Amount);
             SubmitPayment();
         }
@@ -109,7 +110,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static string GetUnAppliedAmount()
         {
-            return _unAppliedAmount.GetText();
+            return UnAppliedAmount.GetText();
         }
     }
 }
