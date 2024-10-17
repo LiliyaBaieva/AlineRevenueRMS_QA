@@ -7,12 +7,12 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class PaymentCenterPage : BasePage
     {
-        private static readonly WrappedElement _achPaymentsLink = new(With.XPath("//h5[contains(text(),'ACH payments')]"), "Navigate to ACH payment");
+        private static WrappedElement AchPaymentsLink = new(With.XPath("//h5[contains(text(),'ACH payments')]"), "Navigate to ACH payment");
 
         [AllureStep("Go to ACH payment")]
         public static void GoToACHpayment()
         {
-            _achPaymentsLink.Click();
+            AchPaymentsLink.Click();
         }
     }
 }

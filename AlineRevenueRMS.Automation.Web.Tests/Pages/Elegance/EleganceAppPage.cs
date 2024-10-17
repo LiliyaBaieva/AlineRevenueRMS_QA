@@ -8,16 +8,16 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
     public class EleganceAppPage : BasePage
     {
-        private static readonly WrappedElement _alineRevenueRmsLink = new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
-        public static readonly WrappedElement _applicationsMenu = new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
+        private static WrappedElement AlineRevenueRmsLink = new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
+        public static WrappedElement ApplicationsMenu => new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
 
         [AllureStep("Go to Aline Revenue Rms")]
         public static void GotoAlineRevenueRms()
         {
-            _applicationsMenu.Click();
-            _alineRevenueRmsLink.Click();
+            ApplicationsMenu.Click();
+            AlineRevenueRmsLink.Click();
             SwitchToTheLastTab();
-            EleganceRmsHomePage._comunityTab.Should(Be.Visible);
+            EleganceRmsHomePage.ComunityTab.Should(Be.Visible);
         }
     }
 }

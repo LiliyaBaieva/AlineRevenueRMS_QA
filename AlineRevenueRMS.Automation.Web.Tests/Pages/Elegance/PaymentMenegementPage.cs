@@ -12,39 +12,38 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
     public class PaymentMenegementPage : BasePage
     {
 
-        private static readonly WrappedElement _paymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
-        private static readonly WrappedElement _paymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
-        private static readonly WrappedElement _continueBtn = new(With.Id("Submit"), "Continue Buttton");
-        private static readonly WrappedElement _dataField = new(With.Id("CheckDateStep1"), "Data Field"); // TODO проверить везде ли дописано что это кнопка или поле
-        private static WrappedElement _residentCheckbox(int residentNum) =>
+        private static WrappedElement PaymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
+        private static WrappedElement PaymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
+        private static WrappedElement ContinueBtn = new(With.Id("Submit"), "Continue Buttton");
+        private static WrappedElement DataField = new(With.Id("CheckDateStep1"), "Data Field"); // TODO проверить везде ли дописано что это кнопка или поле
+        private static WrappedElement ResidentCheckbox(int residentNum) => 
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
-
-        // TODO: First 'private' fields rhan properties
-        // TODO: Sync Namespaces
-        public static WrappedElement ResidentToSelect(int residentNum) =>
-             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
         private static readonly WrappedElement PaySelectedItem = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
         private static WrappedElement _appliedAmountSell(int residentIndex) =>
              new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
         private static WrappedElement _checkBoxInPaymentCart(int residentIndex) =>
              new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
         private static readonly WrappedElement _submitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
+        private static readonly WrappedElement _depositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
+        private static readonly WrappedElement _unAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
+
+        public static WrappedElement ResidentToSelect(int residentNum) =>
+             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
+        
         public static readonly WrappedElement _paymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
         public static readonly WrappedElement _description = new(With.Id("displayBatchPaymentDesc"), "Description"); // TODO: all without readonly + Description, all start from capital letter
         public static readonly WrappedElement _totalApplied = new(With.Id("applied"), "Total Applied");
-        private static readonly WrappedElement _depositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
         public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
-        private static readonly WrappedElement _unAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
 
         [AllureStep("Enter Payment date and description")]
         public static void EnterPaymentDitails(Payment payment, double depositTotal)
         {
-            _dataField.SendKeys(payment.Date.ToString("dd-MM-yyyy"));
+            DataField.SendKeys(payment.Date.ToString("dd-MM-yyyy"));
             _depositTotal.SendKeys(depositTotal.ToString());
-            _paymentDescriprionField.SendKeys(payment.Description);
-            _continueBtn.Click();
+            PaymentDescriprionField.SendKeys(payment.Description);
+            ContinueBtn.Click();
             Log.Information($"Enter Payment Details with date '{payment.Date.ToString()}', Deposit Total {depositTotal} and description {payment.Description}");
         }
 
@@ -52,8 +51,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static void SelectResident(int residentNum)
         {
             //ScrollDown(2); // TODO: delete
-            _residentCheckbox(residentNum).ScrollIntoView();
-            _residentCheckbox(residentNum).Click();
+            ResidentCheckbox(residentNum).ScrollIntoView();
+            ResidentCheckbox(residentNum).Click();
         }
 
         [AllureStep("Enter payment for 1 payor")]
@@ -98,7 +97,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
             EnterPaymentDitails(resident.Payment, depositTotal);
-            resident.Name = SelectResident(1);
+            resident.Name = SelectResident(1); // TODO: add line to assign name with GetText
             EnterPaymentFor1payor(resident.Payment.Amount);
             SubmitPayment();
         }

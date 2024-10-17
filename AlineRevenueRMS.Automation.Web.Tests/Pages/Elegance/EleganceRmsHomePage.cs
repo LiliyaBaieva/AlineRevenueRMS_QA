@@ -9,39 +9,41 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
     public class EleganceRmsHomePage : BasePage
     {
-        public static readonly WrappedElement _comunityTab = new(With.XPath("//a[contains(text(),'Community...')]"), "Community Tab");
-        private static readonly WrappedElement _communityFilter = new(With.Id("communityFilter"), "Community Filter");
-        private static WrappedElement _comunityInSelector(string community) => new(With.XPath($"//strong[contains(text(),'{community}')]"), $"Select community {community}");
-        private static readonly WrappedElement _quickActionLink = new(With.LinkText("Quick Actions"), "Quick Actions");
-        private static readonly WrappedElement _paymentManagement = new(With.LinkText("Payment Management"), "Navigate to Payment Center");
-        private static readonly WrappedElement _residentLink = new(With.XPath("//a[contains(@href, 'ResidentModal')]"), "Resident Link");
-        private static readonly WrappedElement _searchResidentInput = new(With.Id("mdlFilterResident"), "Search Resident Input");
-        private static WrappedElement _searchedResident(string name) => new(With.XPath($"//div[contains(text(), '{name}')]"), $"Open Lease Menegement for '{name}'");
-        private static readonly WrappedElement _homeNav = new(With.Id("homeNav"), "Home Icon");
+        private static WrappedElement CommunityFilter = new(With.Id("communityFilter"), "Community Filter");
+        private static WrappedElement QuickActionLink = new(With.LinkText("Quick Actions"), "Quick Actions");
+        private static WrappedElement PaymentManagementLink = new(With.LinkText("Payment Management"), "Navigate to Payment Center");
+        private static WrappedElement ResidentLink = new(With.XPath("//a[contains(@href, 'ResidentModal')]"), "Resident Link");
+        private static WrappedElement SearchResidentInput = new(With.Id("mdlFilterResident"), "Search Resident Input");
+        private static WrappedElement ComunityInSelector(string community) => new(With.XPath($"//strong[contains(text(),'{community}')]"), $"Select community {community}");
+        private static WrappedElement SearchedResident(string name) => new(With.XPath($"//div[contains(text(), '{name}')]"), $"Open Lease Menegement for '{name}'");
+        private static readonly WrappedElement HomeNavBtn = new(With.Id("homeNav"), "Home Icon");
+
+        public static readonly WrappedElement ComunityTab = new(With.XPath("//a[contains(text(),'Community...')]"), "Community Tab");
+
 
         [AllureStep("Select comunity")]
         public static void SelectComunity(string community)
         {
-            _comunityTab.Click();
-            _communityFilter.Should(Be.Visible);
-            _communityFilter.SendKeys(community);
-            _comunityInSelector(community).Click();
+            ComunityTab.Click();
+            CommunityFilter.Should(Be.Visible);
+            CommunityFilter.SendKeys(community);
+            ComunityInSelector(community).Click();
         }
 
         [AllureStep("Navigate to the Payment Center")]
         public static void NavigateToThePaymentCenter()
         {
-            _quickActionLink.Click();
-            _paymentManagement.Click();
+            QuickActionLink.Click();
+            PaymentManagementLink.Click();
         }
 
         [AllureStep("Open Resident Page")]
         public static void OpenResidentPage(Resident resident)
         {
-            _homeNav.Click();
-            _residentLink.Click();
-            _searchResidentInput.SendKeys(resident.Name);
-            _searchedResident(resident.Name).Click();
+            HomeNavBtn.Click();
+            ResidentLink.Click();
+            SearchResidentInput.SendKeys(resident.Name);
+            SearchedResident(resident.Name).Click();
         }
     }
 }
