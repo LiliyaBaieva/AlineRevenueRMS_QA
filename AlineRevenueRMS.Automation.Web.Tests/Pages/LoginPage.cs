@@ -10,9 +10,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class LoginPage : BasePage
     {
-        private static readonly WrappedElement UserNameField = new(With.Id("Username"), "User Name field");
-        private static readonly WrappedElement PasswordField = new(With.Id("Password"), "Password field");
-        private static readonly WrappedElement SignInButton = new(With.Id("Submit"), "SignIn button");
+        public static readonly WrappedElement UserNameField = new(With.Id("Username"), "User Name field");
+        public static readonly WrappedElement PasswordField = new(With.Id("Password"), "Password field");
+        public static readonly WrappedElement SignInButton = new(With.Id("Submit"), "SignIn button");
         private static readonly WrappedElement TenantCollectionValidateWarning = new(With.Id("TenantCollectionValidate"), "'You have access to multiple tenants. Please select one.' warning");
         private static readonly WrappedElement SubmitMultiTenant = new(With.Id("SubmitMultiTenant"), "Submit multi Tenant");
         private static readonly WrappedElement TenantCollection = new(With.Id("TenantCollection"), "Tenant Collection");
