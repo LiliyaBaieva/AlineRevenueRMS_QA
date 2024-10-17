@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Element;
+using AlineRevenueRMS.Automation.Web.Core.Element.Extensions;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
@@ -14,11 +15,14 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         private static readonly WrappedElement _paymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
         private static readonly WrappedElement _paymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
         private static readonly WrappedElement _continueBtn = new(With.Id("Submit"), "Continue Buttton");
-        private static readonly WrappedElement _dataField = new(With.Id("CheckDateStep1"), "Data Field");
+        private static readonly WrappedElement _dataField = new(With.Id("CheckDateStep1"), "Data Field"); // TODO проверить везде ли дописано что это кнопка или поле
         private static WrappedElement _residentCheckbox(int residentNum) =>
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
-        private static WrappedElement _residentToSelect(int residentNum) =>
+
+        // TODO: First 'private' fields rhan properties
+        // TODO: Sync Namespaces
+        public static WrappedElement ResidentToSelect(int residentNum) =>
              new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
         private static readonly WrappedElement PaySelectedItem = new(With.Css(".btn-outline-secondary"), "Pay Selected Item button");
         private static WrappedElement _appliedAmountSell(int residentIndex) =>
@@ -28,10 +32,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         private static readonly WrappedElement _submitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
         public static readonly WrappedElement _paymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
-        public static readonly WrappedElement _description = new(With.Id("displayBatchPaymentDesc"), "Description");
+        public static readonly WrappedElement _description = new(With.Id("displayBatchPaymentDesc"), "Description"); // TODO: all without readonly + Description, all start from capital letter
         public static readonly WrappedElement _totalApplied = new(With.Id("applied"), "Total Applied");
         private static readonly WrappedElement _depositTotal = new(With.Id("CheckAmountStep1"), "Deposit Total");
-        private static readonly WrappedElement _unAppliedErrorMessage = new(With.Id("error-message"), "Un-Applied Error Message");
+        public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
         private static readonly WrappedElement _unAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
 
         [AllureStep("Enter Payment date and description")]
@@ -45,13 +49,11 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         }
 
         [AllureStep("Select Resident")]
-        public static string SelectResident(int residentNum)
+        public static void SelectResident(int residentNum)
         {
-            ScrollDown(2);
+            //ScrollDown(2); // TODO: delete
+            _residentCheckbox(residentNum).ScrollIntoView();
             _residentCheckbox(residentNum).Click();
-            string name = _residentToSelect(residentNum).GetText();
-            Log.Information($"Resident '{name}' is selected");
-            return name;
         }
 
         [AllureStep("Enter payment for 1 payor")]
@@ -103,7 +105,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static bool ErrorMessageDisplaied(string message)
         {
-            return _unAppliedErrorMessage.GetText().Contains(message);
+            return UnAppliedErrorMessage.GetText().Contains(message);
         }
 
         public static string GetUnAppliedAmount()

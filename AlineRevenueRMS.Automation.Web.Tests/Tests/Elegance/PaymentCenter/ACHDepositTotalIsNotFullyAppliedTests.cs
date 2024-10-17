@@ -1,4 +1,5 @@
-﻿using AlineRevenueRMS.Automation.Web.Tests.Pages;
+﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
+using AlineRevenueRMS.Automation.Web.Tests.Pages;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
@@ -7,6 +8,7 @@ using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using NUnit.Framework;
+using System.Xml.Linq;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
 {
@@ -45,11 +47,14 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
             PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
-            resident.Name = PaymentMenegementPage.SelectResident(1);
+            PaymentMenegementPage.SelectResident(1);
+            resident.Name = PaymentMenegementPage.ResidentToSelect(1).GetText();
+
             PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
 
-            PaymentMenegementPage.ErrorMessageDisplaied("Please ensure deposit total is fully applied");
             PaymentMenegementPage.GetUnAppliedAmount().Contains(unAppliedAmount.ToString());
+
+            PaymentMenegementPage.UnAppliedErrorMessage.Should(Have.Text("Please ensure deposit total is fully applied"));
         }
     }
 }

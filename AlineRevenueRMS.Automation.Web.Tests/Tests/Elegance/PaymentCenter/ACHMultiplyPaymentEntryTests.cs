@@ -17,7 +17,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
     [AllureSuite("ACH Multiply Payment Entry Tests.")]
     public class ACHMultiplyPaymentEntryTests : BaseLogin
     {
-        public ACHMultiplyPaymentEntryTests() : base(1) { }
+        public ACHMultiplyPaymentEntryTests() : base(1)
+        {
+        }
 
         private List<Resident> _residenstList = new List<Resident>();
 

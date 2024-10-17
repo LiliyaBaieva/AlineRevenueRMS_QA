@@ -81,6 +81,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
 
         public static void SubmitAlert()
         {
+            //Wait.Until(ExpectedConditions.AlertIsPresent()).Accept();
             //WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
             IAlert alert = WrappedDriverManager.GetWebDriver().SwitchTo().Alert();
                 alert.Accept(); // TODO: it is doesn`t work      
