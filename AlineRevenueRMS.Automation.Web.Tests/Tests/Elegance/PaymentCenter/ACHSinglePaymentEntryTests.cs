@@ -91,7 +91,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             EleganceRmsHomePage.NavigateToThePaymentCenter();
             PaymentCenterPage.GoToACHpayment();
             PaymentMenegementPage.EnterPaymentDitails(_resident.Payment, depositTotal);
-            //_resident.Name = PaymentMenegementPage.SelectResident(1); // TODO Change method to get the name
+            PaymentMenegementPage.SelectResident(1);
+            _resident.Name = PaymentMenegementPage.ResidentToSelect(1).GetText();
             PaymentMenegementPage.EnterPaymentFor1payor(_resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
