@@ -15,7 +15,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         private static WrappedElement PaymentManagement = new(With.LinkText("Payment Management"), "Payment Management");
         private static WrappedElement PaymentDescriprionField = new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
         private static WrappedElement ContinueBtn = new(With.Id("Submit"), "Continue Buttton");
-        private static WrappedElement DataField = new(With.Id("CheckDateStep1"), "Data Field"); // TODO проверить везде ли дописано что это кнопка или поле
+        private static WrappedElement DataField = new(With.Id("CheckDateStep1"), "Data Field");
         private static WrappedElement ResidentCheckbox(int residentNum) => 
             new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), 
                 "Select Resident checkbox");
@@ -33,7 +33,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         
         public static readonly WrappedElement PaymentSuccessfullySubmitted = new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),
             "Payment Successfully Submitted");
-        public static readonly WrappedElement Description = new(With.Id("displayBatchPaymentDesc"), "Description"); // TODO: all without readonly + Description, all start from capital letter
+        public static readonly WrappedElement Description = new(With.Id("displayBatchPaymentDesc"), "Description");
         public static readonly WrappedElement TotalApplied = new(With.Id("applied"), "Total Applied");
         public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
 

@@ -49,11 +49,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.EnterPaymentDitails(resident.Payment, depositTotal);
             PaymentMenegementPage.SelectResident(1);
             resident.Name = PaymentMenegementPage.ResidentToSelect(1).GetText();
-
             PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
 
             PaymentMenegementPage.GetUnAppliedAmount().Contains(unAppliedAmount.ToString());
-
             PaymentMenegementPage.UnAppliedErrorMessage.Should(Have.Text("Please ensure deposit total is fully applied"));
         }
     }
