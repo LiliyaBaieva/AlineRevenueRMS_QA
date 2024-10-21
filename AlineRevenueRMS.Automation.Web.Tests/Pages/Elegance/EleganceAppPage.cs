@@ -8,8 +8,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
     public class EleganceAppPage : BasePage
     {
-        private static WrappedElement AlineRevenueRmsLink = new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
-        public static WrappedElement ApplicationsMenu => new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
+        private static WrappedElement AlineRevenueRmsLink =>
+            new(With.XPath("//a[contains(text(),'Aline Revenue (RMS)')]"), "Aline Revenue Rms Link");
+        public static WrappedElement ApplicationsMenu =>
+            new(With.XPath("//*[@id='menuGroupStyle44']/a[contains(text(), 'Applications')]"), "Aplication link");
 
         [AllureStep("Go to Aline Revenue Rms")]
         public static void GotoAlineRevenueRms()

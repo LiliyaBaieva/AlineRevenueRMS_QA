@@ -10,10 +10,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class LoginPage : BasePage
     {
-        private static WrappedElement TenantCollectionValidateWarning = new(With.Id("TenantCollectionValidate"), "'You have access to multiple tenants. Please select one.' warning");
-        private static WrappedElement SubmitMultiTenantBtn = new(With.Id("SubmitMultiTenant"), "Submit multi Tenant button");
-        private static WrappedElement TenantCollection = new(With.Id("TenantCollection"), "Tenant Collection");
-        private static WrappedElement EleganceOption = new(With.XPath("//option[contains(text(),'Elegance')]"), "Elegance option in select");
+        private static WrappedElement TenantCollectionValidateWarning => new(With.Id("TenantCollectionValidate"), "'You have access to multiple tenants. Please select one.' warning");
+        private static WrappedElement SubmitMultiTenantBtn => new(With.Id("SubmitMultiTenant"), "Submit multi Tenant button");
+        private static WrappedElement TenantCollection => new(With.Id("TenantCollection"), "Tenant Collection");
+        private static WrappedElement EleganceOption => new(With.XPath("//option[contains(text(),'Elegance')]"), "Elegance option in select");
 
         public static WrappedElement UserNameField => new(With.Id("Username"), "User Name field");
         public static WrappedElement PasswordField => new(With.Id("Password"), "Password field");

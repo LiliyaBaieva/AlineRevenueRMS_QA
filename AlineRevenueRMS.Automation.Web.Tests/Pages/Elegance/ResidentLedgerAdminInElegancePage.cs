@@ -10,19 +10,19 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class ResidentLedgerAdminInElegancePage : BasePage
     {
-        private static WrappedElement PaymentsSection = new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
-        private static WrappedElement DeletePaymentBtn = 
+        private static WrappedElement PaymentsSection => new(With.XPath("//th[contains(text(),'Payments')]"), "Payments Section");
+        private static WrappedElement ConfirmDeleteBtn => new(With.Id("btnDelete"), "Confirm Delete Button");
+        private static WrappedElement PaymnetInput => new(With.Id("AmountSelect"), "Paymnet Input");
+        private static WrappedElement ConfirmUpdateBtn => new(With.Id("btnLedgerAdminSubmit"), "Confirm Update Button");
+        private static WrappedElement UpdateModalWindow => new(With.Id("UpdateModal"), "Update Modal Window");
+        private static WrappedElement DeletePaymentBtn =>
             new(With.XPath("//div[@class='dropdown open']//a[contains(text(), 'Delete...')]"), "Delete Payment Button");
-        private static WrappedElement UpdatePaymentBtn =
+        private static WrappedElement UpdatePaymentBtn =>
             new(With.XPath("//div[@class='dropdown open']//a[contains(text(), 'Update...')]"), "Update Payment Button");
-        private static WrappedElement ConfirmDeleteBtn = new(With.Id("btnDelete"), "Confirm Delete Button");
-        private static WrappedElement PaymnetInput = new(With.Id("AmountSelect"), "Paymnet Input");
-        private static WrappedElement ConfirmUpdateBtn = new(With.Id("btnLedgerAdminSubmit"), "Confirm Update Button");
-        private static WrappedElement UpdateModalWindow = new(With.Id("UpdateModal"), "Update Modal Window");
-        private static WrappedElement EditBtnInPayments(string date, string amount) => 
-            new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), 
-                $"Edit Button In Payments with date {date}, amount {amount}");
-        private static WrappedElement PaymentRow(string date, string amount) => 
+
+        private static WrappedElement EditBtnInPayments(string date, string amount) =>
+    new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), $"Edit Button In Payments with date {date}, amount {amount}");
+        private static WrappedElement PaymentRow(string date, string amount) =>
             new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]"), "Payment Row");
 
         [AllureStep("Delete Payment")]

@@ -76,9 +76,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.EnterPaymentForSeveralPayors(_residenstList);
             PaymentMenegementPage.SubmitPayment();
 
-            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{depositTotal}");
+            PaymentMenegementPage.PaymentSuccessfullySubmittedMessage.Should(Be.Visible);
+            PaymentMenegementPage.DescriptionText.GetText().Contains(payment.Description);
+            PaymentMenegementPage.TotalAppliedText.GetText().Contains($"{depositTotal}");
 
             foreach (Resident resident in _residenstList)
             {

@@ -62,9 +62,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.EnterPaymentFor1payor(_resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
-            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(_resident.Payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{_resident.Payment.Amount}");
+            PaymentMenegementPage.PaymentSuccessfullySubmittedMessage.Should(Be.Visible);
+            PaymentMenegementPage.DescriptionText.GetText().Contains(_resident.Payment.Description);
+            PaymentMenegementPage.TotalAppliedText.GetText().Contains($"{_resident.Payment.Amount}");
             EleganceRmsHomePage.OpenResidentPage(_resident);
             ResidentPageInElegance.OpenResidentLedger();
             ResidentLedgerInElegancePage.IsPaymentExist(_resident.Payment);
@@ -96,9 +96,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.EnterPaymentFor1payor(_resident.Payment.Amount);
             PaymentMenegementPage.SubmitPayment();
 
-            PaymentMenegementPage.PaymentSuccessfullySubmitted.Should(Be.Visible);
-            PaymentMenegementPage.Description.GetText().Contains(_resident.Payment.Description);
-            PaymentMenegementPage.TotalApplied.GetText().Contains($"{_resident.Payment.Amount}");
+            PaymentMenegementPage.PaymentSuccessfullySubmittedMessage.Should(Be.Visible);
+            PaymentMenegementPage.DescriptionText.GetText().Contains(_resident.Payment.Description);
+            PaymentMenegementPage.TotalAppliedText.GetText().Contains($"{_resident.Payment.Amount}");
             EleganceRmsHomePage.OpenResidentPage(_resident);
             ResidentPageInElegance.OpenResidentLedger();
             ResidentLedgerInElegancePage.IsPaymentExist(_resident.Payment);
