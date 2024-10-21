@@ -8,7 +8,6 @@ using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
 using NUnit.Framework;
-using System.Xml.Linq;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
 {
@@ -51,8 +50,8 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             resident.Name = PaymentMenegementPage.ResidentToSelect(1).GetText();
             PaymentMenegementPage.EnterPaymentFor1payor(resident.Payment.Amount);
 
-            PaymentMenegementPage.GetUnAppliedAmount().Contains(unAppliedAmount.ToString());
-            PaymentMenegementPage.UnAppliedErrorMessage.Should(Have.Text("Please ensure deposit total is fully applied"));
+            PaymentMenegementPage.UnAppliedAmount.Should(Have.Text(unAppliedAmount.ToString()));
+            PaymentMenegementPage.UnAppliedErrorMessage.Should(Have.Text("Please ensure deposit total is fully applied")); 
         }
     }
 }

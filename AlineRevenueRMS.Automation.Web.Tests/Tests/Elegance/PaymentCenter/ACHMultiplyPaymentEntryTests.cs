@@ -67,7 +67,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             PaymentCenterPage.GoToACHpayment();
             PaymentMenegementPage.EnterPaymentDitails(payment, depositTotal);
 
-            _residenstList.Select((resident, index) => resident.Name = PaymentMenegementPage.SelectResident(index + 1)).ToList();
+            //_residenstList.Select((resident, index) => resident.Name = PaymentMenegementPage.SelectResident(index + 1)).ToList(); // TODO: change
             PaymentMenegementPage.EnterPaymentForSeveralPayors(_residenstList);
             PaymentMenegementPage.SubmitPayment();
 

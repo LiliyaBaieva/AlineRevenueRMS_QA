@@ -9,7 +9,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
 {
     public class EleganceRmsHomePage : BasePage
     {
-        private static WrappedElement CommunityFilter = new(With.Id("communityFilter"), "Community Filter");
+        private static WrappedElement CommunityFilter = new(With.Id("communityFilter"), "Community Filter"); // TODO all in lambda "=>"
         private static WrappedElement QuickActionLink = new(With.LinkText("Quick Actions"), "Quick Actions");
         private static WrappedElement PaymentManagementLink = new(With.LinkText("Payment Management"), "Navigate to Payment Center");
         private static WrappedElement ResidentLink = new(With.XPath("//a[contains(@href, 'ResidentModal')]"), "Resident Link");

@@ -26,7 +26,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
              new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
         private static readonly WrappedElement SubmitPaymentsBtn = new(With.Css("input[value='Submit Payments']"), "Submit Payments Button ");
         private static readonly WrappedElement DepositTotalField = new(With.Id("CheckAmountStep1"), "Deposit Total");
-        private static readonly WrappedElement UnAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
+        public static readonly WrappedElement UnAppliedAmount = new(With.Id("unapplied"), "UnAppliedAmount");
+        // TODO delete readonly every page
+        // TODO private, public field, than method with args privat, public
 
         public static WrappedElement ResidentToSelect(int residentNum) =>
              new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
@@ -106,11 +108,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static bool ErrorMessageDisplaied(string message)
         {
             return UnAppliedErrorMessage.GetText().Contains(message);
-        }
-
-        public static string GetUnAppliedAmount()
-        {
-            return UnAppliedAmount.GetText();
         }
     }
 }
