@@ -1,4 +1,5 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Element;
+using AlineRevenueRMS.Automation.Web.Core.Element.Extensions;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using Allure.NUnit.Attributes;
@@ -15,7 +16,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static void OpenResidentLedger()
         {
-            ScrollDown(1); // TODO: remove by ScrollIntoView
+            TaskListInResidentActivityBtn.ScrollIntoView();
             TaskListInResidentActivityBtn.Click();
             ResidentLedgerLink.Click();
         }
@@ -23,7 +24,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Open Resident Ledger Admin")]
         public static void OpenResidentLedgerAdmin()
         {
-            ScrollDown(1); // TODO: remove by ScrollIntoView
+            TaskListInResidentActivityBtn.ScrollIntoView();
             TaskListInResidentActivityBtn.Click();
             ResidentLedgerAdminLink.Click();
         }

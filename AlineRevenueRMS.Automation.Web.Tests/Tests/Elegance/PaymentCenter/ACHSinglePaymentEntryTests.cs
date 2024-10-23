@@ -4,6 +4,7 @@ using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using AlineRevenueRMS.Automation.Web.Tests.Tests.Base;
+using AlineRevenueRMS.Automation.Web.Core.Element.Extensions;
 using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
@@ -67,7 +68,11 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.TotalAppliedText.GetText().Contains($"{_resident.Payment.Amount}");
             EleganceRmsHomePage.OpenResidentPage(_resident);
             ResidentPageInElegance.OpenResidentLedger();
-            ResidentLedgerInElegancePage.IsPaymentExist(_resident.Payment);
+
+            ResidentLedgerInElegancePage.PaymentsSection.ScrollIntoView();
+            string date = _resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            ResidentLedgerInElegancePage.PaymentRow(date, "" + _resident.Payment.Amount).Should(Be.Visible);
+            ResidentLedgerInElegancePage.ScrollToHeader();
         }
 
         [Test(Description = "ACH Payment Entry Test in various communities with specific date")]
@@ -101,7 +106,11 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Elegance.PaymentCenter
             PaymentMenegementPage.TotalAppliedText.GetText().Contains($"{_resident.Payment.Amount}");
             EleganceRmsHomePage.OpenResidentPage(_resident);
             ResidentPageInElegance.OpenResidentLedger();
-            ResidentLedgerInElegancePage.IsPaymentExist(_resident.Payment);
+
+            ResidentLedgerInElegancePage.PaymentsSection.ScrollIntoView();
+            string dateToView = _resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            ResidentLedgerInElegancePage.PaymentRow(dateToView, "" + _resident.Payment.Amount).Should(Be.Visible);
+            ResidentLedgerInElegancePage.ScrollToHeader();
         }
     }
 }

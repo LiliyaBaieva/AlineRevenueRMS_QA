@@ -4,6 +4,7 @@ using AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Constants;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
 using AlineRevenueRMS.Automation.Web.Tests.Tests.Base;
+using AlineRevenueRMS.Automation.Web.Core.Element.Extensions;
 using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
@@ -84,7 +85,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             {
                 EleganceRmsHomePage.OpenResidentPage(resident);
                 ResidentPageInElegance.OpenResidentLedger();
-                ResidentLedgerInElegancePage.IsPaymentExist(resident.Payment);
+                ResidentLedgerInElegancePage.PaymentsSection.ScrollIntoView();
+                string date = payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                ResidentLedgerInElegancePage.PaymentRow(date, "" + payment.Amount).Should(Be.Visible);
+                ResidentLedgerInElegancePage.ScrollToHeader();
             }
         }
     }
