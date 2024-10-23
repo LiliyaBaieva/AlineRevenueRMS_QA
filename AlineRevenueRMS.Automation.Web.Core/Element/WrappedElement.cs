@@ -171,7 +171,6 @@ namespace AlineRevenueRMS.Automation.Web.Core.Element
             Should(Be.WithStabilityPosition);
             Should(Be.Clickable);
             ActualWebElement.Click();
-            WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
             return this;
         }
 

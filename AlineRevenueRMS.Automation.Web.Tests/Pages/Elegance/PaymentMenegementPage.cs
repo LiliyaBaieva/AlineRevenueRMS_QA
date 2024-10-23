@@ -11,7 +11,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 {
     public class PaymentMenegementPage : BasePage
     {
-
         private static WrappedElement PaymentManagement => new(With.LinkText("Payment Management"), "Payment Management"); // TODO: Where it uses
         private static WrappedElement PaymentDescriprionField => new(With.Id("BatchPaymentDescStep1"), "Payment Descriprion Field");
         private static WrappedElement ContinueBtn => new(With.Id("Submit"), "Continue Buttton");
@@ -24,19 +23,16 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static WrappedElement DescriptionText => new(With.Id("displayBatchPaymentDesc"), "Description");
         public static WrappedElement TotalAppliedText => new(With.Id("applied"), "Total Applied");
         public static WrappedElement UnAppliedErrorMessage => new(With.Id("error-message"), "Un-Applied Error Message");
-        public static WrappedElement PaymentSuccessfullySubmittedMessage => 
-            new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"),"Payment Successfully Submitted");
+        public static WrappedElement PaymentSuccessfullySubmittedMessage => new(With.XPath("//h2[contains(text(), 'Payment Successfully Submitted')]"), "Payment Successfully Submitted");
 
         private static WrappedElement AppliedAmountSell(int residentIndex) =>
-     new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
+            new(With.Css($" div[row-id='{residentIndex}'] div.ag-cell-value[col-id='itemAppliedAmount']"), "Applied Amount Sell");
         private static WrappedElement CheckBoxInPaymentCart(int residentIndex) =>
-             new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
+            new(With.Css($"div[row-id='{residentIndex}'] div.ag-checkbox-input-wrapper"), "Check Box In Payment Cart");
         private static WrappedElement ResidentCheckbox(int residentNum) =>
-    new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"),
-        "Select Resident checkbox");
-
+            new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//*[@class='ag-selection-checkbox']/div"), "Select Resident checkbox");
         public static WrappedElement ResidentToSelect(int residentNum) =>
-     new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
+            new(With.XPath($"//*[@class='ag-center-cols-container']/div[{residentNum}]//span[@class='ag-cell-value']"), "Receive resident name");
 
         [AllureStep("Enter Payment date and description")]
         public static void EnterPaymentDitails(Payment payment, double depositTotal)
@@ -51,7 +47,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Select Resident")]
         public static void SelectResident(int residentNum)
         {
-            //ScrollDown(2); // TODO: delete
             ResidentCheckbox(residentNum).ScrollIntoView();
             ResidentCheckbox(residentNum).Click();
         }
@@ -60,11 +55,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static void EnterPaymentFor1payor(double amount)
         {
             PaySelectedItemBtn.Click();
-            ScrollDown(2);
+            AppliedAmountSell(0).ScrollIntoView();
             AppliedAmountSell(0).SendKeys($"{amount}");
             AppliedAmountSell(0).PressEnter();
             CheckBoxInPaymentCart(0).Click();
-            Log.Information($"Set ammount {amount} for one payor");
             SubmitPaymentsBtn.Click();
         }
         
@@ -72,13 +66,13 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static void EnterPaymentForSeveralPayors(List<Resident> residents)
         {
             PaySelectedItemBtn.Click();
-            ScrollDown(2);
+            //ScrollDown(2); // TODO: delete
+            AppliedAmountSell(0).ScrollIntoView();
             for (int i = 0; i < residents.Count; i++)
             {
                 AppliedAmountSell(i).SendKeys($"{residents[i].Payment.Amount}");
                 AppliedAmountSell(i).PressEnter();
                 CheckBoxInPaymentCart(i).Click();
-                Log.Information($"Set ammount {residents[i].Payment.Amount} for {residents[i].Name}");
             }
             SubmitPaymentsBtn.Click();
         }
@@ -102,11 +96,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             resident.Name = ResidentToSelect(1).GetText();
             EnterPaymentFor1payor(resident.Payment.Amount);
             SubmitPayment();
-        }
-
-        public static bool ErrorMessageDisplaied(string message)
-        {
-            return UnAppliedErrorMessage.GetText().Contains(message);
         }
     }
 }

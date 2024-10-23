@@ -15,7 +15,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         public static void OpenResidentLedger()
         {
-            ScrollDown(1);
+            ScrollDown(1); // TODO: remove by ScrollIntoView
             TaskListInResidentActivityBtn.Click();
             ResidentLedgerLink.Click();
         }
@@ -23,7 +23,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Open Resident Ledger Admin")]
         public static void OpenResidentLedgerAdmin()
         {
-            ScrollDown(1);
+            ScrollDown(1); // TODO: remove by ScrollIntoView
             TaskListInResidentActivityBtn.Click();
             ResidentLedgerAdminLink.Click();
         }

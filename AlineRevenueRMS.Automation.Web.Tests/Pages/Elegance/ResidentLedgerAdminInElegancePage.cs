@@ -21,7 +21,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             new(With.XPath("//div[@class='dropdown open']//a[contains(text(), 'Update...')]"), "Update Payment Button");
 
         private static WrappedElement EditBtnInPayments(string date, string amount) =>
-    new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), $"Edit Button In Payments with date {date}, amount {amount}");
+            new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), $"Edit Button In Payments with date {date}, amount {amount}");
         private static WrappedElement PaymentRow(string date, string amount) =>
             new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]"), "Payment Row");
 
@@ -36,7 +36,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             Log.Information($"Payment with amoint {resident.Payment.Amount} and date {date} was deleted successfully.");
         }
 
-        public static void MakeASurePaymentDoesntExist(Resident resident)
+        public static void MakeASurePaymentDoesntExist(Resident resident)  // TODO: should not be in page object, should be in test
         {
             DateTime paymentDate = resident.Payment.Date;
             string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
@@ -58,7 +58,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
                 $"was updated to {newAmmount}, successfully");
         }
 
-        public static void PaymenExist(Resident resident, double newAmmount)
+        public static void PaymenExist(Resident resident, double newAmmount)  // TODO: should not be in page object, should be in test
         {
             ScrollToElement(PaymentsSection);
             DateTime paymentDate = resident.Payment.Date;
@@ -66,7 +66,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             PaymentRow(date, "" + newAmmount.ToString()).Should(Be.Visible);
         }
 
-        public static void RecentPaymentDoesntExist(Resident resident)
+        public static void RecentPaymentDoesntExist(Resident resident) // TODO: delete, do not overwrap
         {
             MakeASurePaymentDoesntExist(resident);
         }

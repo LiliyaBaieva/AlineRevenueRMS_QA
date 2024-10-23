@@ -14,10 +14,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Elegance
         private static WrappedElement PaymentManagementLink => new(With.LinkText("Payment Management"), "Navigate to Payment Center");
         private static WrappedElement ResidentLink => new(With.XPath("//a[contains(@href, 'ResidentModal')]"), "Resident Link");
         private static WrappedElement SearchResidentInput => new(With.Id("mdlFilterResident"), "Search Resident Input");
+        private static WrappedElement HomeNavBtn => new(With.Id("homeNav"), "Home Icon");
 
         public static WrappedElement ComunityTab => new(With.XPath("//a[contains(text(),'Community...')]"), "Community Tab");
 
-        private static WrappedElement HomeNavBtn => new(With.Id("homeNav"), "Home Icon");
         private static WrappedElement ComunityInSelector(string community) =>
             new(With.XPath($"//strong[contains(text(),'{community}')]"), $"Select community {community}");
         private static WrappedElement SearchedResident(string name) =>

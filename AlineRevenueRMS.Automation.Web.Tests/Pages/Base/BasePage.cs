@@ -4,7 +4,6 @@ using AlineRevenueRMS.Automation.Web.Core.ElementsCollection;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Core.Wrappers;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using Serilog;
 
 namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
@@ -42,7 +41,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
             js.ExecuteScript("window.scrollTo(0, 0)");
         }
 
-        public static void ScrollToElement(WrappedElement locator)
+        public static void ScrollToElement(WrappedElement locator)   // TODO: remove by ScrollIntoView
         {
             locator.Should(Be.Visible);
             var js = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
@@ -62,7 +61,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
             WrappedDriverManager.GetWebDriver().SwitchTo().DefaultContent();
         }
 
-        public static void ScrollDown(int count)
+        public static void ScrollDown(int count) // TODO: remove by ScrollIntoView
         {
             for (int i = 0; i < count; i++)
             {
@@ -70,22 +69,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
                 jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
             }
         }
-        public static void ScrollUp(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                var jsExecutor = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
-                jsExecutor.ExecuteScript("window.scrollBy(0, -window.innerHeight / 2);");
-            }
-        }
 
         public static void SubmitAlert()
         {
-            //Wait.Until(ExpectedConditions.AlertIsPresent()).Accept();
-            //WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
-            IAlert alert = WrappedDriverManager.GetWebDriver().SwitchTo().Alert();
-                alert.Accept(); // TODO: it is doesn`t work      
+            WrappedDriverManager.GetWebDriver().SwitchTo().Alert().Accept();
         }
-
     }
 }
