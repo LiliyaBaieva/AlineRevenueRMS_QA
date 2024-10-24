@@ -34,7 +34,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Tests.Base
             {
                 var ss = WrappedDriverManager.GetWebDriver().TakeScreenshot();
                 var filePath = $"{testContext.WorkDirectory}\\{testContext.Test.Name}_{Guid.NewGuid().ToString("N").Substring(0, 6)}_Exception.png";
-                filePath = filePath.ReplaceSpacesAndDeleteSymbols("_");
+                filePath = filePath.DeleteUnnecessarySymbols().Replace(" ", "_");
                 ss.SaveAsFile(filePath);
                 TestContext.AddTestAttachment(filePath, "screenshot of failed test");
             }

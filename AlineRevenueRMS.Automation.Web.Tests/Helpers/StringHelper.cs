@@ -4,10 +4,9 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Helpers
 {
     internal static class StringHelper
     {
-        internal static string ReplaceSpacesAndDeleteSymbols(this string str, string replacement) // TODO: decompose methods
+        internal static string DeleteUnnecessarySymbols(this string str)
         {
-            string sanitizedString = Regex.Replace(str, "[\"'@()]", string.Empty);
-            return sanitizedString.Replace(" ", replacement); // TODO: add " " as argument as well to the method
+            return Regex.Replace(str, "[\"'@()]", string.Empty);
         }
     }
 }

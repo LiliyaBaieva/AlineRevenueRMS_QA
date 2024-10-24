@@ -1,5 +1,6 @@
 ﻿using AlineRevenueRMS.Automation.Web.Core.Conditions;
 using AlineRevenueRMS.Automation.Web.Core.Element;
+using AlineRevenueRMS.Automation.Web.Core.Element.Extensions;
 using AlineRevenueRMS.Automation.Web.Core.Locator;
 using AlineRevenueRMS.Automation.Web.Tests.Pages.Base;
 using AlineRevenueRMS.Automation.Web.Tests.TestData.Models;
@@ -28,7 +29,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         [AllureStep("Delete Payment")]
         public static void DeletePayment(Resident resident)
         {
-            ScrollToElement(PaymentsSection);
+            PaymentsSection.ScrollIntoView();
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             EditBtnInPayments(date, $"{resident.Payment.Amount}").Click();
             DeletePaymentBtn.Click();
@@ -40,7 +41,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
         public static void UpdatePayment(Resident resident, double newAmmount)
         {
             //Wrap.WaitUntilPageLoaded(); // TODO: find solution if need this
-            ScrollToElement(PaymentsSection);
+            PaymentsSection.ScrollIntoView();
             string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
             EditBtnInPayments(date, "" + resident.Payment.Amount).Click();
             UpdatePaymentBtn.Click();

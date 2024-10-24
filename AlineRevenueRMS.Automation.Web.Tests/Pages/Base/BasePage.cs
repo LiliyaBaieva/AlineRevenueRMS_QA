@@ -41,13 +41,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
             js.ExecuteScript("window.scrollTo(0, 0)");
         }
 
-        public static void ScrollToElement(WrappedElement locator)   // TODO: remove by ScrollIntoView
-        {
-            locator.Should(Be.Visible);
-            var js = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
-            js.ExecuteScript("arguments[0].scrollIntoView(true);", locator);
-        }
-
         public static void SwitchIFrame(int index = 0)
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
@@ -59,15 +52,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages.Base
         {
             WrappedDriverManager.WaitTo(JavaScript.JavaScriptLoadingComplete(), 30);
             WrappedDriverManager.GetWebDriver().SwitchTo().DefaultContent();
-        }
-
-        public static void ScrollDown(int count) // TODO: remove by ScrollIntoView
-        {
-            for (int i = 0; i < count; i++)
-            {
-                var jsExecutor = (IJavaScriptExecutor)WrappedDriverManager.GetWebDriver();
-                jsExecutor.ExecuteScript("window.scrollBy(0, window.innerHeight / 2);");
-            }
         }
 
         public static void SubmitAlert()
