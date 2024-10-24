@@ -57,24 +57,5 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             Log.Information($"Payment by '{date}' with previous amount '{resident.Payment.Amount.ToString()}' " +
                 $"was updated to {newAmmount}, successfully");
         }
-
-        public static void PaymenExist(Resident resident, double newAmmount)  // TODO: should not be in page object, should be in test
-        {
-            ScrollToElement(PaymentsSection);
-            DateTime paymentDate = resident.Payment.Date;
-            string date = resident.Payment.Date.ToString("MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            PaymentRow(date, "" + newAmmount.ToString()).Should(Be.Visible);
-        }
-
-        public static void RecentPaymentDoesntExist(Resident resident) // TODO: delete, do not overwrap
-        {
-            MakeASurePaymentDoesntExist(resident);
-        }
-
-        internal static void PaymentIsUpdatedSuccessfully(Resident resident, double newAmmount)
-        {
-            PaymenExist(resident, newAmmount);
-            RecentPaymentDoesntExist(resident);
-        }
     }
 }
