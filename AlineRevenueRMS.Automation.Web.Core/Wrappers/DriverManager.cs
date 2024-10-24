@@ -20,7 +20,7 @@ namespace AlineRevenueRMS.Automation.Web.Core.Wrappers
             optionsChrome.AddExcludedArgument("enable-automation");
             optionsChrome.AddUserProfilePreference("credentials_enable_service", false);
             optionsChrome.AddUserProfilePreference("profile.password_manager_enabled", false);
-            optionsChrome.AddUserProfilePreference("disable-popup-blocking", true); // TODO: Liliia. try to delete
+            optionsChrome.AddUserProfilePreference("disable-popup-blocking", true);
 
             return new ChromeDriver(optionsChrome);
         }
@@ -29,7 +29,7 @@ namespace AlineRevenueRMS.Automation.Web.Core.Wrappers
 {
             "--test-type",
             "--start-maximized",
-            "--no-sandbox", // TODO: Liliia. try to delete
+            "--no-sandbox",
             "--incognito",
             "--window-size=1920,1080",
         };
