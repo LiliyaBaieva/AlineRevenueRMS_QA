@@ -22,7 +22,7 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
 
         private static WrappedElement EditBtnInPayments(string date, string amount) =>
             new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]//button"), $"Edit Button In Payments with date {date}, amount {amount}");
-        private static WrappedElement PaymentRow(string date, string amount) =>
+        public static WrappedElement PaymentRow(string date, string amount) =>
             new(With.XPath($"//tr[contains(., '{date}') and contains(., '{amount}')][1]"), "Payment Row");
 
         [AllureStep("Delete Payment")]
@@ -34,13 +34,6 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Pages
             DeletePaymentBtn.Click();
             ConfirmDeleteBtn.Click();
             Log.Information($"Payment with amoint {resident.Payment.Amount} and date {date} was deleted successfully.");
-        }
-
-        public static void MakeASurePaymentDoesntExist(Resident resident)  // TODO: should not be in page object, should be in test
-        {
-            DateTime paymentDate = resident.Payment.Date;
-            string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
-            PaymentRow(date, "" + resident.Payment.Amount).ShouldNot(Be.Visible);
         }
 
         [AllureStep("Edit Payment with new amount")]

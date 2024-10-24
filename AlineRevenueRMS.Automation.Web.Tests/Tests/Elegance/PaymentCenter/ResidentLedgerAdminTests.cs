@@ -45,8 +45,10 @@ namespace AlineRevenueRMS.Automation.Web.Tests.Elegance.PaymentCenter
             EleganceRmsHomePage.OpenResidentPage(resident);
             ResidentPageInElegance.OpenResidentLedgerAdmin();
             ResidentLedgerAdminInElegancePage.DeletePayment(resident);
+            DateTime paymentDate = resident.Payment.Date;
+            string date = $"{paymentDate.Month.ToString()}/{paymentDate.Day.ToString()}/{paymentDate.Year.ToString()}";
 
-            ResidentLedgerAdminInElegancePage.MakeASurePaymentDoesntExist(resident);
+            ResidentLedgerAdminInElegancePage.PaymentRow(date, "" + resident.Payment.Amount).ShouldNot(Be.Visible);
         }
         
         [Test(Description = "Update payment test in Resident Ledger Admin in various communities")]
